@@ -1,0 +1,156 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Danh sách giáo viên <small>Giáo viên</small></h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 ">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Tìm kiếm </h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br>
+          <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left">
+            <div class="row">
+              <div class="col-md-6 item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Họ và tên <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                  <input type="text" id="last-name" name="last-name" required="required" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6 item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align">Kíp dạy <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                  <input id="KipDay" class="date-picker form-control" required="required" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-md-6 item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align">Giới tính</label>
+                <div class="col-md-6 col-sm-6 ">
+                  <div id="gender" class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                      <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Nam &nbsp;
+                    </label>
+                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                      <input type="radio" name="gender" value="female" class="join-btn"> Nữ
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item form-group">
+              <div class="col-md-8 col-sm-6 offset-md-5">
+                <button type="submit" class="btn btn-success">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="x_content">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-box table-responsive">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Thêm mới giáo viên
+          </button>
+          <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width:100%">
+            <thead>
+            <tr>
+              <th>STT</th>
+              <th>Mã thẻ</th>
+              <th>Họ và tên</th>
+              <th>Ngày sinh</th>
+              <th>Mã Lớp</th>
+              <th>Kíp</th>
+              <th>Chi Tiết</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>1</td>
+              <td>NHOM1_TOAN6</td>
+              <td>01-03-2020</td>
+              <td>01-04-2020</td>
+              <td>45</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>NHOM2_TOAN6</td>
+              <td>01-03-2020</td>
+              <td>01-04-2020</td>
+              <td>40</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>NHOM1_TOAN7</td>
+              <td>01-03-2020</td>
+              <td>01-04-2020</td>
+              <td>40</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>NHOM2_TOAN7</td>
+              <td>01-03-2020</td>
+              <td>01-04-2020</td>
+              <td>40</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>NHOM1_TOAN8</td>
+              <td>01-03-2020</td>
+              <td>01-04-2020</td>
+              <td>40</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>NHOM2_TOAN8</td>
+              <td>01-03-2020</td>
+              <td>01-04-2020</td>
+              <td>40</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>NHOM1_TOAN9</td>
+              <td>01-03-2020</td>
+              <td>01-04-2020</td>
+              <td>40</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>NHOM2_TOAN9</td>
+              <td>01-03-2020</td>
+              <td>01-04-2020</td>
+              <td>40</td>
+              <td>0</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,9 +24,42 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/nprogress.css",
+              "src/assets/css/green.css",
+              "src/assets/css/dataTables.bootstrap.min.css",
+              "src/assets/css/buttons.bootstrap.min.css",
+              "src/assets/css/fixedHeader.bootstrap.min.css",
+              "src/assets/css/responsive.bootstrap.min.css",
+              "src/assets/css/scroller.bootstrap.min.css",
+              "src/assets/css/custom.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/popper.js/dist/umd/popper.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "src/assets/js/jquery-3.2.1.slim.min.js",
+              "src/assets/js/fastclick.js",
+              "src/assets/js/icheck.min.js",
+              "src/assets/js/jquery.dataTables.min.js",
+              "src/assets/js/dataTables.bootstrap.min.js",
+              "src/assets/js/dataTables.buttons.min.js",
+              "src/assets/js/buttons.bootstrap.min.js",
+              "src/assets/js/buttons.flash.min.js",
+              "src/assets/js/buttons.html5.min.js",
+              "src/assets/js/buttons.print.min.js",
+              "src/assets/js/dataTables.fixedHeader.min.js",
+              "src/assets/js/dataTables.keyTable.min.js",
+              "src/assets/js/dataTables.responsive.min.js",
+              "src/assets/js/responsive.bootstrap.js",
+              "src/assets/js/dataTables.scroller.min.js",
+              "src/assets/js/jszip.min.js",
+              "src/assets/js/pdfmake.min.js",
+              "src/assets/js/vfs_fonts.js",
+              "src/assets/js/custom.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +152,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "qlttgd-fe"
+    }
+  },
+  "defaultProject": "qlttgd-fe",
+  "cli": {
+    "analytics": "80748dcf-b0b8-4b28-89b5-9e6d8b3b4b5d"
+  }
 }

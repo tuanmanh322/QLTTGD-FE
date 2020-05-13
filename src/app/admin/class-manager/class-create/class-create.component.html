@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h4 class="modal-title">Tạo mới lớp</h4>
+  <button type="button" class="close" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<form [formGroup]="lopHocForm" (ngSubmit)="onSubmit()">
+  <div class="modal-boy">
+    <div class="container">
+      <div class="form-group">
+        <label for="maLop">Mã lớp</label>
+        <input type="text"
+               class="form-control"
+               formControlName="maLop" id="maLop" />
+      </div>
+      <div class="form-group">
+        <label for="tenlop">Tên lớp</label>
+        <input type="text" class="form-control" formControlName="tenlop" id="tenlop">
+      </div>
+      <div class="form-group">
+        <label for="siso">Sĩ số</label>
+        <input type="text" class="form-control" formControlName="siso" id="siso">
+      </div>
+      <div class="form-group">
+        <label for="thoigianbatdau">Thời gian bắt đầu</label>
+        <input type="date" class="form-control" formControlName="thoigianbatdau" id="thoigianbatdau">
+      </div>
+      <div class="form-group">
+        <label for="thoigianketthuc">Thòi gian kết thúc</label>
+        <input type="date" class="form-control" formControlName="thoigianketthuc" id="thoigianketthuc">
+      </div>
+      <div class="form-group">
+        <label for="diadiem">Địa điểm </label>
+        <input type="text" class="form-control" formControlName="diadiem" id="diadiem">
+      </div>
+      <div class="form-group">
+        <label for="hocphi">Học phí </label>
+        <input type="text" class="form-control" formControlName="hocphi" id="hocphi">
+      </div>
+      <div class="form-group">
+        <label for="maMonhoc">Học phí </label>
+        <input type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success"
+            [disabled]="!lopHocForm.valid">
+      Submit Form
+    </button>
+    <button class="btn btn-danger"
+            (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</form>
