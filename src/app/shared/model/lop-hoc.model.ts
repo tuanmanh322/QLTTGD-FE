@@ -1,4 +1,4 @@
-export class LopHocModel {
+export interface LopHocModel {
   id?: number;
   maLop?: string;
   tenLop?: string;

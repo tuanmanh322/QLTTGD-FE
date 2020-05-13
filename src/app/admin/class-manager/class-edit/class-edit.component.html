@@ -16,6 +16,9 @@
       <div class="form-group">
         <label for="tenlop">Tên lớp</label>
         <input type="text" class="form-control" formControlName="tenlop" id="tenlop">
+        <div *ngIf="f.required && (f.tenlop.touched || f.tenlop.dirty)">
+        <div class="text text-danger" *ngIf="f.tenlop.error.required">Bạn cần nhập vào tên l</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="siso">Sĩ số</label>

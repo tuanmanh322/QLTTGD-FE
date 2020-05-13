@@ -1,1 +1,49 @@
-<p>class-detail works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">Sửa lớp </h4>
+    <button type="button" class="close" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+    <div class="modal-boy">
+      <div class="container">
+        <div class="form-group">
+          <label for="maLop">Mã lớp : </label>
+          <span>{{lopModel.maLop}}</span>
+        </div>
+        <div class="form-group">
+          <label for="tenLop">Tên lớp: </label>
+           <span>{{lopModel.tenLop}}</span>
+        </div>
+        <div class="form-group">
+          <label for="siso">Sĩ số :</label>
+          <span>{{lopModel.siSo}}</span>
+        </div>
+        <div class="form-group">
+          <label for="thoigianbatdau">Thời gian bắt đầu :</label>
+          <span>{{lopModel.ngayKhaiGiang | date: 'yyyy-MM-dd'}}</span>
+        </div>
+        <div class="form-group">
+          <label for="thoigianketthuc">Thòi gian kết thúc :</label>
+          <span>{{lopModel.ngayKetThuc | date: 'yyyy-MM-dd'}}</span>
+        </div>
+        <div class="form-group">
+          <label for="diadiem">Địa điểm :</label>
+          <span>{{lopModel.diaDiem}}</span>
+        </div>
+        <div class="form-group">
+          <label for="hocphi">Học phí :</label>
+          <span>{{lopModel.hocPhi}}</span>
+        </div>
+        <div class="form-group">
+          <label for="maMonhoc">Teen moon hojc : </label>
+          <span>{{lopModel.tenMonHoc}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger"
+              (click)="cancel()">
+       Cancel
+      </button>
+    </div>
+  

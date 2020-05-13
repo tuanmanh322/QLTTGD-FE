@@ -15,7 +15,7 @@ export class ClassEditComponent implements OnInit {
   @Input() lophoc: any;
   lopHocForm: FormGroup;
   lopHocModel: LopHocModel;
-
+  tenMonHoc: string;
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
@@ -28,15 +28,16 @@ export class ClassEditComponent implements OnInit {
   ngOnInit() {
     this.lopHocModel = this.lophoc;
     this.lopHocForm = this.fb.group({
-      maLop: new FormControl('', [Validators.required]),
-      tenlop: new FormControl('', [Validators.required]),
-      siso: new FormControl('', [Validators.required]),
-      thoigianbatdau: new FormControl('', [Validators.required]),
-      thoigianketthuc: new FormControl('', [Validators.required]),
-      diadiem: new FormControl('', [Validators.required]),
-      hocphi: new FormControl('', [Validators.required]),
+      maLop: new FormControl({value: this.lopHocModel.id, disable:true}),
+      tenlop: new FormControl(this.lopHocModel.tenLop, [Validators.required]),
+      siso: new FormControl(this.lopHocModel.siSo, [Validators.required]),
+      thoigianbatdau: new FormControl(this.lopHocModel.ngayKhaiGiang, [Validators.required]),
+      thoigianketthuc: new FormControl(this.lopHocModel.ngayKetThuc, [Validators.required]),
+      diadiem: new FormControl(this.lopHocModel.diaDiem, [Validators.required]),
+      hocphi: new FormControl(this.lopHocModel.hocPhi, [Validators.required]),
       maMonhoc: new FormControl('', [Validators.required])
     });
+    this.tenMonHoc = this.lopHocModel.tenMonHoc
   }
 
   get f() {

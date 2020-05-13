@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { LopHocModel } from './../../../shared/model/lop-hoc.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-class-detail',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./class-detail.component.css']
 })
 export class ClassDetailComponent implements OnInit {
-
-  constructor() { }
+  @Input() lophocPass: any;
+  lopModel: LopHocModel;
+  constructor(
+    public activeModal: NgbActiveModal,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
+    this.lopModel = this.lophocPass;
+  }
+
+  cancel(){
+    this.activeModal.dismiss();
   }
 
 }

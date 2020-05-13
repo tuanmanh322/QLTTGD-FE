@@ -1,3 +1,4 @@
+import { ClassDetailComponent } from './../class-detail/class-detail.component';
 import {Component, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
@@ -79,14 +80,14 @@ export class ClassListComponent implements OnInit {
     });
   }
 
-  moveEdit(lophoc: LopHocModel) {
+  moveEdit(lophoc: any) {
     const modalRef = this.modalService.open(ClassEditComponent);
     modalRef.componentInstance.lophoc = lophoc;
   }
 
-  moveDetail(lophoc: LopHocModel) {
-    const modalRef = this.modalService.open(ClassEditComponent);
-    modalRef.componentInstance.lophoc = lophoc;
+  moveDetail(lophoc: any) {
+    const modalRef = this.modalService.open(ClassDetailComponent);
+    modalRef.componentInstance.lophocPass = lophoc;
   }
 
   onChangePage(pageOfItems: Array<any>) {
