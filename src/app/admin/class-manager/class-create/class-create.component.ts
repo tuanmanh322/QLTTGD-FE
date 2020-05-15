@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -11,6 +11,7 @@ import {ApiService} from '../../../shared/service/api.service';
   styleUrls: ['./class-create.component.css']
 })
 export class ClassCreateComponent implements OnInit {
+  @ViewChild('submitele') submitele: ElementRef<HTMLElement>;
   lopHocForm: FormGroup;
 
   constructor(
@@ -40,9 +41,15 @@ export class ClassCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.lopHocForm.invalid){
+      return;
+    }
     this.apiService.post('/api/lop-hoc/add', this.lopHocForm.value).subscribe(res => {
       this.toarst.success('Thêm mới lớp học thành công');
       this.router.navigate(['/admin/class']);
+      // setTimeout(() => {
+      //   this.submitele.nativeElement.click();
+      // }, 200);
     }, error => {
       this.toarst.error('Thêm mới thất bại');
     });

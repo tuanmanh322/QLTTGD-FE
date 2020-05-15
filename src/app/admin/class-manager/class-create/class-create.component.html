@@ -12,43 +12,67 @@
         <input type="text"
                class="form-control"
                formControlName="maLop" id="maLop" />
+        <div *ngIf="f.maLop.errors && (f.maLop.dirty || f.maLop.touched)" class="text-danger">
+          <div *ngIf="f.maLop.errors.required">Mã lớp không được để trống</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="tenlop">Tên lớp</label>
         <input type="text" class="form-control" formControlName="tenlop" id="tenlop">
+        <div *ngIf="f.tenlop.errors && (f.tenlop.dirty || f.tenlop.touched)" class="text-danger">
+          <div *ngIf="f.tenlop.errors.required">Tên lớp không được để trống</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="siso">Sĩ số</label>
         <input type="text" class="form-control" formControlName="siso" id="siso">
+        <div *ngIf="f.siso.errors && (f.siso.dirty || f.siso.touched)" class="text-danger">
+          <div *ngIf="f.siso.errors.required">Sĩ số không được để trống</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="thoigianbatdau">Thời gian bắt đầu</label>
         <input type="date" class="form-control" formControlName="thoigianbatdau" id="thoigianbatdau">
+        <div *ngIf="f.thoigianbatdau.errors && (f.thoigianbatdau.dirty || f.thoigianbatdau.touched)" class="text-danger">
+          <div *ngIf="f.thoigianbatdau.errors.required">Thời gian bắt đầu không được để trống</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="thoigianketthuc">Thòi gian kết thúc</label>
         <input type="date" class="form-control" formControlName="thoigianketthuc" id="thoigianketthuc">
+        <div *ngIf="f.thoigianketthuc.errors && (f.thoigianketthuc.dirty || f.thoigianketthuc.touched)" class="text-danger">
+          <div *ngIf="f.thoigianketthuc.errors.required">hòi gian kết thúc không được để trống</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="diadiem">Địa điểm </label>
         <input type="text" class="form-control" formControlName="diadiem" id="diadiem">
+        <div *ngIf="f.diadiem.errors && (f.diadiem.dirty || f.diadiem.touched)" class="text-danger">
+          <div *ngIf="f.diadiem.errors.required">Địa điểm không được để trống</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="hocphi">Học phí </label>
         <input type="text" class="form-control" formControlName="hocphi" id="hocphi">
+        <div *ngIf="f.hocphi.errors && (f.hocphi.dirty || f.hocphi.touched)" class="text-danger">
+          <div *ngIf="f.hocphi.errors.required">Học phí không được để trống</div>
+        </div>
       </div>
       <div class="form-group">
-        <label for="maMonhoc">Học phí </label>
+        <label for="maMonhoc">Mã môn học </label>
         <input type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">
+        <div *ngIf="f.maMonhoc.errors && (f.maMonhoc.dirty || f.maMonhoc.touched)" class="text-danger">
+          <div *ngIf="f.maMonhoc.errors.required">Mã môn học không được để trống</div>
+        </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
     <button class="btn btn-success"
-            [disabled]="!lopHocForm.valid">
-      Submit Form
+            [disabled]="lopHocForm.invalid">
+      ADD
     </button>
-    <button class="btn btn-danger"
+    <button class="btn btn-danger" #submitele
             (click)="cancel()">
       Cancel
     </button>

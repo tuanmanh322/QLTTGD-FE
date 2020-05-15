@@ -37,7 +37,7 @@ export class ClassEditComponent implements OnInit {
       hocphi: new FormControl(this.lopHocModel.hocPhi, [Validators.required]),
       maMonhoc: new FormControl('', [Validators.required])
     });
-    this.tenMonHoc = this.lopHocModel.tenMonHoc
+    this.tenMonHoc = this.lopHocModel.tenMonHoc;
   }
 
   get f() {

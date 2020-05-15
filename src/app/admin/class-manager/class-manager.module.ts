@@ -7,6 +7,7 @@ import {classRoutes} from './class-manager.routing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import {PaginatorModule} from '../../shared/paginator/paginator.module';
 
 @NgModule({
   declarations: [ClassCreateComponent, ClassListComponent, ClassDetailComponent, ClassEditComponent],
@@ -15,7 +16,8 @@ import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    NgbModalModule
+    NgbModalModule,
+    PaginatorModule
   ],
   providers: [],
   entryComponents: [ClassCreateComponent]

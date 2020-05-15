@@ -1,0 +1,31 @@
+<div class="row" *ngIf="searchObject.totalPages" align="center">
+  <div class="col-md-12">
+    <!-- Pagination -->
+    <div class="pagination-container margin-top-40 margin-bottom-40">
+      <nav class="pagination d-flex justify-content-center">
+        <ul class="">
+          <li class="pagination-arrow" (click)="goToPage(0)"
+              [ngClass]="{'disabled': searchObject.page <= 5}">
+            <a class="ripple-effect"><i class="icon-feather-chevrons-left">  </i> </a>
+          </li>
+          <li class="pagination-arrow" (click)="previousPage()"
+              [ngClass]="{'disabled': searchObject.page === 0}">
+            <a class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-left"></i></a>
+          </li>
+          <li *ngFor="let page of arrPage">
+            <a (click)="goToPage(page)" class="ripple-effect"
+               [ngClass]="{'current-page': page === searchObject.page}">{{page + 1}}</a>
+          </li>
+          <li class="pagination-arrow" (click)="nextPage()"
+              [ngClass]="{'disabled': searchObject.totalPages-1 === searchObject.page}">
+            <a class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a>
+          </li>
+          <li class="pagination-arrow" (click)="goToPage(searchObject.totalPages-1)"
+              [ngClass]="{'disabled': (searchObject.totalPages < 5 || searchObject.page > searchObject.totalPages - 4) }">
+            <a class="ripple-effect"><i class="icon-feather-chevrons-right">  </i></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -149,14 +149,8 @@
             </div>
           </div>
         </div>
+        <app-paginator [searchObject]="lopHocSearch" (searchFunction)="getAll()" ></app-paginator>
       </div>
     </div>
-<!--    <jw-pagination-->
-<!--      [items]="lopHocList"-->
-<!--      (changePage)="onChangePage($event)"-->
-<!--      pageSize="{{lopHocSearch.pageSize}}"-->
-<!--      [maxPages]="lopHocSearch.totalPages"-->
-<!--      initialPage="1"-->
-<!--    ></jw-pagination>-->
   </div>
 </div>

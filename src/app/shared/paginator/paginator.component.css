@@ -1,0 +1,18 @@
+li.disabled a {
+  cursor: not-allowed;
+  background-color: #eaeaea !important;
+}
+li.disabled a:hover {
+  cursor: not-allowed;
+  background-color: #eaeaea;
+  box-shadow: none;
+}
+
+.pagination ul li a {
+  /*border-radius: 4px;*/
+  /*width: 40px;*/
+  /*height: 40px;*/
+  /*padding: 0;*/
+  /*line-height: 40px;*/
+  margin-left: 5px;
+}
