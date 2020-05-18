@@ -1,4 +1,4 @@
-import { ClassDetailComponent } from './../class-detail/class-detail.component';
+import {ClassDetailComponent} from './../class-detail/class-detail.component';
 import {Component, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
@@ -40,6 +40,10 @@ export class ClassListComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal
   ) {
+    this.apiService.onLoad().subscribe((m: any) => {
+      console.log(m);
+      this.getAll();
+    });
   }
 
   ngOnInit() {

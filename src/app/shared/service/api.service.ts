@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {Observable, Subject, throwError} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {catchError} from 'rxjs/operators';
 
@@ -40,6 +40,15 @@ export class ApiService {
       .pipe(catchError(err => {
         return throwError(err);
       }));
+  }
+  private _listen = new Subject<any>();
+
+  onLoad(): Observable<any>{
+    return this._listen.asObservable();
+  }
+
+  onFilter(filter: string){
+    this._listen.next(filter);
   }
 
 }

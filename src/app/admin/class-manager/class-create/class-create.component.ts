@@ -46,10 +46,8 @@ export class ClassCreateComponent implements OnInit {
     }
     this.apiService.post('/api/lop-hoc/add', this.lopHocForm.value).subscribe(res => {
       this.toarst.success('Thêm mới lớp học thành công');
-      this.router.navigate(['/admin/class']);
-      // setTimeout(() => {
-      //   this.submitele.nativeElement.click();
-      // }, 200);
+      this.apiService.onFilter('create');
+      this.activeModal.dismiss();
     }, error => {
       this.toarst.error('Thêm mới thất bại');
     });

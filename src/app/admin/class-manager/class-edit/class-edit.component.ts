@@ -47,7 +47,8 @@ export class ClassEditComponent implements OnInit {
   onSubmit() {
     this.apiService.post('/api/lop-hoc/edit', this.lopHocForm.value).subscribe(res => {
       this.toarst.success('Thêm mới lớp học thành công');
-      this.router.navigate(['/admin/class']);
+      this.apiService.onFilter('edit');
+      this.activeModal.dismiss();
     }, error => {
       this.toarst.error('Thêm mới thất bại');
     });
