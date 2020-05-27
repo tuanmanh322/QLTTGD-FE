@@ -1,0 +1,27 @@
+<div class="row" style="text-align: center">
+  <a style="width: 10%"></a>
+  <h3 style="width: 80%" (click)="postBaiViet()">Tạo câu hỏi</h3>
+  <a class="closeButton col-form-label form-label" style="max-width: 10%" (click)="closePopup()"><i
+    class="fa fa-close "></i></a>
+</div>
+
+<div style="margin-top: 10px;">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Tag</span>
+    </div>
+    <input type="text" class="form-control tag" placeholder="Tag cho câu hỏi" aria-label="Tag cho câu hỏi" aria-describedby="basic-addon1" [(ngModel)]="tagDiscuss">
+  </div>
+</div>
+<div>
+  <ckeditor [editor]="editor" data="<h5>Viết bình luận!</h5>" [(ngModel)]="baiVietContent"></ckeditor>
+</div>
+
+
+<div style="margin-top: 10px;">
+  <h3 class="postButton" (click)="postBaiViet()">Đăng</h3>
+</div>
+<div style="border-bottom: 1px solid #cbcbc6;margin-top: 10px;">
+</div>
+<div>
+</div>

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+  <div class="col-10 mx-auto">
+    <ul class="navbar-nav">
+
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="">Trang chủ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="hoi-dap">Hỏi Đáp</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Luyện tập</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#">Thông báo</a>
+      </li>
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link " href="#" (click)="clickFalse()">False</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item" *ngIf="testtt">-->
+<!--        <a class="nav-link " href="#">TestClick</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link " href="#" (click)="clickTrue()">True</a>-->
+<!--      </li>-->
+      <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link " routerLink="/admin/qlttgd" >Trang điều khiển</a>
+      </li>
+      <li class="nav-item"  *ngIf="!isAuthenticate">
+        <a class="nav-link " type="button" href="#" data-toggle="modal"  (click)="openLogin()">Đăng nhập</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="isAuthenticate">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          {{userProfile.name}}
+          <div class="dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['settings/profile']">Cá nhân</a>
+            <a class="dropdown-item" href="#">Quản lý điểm</a>
+            <a class="dropdown-item pointer-event" (click)="logOut()">Logout</a>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div id="header">
+  <div id="header_inner" class="fixed">
+    <div id="logo">
+      <h1><span>MATHEMATICS</span></h1>
+      <h2>Design by NdoubleD</h2>
+    </div>
+    <div id="menu">
+      <ul>
+        <li><a href="#" class="active">Forum</a></li>
+        <li><a href="#">Toán vui</a></li>
+        <li><a href="#">Bài tập</a></li>
+        <li><a href="#">Kiểm tra</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,9 @@ import {PaginatorModule} from './paginator/paginator.module';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
+import {AuthService} from './service/auth.service';
+import {StorageService} from './service/storage.service';
+import {UserService} from './service/user.service';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
   ],
   exports: [LayoutsModule],
   providers: [
-    ApiService
+    ApiService,
+    AuthService,
+    StorageService,
+    UserService
   ]
 })
 export class SharedModule {

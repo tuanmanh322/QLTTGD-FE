@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h4 class="modal-title">Đăng Nhập</h4>
+  <button type="button" class="close" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<div class="modal-body">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-10 mx-auto">
+          <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <div class="form-group">
+              <label for="maThe">Mã thẻ</label>
+              <input type="text" class="form-control" id="maThe" aria-describedby="emailHelp"
+                     formControlName="maThe" name="maThe"
+                     placeholder="Nhập vào mã thẻ">
+              <div *ngIf="f.maThe.errors && (f.maThe.dirty || f.maThe.touched)" class="text-danger">
+                <div *ngIf="f.maThe.errors.required">Bạn cần nhập vào mã thẻ!</div>
+                <div *ngIf="f.maThe.errors.minLength">Mã thẻ có tối thiểu 8 ký tự!</div>
+              </div>
+              <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" class="form-control" id="password" placeholder="Password"
+                       formControlName="password" name="password">
+                <div *ngIf="f.password.errors && (f.password.dirty || f.password.touched)" class="text-danger">
+                  <div *ngIf="f.password.errors.required">Bạn cần nhập vào mật khẩu!</div>
+                  <div *ngIf="f.password.errors.minLength">Mật khẩu có tối thiểu 8 ký tự!</div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onLogin()">Đăng nhập</button>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modal_register"
+                (click)="goToRegister()">Đăng ký
+          nhanh
+        </button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

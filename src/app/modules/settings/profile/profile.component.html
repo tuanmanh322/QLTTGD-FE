@@ -1,0 +1,140 @@
+<div id="main">
+  <form [formGroup]="userForm" (ngSubmit)="onEdit()">
+
+
+    <div class="col-10 mx-auto">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="HoTen" class="col-form-label">Họ và tên </label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control form-control-sm" type="text" placeholder="Họ tên" id="HoTen"
+                  formControlName="name" name="name">
+          </div>
+
+          <div class="col-md-3">
+            <label for="Nam" class="col-form-label">Giới tính </label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gioitinh" id="Nam" value="Nam" formControlName="gioitinh" >
+            <label class="form-check-label" for="gioitinh">Nam</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Nu" value="Nu"  formControlName="gioitinh">
+            <label class="form-check-label" for="gioitinh">Nữ</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="DoB" class="col-form-label">Ngày sinh </label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control form-control-sm" type="date" value="" id="DoB" formControlName="ngaysinh" name="ngaysinh" [value]="userProfile.ngaysinh">
+          </div>
+
+          <div class="col-md-2">
+            <label for="SDT" class="col-form-label">Số điện thoại của bạn(hoặc bố mẹ) </label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control form-control-sm" type="text" placeholder="Số điện thoại" id="SDT" formControlName="sodt" name="sodt">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="HoTenBM" class="col-form-label">Địa chỉ </label>
+          </div>
+          <div class="col-md-2">
+            <select class="form-control form-control-sm" id="inlineFormCustomSelect" formControlName="quequan">
+              <option selected="">-- Tỉnh/TP --</option>
+              <option id="Tinh"></option>
+            </select>
+          </div>
+
+          <div class="col-md-2">
+            <select class="form-control form-control-sm" id="inlineFormCustomSelect">
+              <option selected="">-- Quận/Huyện --</option>
+              <option id="Huyen"></option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <select class="form-control form-control-sm" id="inlineFormCustomSelect">
+              <option selected="">-- Xã --</option>
+              <option id="Xa"></option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control form-control-sm" type="text" placeholder="Chi tiết địa chỉ" id="DC_ChiTiet" formControlName="noiohientai" name="noiohientai">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="Email" class="col-form-label">Email </label>
+          </div>
+          <div class="col-md-4">
+            <input type="email" class="form-control form-control-sm" id="Email" placeholder="Email" formControlName="email">
+          </div>
+          <div class="col-md-2">
+            <label for="MaThe" class="col-form-label">Mã thẻ </label>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control form-control-sm" type="text" placeholder="Mã thẻ" id="MaThe" [value]="userProfile.maThe" [disabled]="true" >
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="MaThe" class="col-form-label">Môn học</label>
+          </div>
+          <div class="col-md-4">
+            <select class="form-control form-control-sm" id="inlineFormCustomSelect">
+<!--              <option selected="">&#45;&#45; Chọn môn học &#45;&#45;</option>-->
+              <option selected value="Toan">Toán</option>
+              <option value="Tin">Tin</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="MaThe" class="col-form-label">Lớp</label>
+          </div>
+          <div class="col-md-2">
+            <select class="form-control form-control-sm" id="inlineFormCustomSelect" formControlName="tenLop" name="tenLop">
+              <option selected="">-- Lớp --</option>
+              <option  selected value="Lop6">{{userProfile.tenLop}}</option>
+              <option value="Lop6">Lớp 7</option>
+              <option value="Lop6">Lớp 8</option>
+              <option value="Lop6">Lớp 9</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <label for="MaThe" class="col-form-label">Hạng mục</label>
+          </div>
+          <div class="col-md-4">
+            <select class="form-control form-control-sm" id="inlineFormCustomSelect">
+<!--              <option selected="">&#45;&#45; Hạng mục &#45;&#45;</option>-->
+              <option selected value="DAI_6">Đại số 6</option>
+              <option value="HINHHOC_6">Hình học 6</option>
+              <option value="DAI_7">Đại số 7</option>
+              <option value="HINHHOC_7">Hình học 7</option>
+              <option value="DAI_8">Đại số 8</option>
+              <option value="HINHHOC_8">Hình học 8</option>
+              <option value="DAI_9">Đại số 9</option>
+              <option value="HINHHOC_9">Hình học 9</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
