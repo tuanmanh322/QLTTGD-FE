@@ -17,3 +17,6 @@ export const COMMENT_lIST_CHANGED = 'COMMENT_lIST_CHANGED';
 export const LOGIN_SUCCESS_FOR_APPLY_JOB = 'LOGIN_SUCCESS_FOR_APPLY_JOB';
 export const APPLY_SUCCESS = 'APPLY_SUCCESS';
 export const TOGGLE_SIDE_BAR = 'TOGGLE_SIDE_BAR';
+export const ROLE = 'ROLE';
+export const CURRENT_USER = 'CURRENT_USER';
+export const TOKEN = 'TOKEN';
