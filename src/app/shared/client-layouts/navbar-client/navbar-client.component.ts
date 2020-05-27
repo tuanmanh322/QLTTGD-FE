@@ -56,6 +56,8 @@ export class NavbarClientComponent implements OnInit {
         localStorage.removeItem(CURRENT_USER);
         localStorage.setItem(CURRENT_USER, JSON.stringify(res));
         this.userProfile = res;
+        localStorage.removeItem('role');
+        localStorage.setItem('role', this.userProfile.role);
         if (this.userProfile.role === 'ROLE_ADMIN') {
           this.isAdmin = true;
         }
