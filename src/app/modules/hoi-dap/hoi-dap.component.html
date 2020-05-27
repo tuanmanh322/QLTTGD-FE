@@ -1,1 +1,50 @@
-awrrrrrrrrrrrrrrrrrr
+<div class="tab-content" style="margin-left: 200px;" >
+  <div class="tab-pane container active" id="home" *ngFor="let bv of baiVietList">
+    <div class="form-group">
+      <div class="row">
+        <label class="UserID" style="font-weight: bold;">{{bv.userName}}</label>
+      </div>
+      <div class="row">
+        <label class="NoiDung" rows="7">{{bv.noiDung}}</label>
+
+      </div>
+      <div *ngFor="let cm of bv.commentDTOS; let i = index">
+        <div class="row list_icon">
+          <a><i class="far fa-thumbs-up"></i></a>
+          <a href="#" data-toggle="collapse" data-target="{{'#binhluan' + i }}"><i class="far fa-comment"></i></a>
+        </div>
+        <div class="row binhluan">
+          <label class="binhluan" rows="4"><i>{{cm.noiDung}} </i></label>
+        </div>
+        <div>
+          <ckeditor [editor]="editor" data="<h5>Viết bình luận!</h5>" [(ngModel)]="commentContent"></ckeditor>
+        </div>
+        <div style="margin-top: 10px;">
+          <h3 class="postButton" (click)="postComment(bv.id)">Đăng</h3>
+        </div>
+        <div *ngFor="let recm of cm.repCommentDTOS; let j = index">
+          <div class="row list_icon_binhluan">
+            <a><i class="far fa-thumbs-up"></i></a>
+            <a href="#" data-toggle="collapse" data-target="{{'#repbinhluan'+ j}}"><i class="far fa-comment"></i></a>
+          </div>
+          <div class="row repbinhluan">
+            <label class="repbinhluan" rows="4"><i>{{recm.noidung}} </i></label>
+          </div>
+          <div>
+            <ckeditor [editor]="editor" data="<h5>Viết bình luận!</h5>" [(ngModel)]="repCommentContent"></ckeditor>
+          </div>
+          <div style="margin-top: 10px;">
+            <h3 class="postButton" (click)="postRepComment(bv.id,cm.id)">Đăng</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <a class="xemthem" href="#">Xem thêm bình luận</a>
+  </div>
+
+  <div style="border-bottom: 1px solid #cbcbc6;margin-top: 10px;">
+  </div>
+</div>

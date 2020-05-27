@@ -16,7 +16,7 @@ export class PostBaivietComponent implements OnInit {
   public editor: ClassicEditor;
   baiVietContent: any;
   userProfile: UserProfileModel;
-
+  tagCauHoi: any;
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,

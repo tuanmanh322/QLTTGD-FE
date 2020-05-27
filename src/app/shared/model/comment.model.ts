@@ -1,6 +1,6 @@
-import {CommentModel} from './comment.model';
+import {RepCommentModel} from './rep-comment.model';
 
-export interface Baiviet {
+export interface CommentModel {
   id?: number;
   maComment?: string;
   noiDung?: string;
@@ -9,5 +9,5 @@ export interface Baiviet {
   idBaiViet?: number;
   idUser?: number;
   userName?: string;
-  commentDTOS?: CommentModel[];
+  repCommentDTOS?: RepCommentModel[];
 }

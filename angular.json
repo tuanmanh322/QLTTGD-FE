@@ -39,7 +39,7 @@
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/popper.js/dist/umd/popper.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/jquery-3.2.1.slim.min.js",
               "src/assets/js/fastclick.js",
               "src/assets/js/icheck.min.js",

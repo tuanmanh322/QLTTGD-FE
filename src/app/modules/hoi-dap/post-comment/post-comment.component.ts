@@ -18,7 +18,7 @@ export class PostCommentComponent implements OnInit {
   commentContent: any;
   profileUser: UserProfileModel;
   baiViet: Baiviet;
-
+  tagCauHoi: any;
   constructor(
     private apiService: ApiService,
     private toastr: ToastrService,
@@ -34,20 +34,20 @@ export class PostCommentComponent implements OnInit {
 
 
   postComment() {
-    if (this.commentContent === '' && this.commentContent === null) {
-      this.toastr.error('Bạn chưa nhập nội dung bình luận!');
-      return;
-    }
-    const comment = {
-      noiDung: this.commentContent,
-      idBaiViet: this.baiViet.idBaiViet,
-      idUser: this.profileUser.id
-    };
-    this.apiService.post('/api/comment/add', comment).subscribe(res => {
-      this.toastr.success('Bình luận thành công!');
-    }, error => {
-      this.toastr.error(error);
-    });
+    // if (this.commentContent === '' && this.commentContent === null) {
+    //   this.toastr.error('Bạn chưa nhập nội dung bình luận!');
+    //   return;
+    // }
+    // const comment = {
+    //   noiDung: this.commentContent,
+    //   idBaiViet: this.baiViet.idBaiViet,
+    //   idUser: this.profileUser.id
+    // };
+    // this.apiService.post('/api/comment/add', comment).subscribe(res => {
+    //   this.toastr.success('Bình luận thành công!');
+    // }, error => {
+    //   this.toastr.error(error);
+    // });
   }
 
   closePopup() {
