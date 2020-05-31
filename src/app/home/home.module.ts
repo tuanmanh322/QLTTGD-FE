@@ -13,11 +13,12 @@ import {RouterModule} from '@angular/router';
     RouterModule.forChild([
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        loadChildren: () => import('./topic/topic.module').then(m => m.TopicModule)
       }
     ])
   ],
-  exports: []
+  exports: [HomeComponent]
 })
 export class HomeModule {
 

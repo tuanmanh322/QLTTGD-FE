@@ -25,16 +25,7 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.css",
-              "src/assets/css/font-awesome.min.css",
-              "src/assets/css/nprogress.css",
-              "src/assets/css/green.css",
-              "src/assets/css/dataTables.bootstrap.min.css",
-              "src/assets/css/buttons.bootstrap.min.css",
-              "src/assets/css/fixedHeader.bootstrap.min.css",
-              "src/assets/css/responsive.bootstrap.min.css",
-              "src/assets/css/scroller.bootstrap.min.css",
-              "src/assets/css/custom.min.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",

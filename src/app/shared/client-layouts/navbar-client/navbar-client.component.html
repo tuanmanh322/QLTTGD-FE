@@ -1,60 +1,68 @@
-<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
-  <div class="col-10 mx-auto">
-    <ul class="navbar-nav">
-
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="">Trang chủ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="hoi-dap">Hỏi Đáp</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Luyện tập</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="#">Thông báo</a>
-      </li>
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link " href="#" (click)="clickFalse()">False</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item" *ngIf="testtt">-->
-<!--        <a class="nav-link " href="#">TestClick</a>-->
-<!--      </li>-->
-<!--      <li class="nav-item">-->
-<!--        <a class="nav-link " href="#" (click)="clickTrue()">True</a>-->
-<!--      </li>-->
-      <li class="nav-item" *ngIf="isAdmin">
-        <a class="nav-link " routerLink="/admin/qlttgd" >Trang điều khiển</a>
-      </li>
-      <li class="nav-item"  *ngIf="!isAuthenticate">
-        <a class="nav-link " type="button" href="#" data-toggle="modal"  (click)="openLogin()">Đăng nhập</a>
-      </li>
-      <li class="nav-item dropdown" *ngIf="isAuthenticate">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-          {{userProfile.name}}
-          <div class="dropdown-menu">
-            <a class="dropdown-item" [routerLink]="['settings/profile']">Cá nhân</a>
-            <a class="dropdown-item" href="#">Quản lý điểm</a>
-            <a class="dropdown-item pointer-event" (click)="logOut()">Logout</a>
-          </div>
-        </a>
+<!-- Slider -->
+<div class="tp-banner-container">
+  <div class="tp-banner" >
+    <ul style="list-style: none; display: contents;">
+      <!-- SLIDE  -->
+      <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" >
+        <!-- MAIN IMAGE -->
+        <img style="width: -webkit-fill-available!important;" src="../../../../assets/img/slide.jpg"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+        <!-- LAYERS -->
       </li>
     </ul>
   </div>
-</nav>
-<div id="header">
-  <div id="header_inner" class="fixed">
-    <div id="logo">
-      <h1><span>MATHEMATICS</span></h1>
-      <h2>Design by NdoubleD</h2>
-    </div>
-    <div id="menu">
-      <ul>
-        <li><a href="#" class="active">Forum</a></li>
-        <li><a href="#">Toán vui</a></li>
-        <li><a href="#">Bài tập</a></li>
-        <li><a href="#">Kiểm tra</a></li>
-      </ul>
+</div>
+<!-- //Slider -->
+
+<div class="headernav">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a href="index.html"><img src="../../../../assets/img/logo.jpg" alt=""  /></a></div>
+      <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
+        <div class="dropdown">
+          <a data-toggle="dropdown" routerLink="" >Borderlands 2</a> <b class="caret"></b>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Borderlands 1</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Borderlands 2</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Borderlands 3</a></li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
+        <div class="wrap">
+          <form action="#" method="post" class="form">
+            <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"></div>
+            <div class="pull-right"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></div>
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
+        <div class="stnt pull-left">
+            <button class="btn btn-primary">Đăng bài</button>
+        </div>
+        <div class="env pull-left"><i class="fa fa-envelope"></i></div>
+
+        <div class="stnt pull-left" *ngIf="!isAuthenticate">
+            <button class="btn btn-primary">Đăng nhập</button>
+        </div>
+<!--        <div class="stnt pull-left" *ngIf="!isAuthenticate && !isLoginPage">-->
+<!--          <button class="btn btn-primary">Đăng kí</button>-->
+<!--        </div>-->
+        <div class="avatar pull-left dropdown" *ngIf="isAuthenticate">
+          <a data-toggle="dropdown" href="#"><img src="../../../../assets/img/avatar.jpg" alt="" /></a> <b class="caret"></b>
+          <div class="status green">&nbsp;</div>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation"><a role="menuitem" tabindex="-1" routerLink="settings/profile">Trang cá nhân</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" routerLink="admin/qlttgd" *ngIf="isAdmin">Trang điều khiển</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-3" href="#" (click)="logOut()">Log Out</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-4" href="04_new_account.html">Create account</a></li>
+          </ul>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
     </div>
   </div>
 </div>
