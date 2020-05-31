@@ -74,6 +74,7 @@ export class NavbarClientComponent implements OnInit {
   logOut() {
     this.storageService.logOut();
     this.isAuthenticate = false;
+    this.router.navigate[''];
   }
 
   clickTrue() {

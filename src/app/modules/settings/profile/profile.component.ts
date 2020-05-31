@@ -1,3 +1,4 @@
+import { StorageService } from './../../../shared/service/storage.service';
 import {Component, OnInit} from '@angular/core';
 import {UserProfileModel} from '../../../shared/model/user-profile.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -18,11 +19,15 @@ export class ProfileComponent implements OnInit {
     private apiService: ApiService,
     private fb: FormBuilder,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private storageService: StorageService
   ) {
   }
 
   ngOnInit(): void {
+    if(this.storageService.logOut){
+      this.router.navigate[''];
+    }
     const currentUser = localStorage.getItem('current_user');
     this.userProfile = JSON.parse(currentUser);
     this.userForm = this.fb.group({
