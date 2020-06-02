@@ -13,6 +13,7 @@ import {Title} from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
   chuDeCount: ChuDeCount[];
+  totalCount: number = 0;
 
   constructor(
     private toastr: ToastrService,
@@ -32,6 +33,9 @@ export class HomeComponent implements OnInit {
   getTopic() {
     this.apiService.get('/api/chu-de/get-count').subscribe(res => {
       this.chuDeCount = res;
+      this.chuDeCount.map(cd => {
+        this.totalCount = this.totalCount + cd.baiVietCount;
+      });
     });
   }
 }

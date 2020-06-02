@@ -3,10 +3,12 @@ import {LoadAllTopicComponent} from './load-all-topic/load-all-topic.component';
 import {LoadByCategoryComponent} from './load-by-category/load-by-category.component';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
+import { TopicDetailComponent } from './topic-detail/topic-detail.component';
+import {PipeModule} from '../../shared/pipe/pipe.module';
 
 
 @NgModule({
-  declarations: [LoadAllTopicComponent, LoadByCategoryComponent],
+  declarations: [LoadAllTopicComponent, LoadByCategoryComponent, TopicDetailComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -19,10 +21,15 @@ import {RouterModule} from '@angular/router';
         component: LoadAllTopicComponent
       },
       {
-        path: 'by-c/:id',
+        path: 'all-topic/by-c/:id',
         component: LoadByCategoryComponent
+      },
+      {
+        path: 'topic/:id',
+        component: TopicDetailComponent
       }
-    ])
+    ]),
+    PipeModule
   ],
   providers: []
 })

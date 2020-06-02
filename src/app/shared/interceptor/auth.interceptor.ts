@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {MA_THE, TOKEN} from '../model/qlttgd.constant';
 
-const TOKEN = 'token';
-const AUTHORITIES_KEY = 'Authorities';
-const USER_LOGIN = 'maThe';
-const HEADER = 'Authorization';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (localStorage.getItem(TOKEN) && localStorage.getItem(USER_LOGIN)) {
+    if (localStorage.getItem(TOKEN) && localStorage.getItem(MA_THE)) {
       req = req.clone({
         setHeaders: {
           Authorization: localStorage.getItem(TOKEN)

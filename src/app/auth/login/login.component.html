@@ -30,14 +30,16 @@
               </div>
             </div>
           </form>
-        </div>
-        <button type="submit" class="btn btn-primary" (click)="onLogin()">Đăng nhập</button>
-        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modal_register"
-                (click)="goToRegister()">Đăng ký
-          nhanh
-        </button>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+          <div class="col-md-12 form-group">
+            <button type="submit" class="btn btn-primary" (click)="onLogin()">Đăng nhập</button>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modal_register"
+                    (click)="goToRegister()">Đăng ký
+              nhanh
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+          </div>
         </div>
       </div>
     </div>

@@ -9,5 +9,7 @@ export interface CommentModel {
   idBaiViet?: number;
   idUser?: number;
   userName?: string;
+  imageAvatarCM?: string;
+  commentDate?: Date;
   repCommentDTOS?: RepCommentModel[];
 }

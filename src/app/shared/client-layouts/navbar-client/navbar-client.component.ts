@@ -1,9 +1,8 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AuthService} from '../../service/auth.service';
 import {ToastrService} from 'ngx-toastr';
 import {LoginComponent} from '../../../auth/login/login.component';
-import {TOGGLE_SIDE_BAR, USER_PROFILE_CHANGED} from '../../model/qlttgd.constant';
+import {ROLE, USER_PROFILE_CHANGED} from '../../model/qlttgd.constant';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {EventManagement} from '../../service/event.management';
@@ -42,28 +41,34 @@ export class NavbarClientComponent implements OnInit {
     private userService: UserService,
     private apiService: ApiService
   ) {
-    this.apiService.onLoad().subscribe(loadaa => {
-      console.log(loadaa);
-    });
+    this.apiService.onLoad().subscribe(()=>{
+      this.getProfile();
+    })
   }
 
   ngOnInit(): void {
+    this.eventManagement.subscribe(USER_PROFILE_CHANGED,()=>{
+      this.getProfile();
+    });
     this.isAuthenticate = this.storageService.isAuthenticated();
+    this.isAdmin = this.storageService.isAdmin();
     this.userProfile = {};
-    if (localStorage.getItem('token') !== null) {
-
-      this.userService.getProfile().subscribe(res => {
-        localStorage.removeItem(CURRENT_USER);
-        localStorage.setItem(CURRENT_USER, JSON.stringify(res));
-        this.userProfile = res;
-        localStorage.removeItem('role');
-        localStorage.setItem('role', this.userProfile.role);
-        if (this.userProfile.role === 'ROLE_ADMIN') {
-          this.isAdmin = true;
-        }
-      });
-    }
     this.isLoginPage = this.router.url === '/auth/login';
+  }
+
+  getProfile() {
+    const authenticate = this.userService.isLogin();
+    if (!authenticate) {
+      this.userProfile = {};
+      this.isAuthenticate = false;
+      return;
+    }
+    this.userService.identity().then(userProfile => {
+      this.userProfile = userProfile;
+      this.isAuthenticate = true;
+      localStorage.removeItem(ROLE);
+      localStorage.setItem(ROLE, this.userProfile.role);
+    });
   }
 
 

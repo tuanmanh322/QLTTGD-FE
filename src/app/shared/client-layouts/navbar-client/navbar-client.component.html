@@ -16,7 +16,7 @@
 <div class="headernav">
   <div class="container">
     <div class="row">
-      <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a href="index.html"><img src="../../../../assets/img/logo.jpg" alt=""  /></a></div>
+      <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a routerLink=""><img src="../../../../assets/img/logo.jpg" alt=""  /></a></div>
       <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
         <div class="dropdown">
           <a data-toggle="dropdown" routerLink="" >Borderlands 2</a> <b class="caret"></b>
@@ -44,7 +44,7 @@
         <div class="env pull-left"><i class="fa fa-envelope"></i></div>
 
         <div class="stnt pull-left" *ngIf="!isAuthenticate">
-            <button class="btn btn-primary">Đăng nhập</button>
+            <button class="btn btn-primary" (click)="openLogin()">Đăng nhập</button>
         </div>
 <!--        <div class="stnt pull-left" *ngIf="!isAuthenticate && !isLoginPage">-->
 <!--          <button class="btn btn-primary">Đăng kí</button>-->
@@ -53,11 +53,10 @@
           <a data-toggle="dropdown" href="#"><img src="../../../../assets/img/avatar.jpg" alt="" /></a> <b class="caret"></b>
           <div class="status green">&nbsp;</div>
           <ul class="dropdown-menu" role="menu">
-            <li role="presentation"><a role="menuitem" tabindex="-1" routerLink="settings/profile">Trang cá nhân</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" routerLink="admin/qlttgd" *ngIf="isAdmin">Trang điều khiển</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-3" href="#" (click)="logOut()">Log Out</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-4" href="04_new_account.html">Create account</a></li>
+            <li role="presentation"><a role="menuitem"  routerLink="/settings/profile">Trang cá nhân</a></li>
+            <li role="presentation"><a role="menuitem"  routerLink="/admin/qlttgd" *ngIf="isAdmin">Trang điều khiển</a></li>
+            <li role="presentation"><a role="menuitem"  routerLink="">Inbox</a></li>
+            <li role="presentation"><a role="menuitem"  routerLink="" (click)="logOut()">Log Out</a></li>
           </ul>
         </div>
 

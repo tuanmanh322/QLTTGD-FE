@@ -20,3 +20,5 @@ export const TOGGLE_SIDE_BAR = 'TOGGLE_SIDE_BAR';
 export const ROLE = 'ROLE';
 export const CURRENT_USER = 'CURRENT_USER';
 export const TOKEN = 'TOKEN';
+export const MA_THE = 'MA_THE';
+export const AUTHORITIES_KEY = 'Authorities';

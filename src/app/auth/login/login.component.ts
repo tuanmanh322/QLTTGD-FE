@@ -9,6 +9,8 @@ import {Token} from '../../shared/model/token';
 import {StorageService} from '../../shared/service/storage.service';
 import {UserService} from '../../shared/service/user.service';
 import {Router} from '@angular/router';
+import {LOGIN_SUCCESS} from '../../shared/model/qlttgd.constant';
+import {EventManagement} from '../../shared/service/event.management';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +29,8 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService,
     private fb: FormBuilder,
     private ngbModal: NgbModal,
-    private router: Router
+    private router: Router,
+    private eventmanager: EventManagement
   ) {
   }
 
@@ -54,12 +57,16 @@ export class LoginComponent implements OnInit {
     };
     this.userService.login(login).subscribe(res => {
         const token = res.headers.get('Authorization');
-        this.tokenM = res.body;
+        // this.tokenM = res.body;
         this.storageSerivce.saveToken(token);
         this.storageSerivce.saveUser(login.maThe);
-        this.toastr.success('Đăng nhập thành công!');
-        this.apiService.onFilter('Login');
-        this.router.navigate(['']);
+        this.userService.identity(true).then(() => {
+          this.eventmanager.broadcast(LOGIN_SUCCESS);
+          this.userService.entranceUrl();
+          this.toastr.success('Đăng nhập thành công!');
+          this.apiService.onFilter('Login');
+          this.activeModal.dismiss();
+        });
       }, error => {
         this.loginForm.get('password').reset();
         if (error.status === 401) {

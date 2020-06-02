@@ -7,4 +7,6 @@ export interface RepCommentModel {
   idComment?: number;
   idUser?: number;
   userName?: string;
+  imageAvatarRCM?: string;
+  repDate?: Date;
 }

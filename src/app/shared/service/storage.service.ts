@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
+import {ADMIN, AUTHORITIES_KEY, MA_THE, ROLE, TOKEN} from '../model/qlttgd.constant';
 
-const TOKEN = 'token';
-const AUTHORITIES_KEY = 'Authorities';
-const USER_LOGIN = 'maThe';
 
 @Injectable({
   providedIn: 'root'
@@ -27,17 +25,21 @@ export class StorageService {
   }
 
   saveUser(maThe: string) {
-    localStorage.removeItem(USER_LOGIN);
-    localStorage.setItem(USER_LOGIN, maThe);
+    localStorage.removeItem(MA_THE);
+    localStorage.setItem(MA_THE, maThe);
   }
 
   getUser() {
-    return localStorage.getItem(USER_LOGIN);
+    return localStorage.getItem(MA_THE);
   }
 
   public saveAuthorities(authorities: string[]) {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+  }
+
+  getRole() {
+    return localStorage.getItem(ROLE);
   }
 
   public getAuthorities(): string[] {
@@ -51,12 +53,22 @@ export class StorageService {
 
     return this.role;
   }
+
   public isAuthenticated(): boolean {
     // This method is required to implement authentication.
     return !!this.getToken();
   }
 
-  getProfileJson(){
+  getProfileJson() {
     return JSON.parse(localStorage.getItem('current_user'));
+  }
+
+  public isAdmin(): boolean {
+    let role = localStorage.getItem(ROLE);
+    if (role === ADMIN) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
