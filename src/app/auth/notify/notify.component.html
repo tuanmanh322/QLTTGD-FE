@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title">Thông báo!</h4>
+  <button type="button" class="close" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+          <p>Bạn cần mã nhớ mã thẻ này để đăng nhập!</p>
+          <p>Mã thẻ của bạn là : <span class="text-danger" style="font-size: 24px; font-weight: bold">{{notify}}</span></p>
+      </div>
+    </div>
+  </div>
+</div>

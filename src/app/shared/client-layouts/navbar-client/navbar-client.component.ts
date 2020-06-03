@@ -11,6 +11,7 @@ import {Subscription} from 'rxjs';
 import {StorageService} from '../../service/storage.service';
 import {UserService} from '../../service/user.service';
 import {ApiService} from '../../service/api.service';
+import {PostBaivietComponent} from '../../../modules/hoi-dap/post-baiviet/post-baiviet.component';
 
 
 const CURRENT_USER = 'current_user';
@@ -41,13 +42,13 @@ export class NavbarClientComponent implements OnInit {
     private userService: UserService,
     private apiService: ApiService
   ) {
-    this.apiService.onLoad().subscribe(()=>{
+    this.apiService.onLoad().subscribe(() => {
       this.getProfile();
-    })
+    });
   }
 
   ngOnInit(): void {
-    this.eventManagement.subscribe(USER_PROFILE_CHANGED,()=>{
+    this.eventManagement.subscribe(USER_PROFILE_CHANGED, () => {
       this.getProfile();
     });
     this.isAuthenticate = this.storageService.isAuthenticated();
@@ -88,5 +89,13 @@ export class NavbarClientComponent implements OnInit {
 
   clickFalse() {
     this.testtt = false;
+  }
+
+  clickPost() {
+    if (this.userService.isLogin()) {
+      this.modalService.open(PostBaivietComponent, {size: 'lg'});
+    } else {
+      this.message.error('Bạn cần đăng nhập để đăng bài!');
+    }
   }
 }

@@ -6,10 +6,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {ClientLayoutsModule} from '../shared/client-layouts/client-layouts.module';
+import { NotifyComponent } from './notify/notify.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, NotifyComponent],
   imports: [
     CommonModule,
     FormsModule,
