@@ -34,7 +34,6 @@ export class UserService {
 
   isLogin() {
     let maThe = localStorage.getItem(MA_THE);
-    console.log(!(maThe === null));
     return !(maThe === null);
   }
 

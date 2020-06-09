@@ -25,7 +25,7 @@ import { ProfileDetailComponent } from './profile-detail/profile-detail.componen
         component: ProfileComponent
       },
       {
-        path: 'profile-detail',
+        path: 'profile-emp/:id',
         component: ProfileDetailComponent
       }
     ])

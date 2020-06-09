@@ -1,1 +1,127 @@
-<p>profile-detail works!</p>
+<div id="main">
+
+    <div class="col-md-12 text-center">
+      <div class="form-group">
+        <label>Chức vụ :</label>
+        <span class="font-weight-bold color1">{{roleUser}} </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 border-right"><!--left col-->
+        <div *ngIf="userProfileDetailEmp && userProfileDetailEmp.imagePath ">
+          <!--                <p>{{profileEmp.image}}</p>-->
+          <img [src]="userProfileDetailEmp.imagePath" class="avatar-preview"
+               alt="t">
+        </div>
+
+        <div class="form-group" *ngIf="!userProfileDetailEmp.imagePath">
+          <img src="../../../../assets/img/default.png" class="avatar-preview">
+        </div>
+<!--        <div class="form-group" *ngIf="!userProfileDetailEmp.imagePath ">-->
+<!--          <img [src]="userProfileDetailEmp.imagePath" class="avatar-preview">-->
+<!--        </div>-->
+        <!--        Image Preview -->
+        <!-- File Input -->
+        <hr>
+        <br>
+        <ul class="list-group">
+          <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Tổng số bài viết</strong></span>
+            {{userProfileDetailEmp.totalBV}}
+          </li>
+        </ul>
+      </div><!--/col-3-->
+      <div class="col-md-9 mx-auto">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2">
+              <label for="HoTen" class="col-form-label">Họ và tên </label>
+            </div>
+            <div class="col-md-4">
+              <input id="HoTen" [value]="userProfileDetailEmp.name" [disabled]="true"/>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="gioitinh" class="col-form-label">Giới tính :</label>
+                </div>
+                <div class="col-md-6">
+                   <input id="gioitinh" [value]="userProfileDetailEmp.gioitinh" [disabled]="true"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2">
+              <label for="DoB" class="col-form-label">Ngày sinh </label>
+            </div>
+            <div class="col-md-4">
+              <input id="DoB" [value]="userProfileDetailEmp.ngaysinh | date: 'dd-MM-yyyy'" [disabled]="true"/>
+            </div>
+
+            <div class="col-md-2">
+              <label for="SDT" class="col-form-label">Số điện thoại của bạn(hoặc bố mẹ) </label>
+            </div>
+            <div class="col-md-4">
+              <input id="SDT" [value]="userProfileDetailEmp.sodt" [disabled]="true"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2">
+              <label for="ADD" class="col-form-label">Địa chỉ </label>
+            </div>
+            <div class="col-md-2">
+              <input id="ADD" [value]="userProfileDetailEmp.noiohientai"  [disabled]="true"/>
+            </div>
+            <div class="col-md-2">
+<!--              <span id="ADD">{{userProfileDetailEmp.quoctich}}</span>-->
+            </div>
+            <div class="col-md-4">
+
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2">
+              <label for="Email" class="col-form-label">Email </label>
+            </div>
+            <div class="col-md-4">
+              <input id="Email" [value]="userProfileDetailEmp.email"  [disabled]="true"/>
+            </div>
+          </div>
+        </div>
+<!--        <div class="form-group">-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-2">-->
+<!--              <label for="HangMuc" class="col-form-label">Hạng mục</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--              <select class="form-control form-control-sm" id="HangMuc">-->
+<!--                &lt;!&ndash;              <option selected="">&#45;&#45; Hạng mục &#45;&#45;</option>&ndash;&gt;-->
+<!--                <option selected value="DAI_6">Đại số 6</option>-->
+<!--                <option value="HINHHOC_6">Hình học 6</option>-->
+<!--                <option value="DAI_7">Đại số 7</option>-->
+<!--                <option value="HINHHOC_7">Hình học 7</option>-->
+<!--                <option value="DAI_8">Đại số 8</option>-->
+<!--                <option value="HINHHOC_8">Hình học 8</option>-->
+<!--                <option value="DAI_9">Đại số 9</option>-->
+<!--                <option value="HINHHOC_9">Hình học 9</option>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--            <div class="col-md-2">-->
+<!--              <label for="socmt" class="col-form-label">Số cmt :</label>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--              <input class="form-control form-control-sm" type="text" placeholder="Mã thẻ" id="socmt" formControlName="socmt">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+    </div>
+</div>

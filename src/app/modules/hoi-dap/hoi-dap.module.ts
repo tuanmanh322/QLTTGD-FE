@@ -4,10 +4,10 @@ import {ClientLayoutsModule} from '../../shared/client-layouts/client-layouts.mo
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {PostCommentComponent} from './post-comment/post-comment.component';
+import {PostBaivietComponent} from './post-baiviet/post-baiviet.component';
+import {BaivietDetaiComponent} from './baiviet-detai/baiviet-detai.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import { PostCommentComponent } from './post-comment/post-comment.component';
-import { PostBaivietComponent } from './post-baiviet/post-baiviet.component';
-import { BaivietDetaiComponent } from './baiviet-detai/baiviet-detai.component';
 
 
 @NgModule({
@@ -17,13 +17,13 @@ import { BaivietDetaiComponent } from './baiviet-detai/baiviet-detai.component';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    CKEditorModule,
     RouterModule.forChild([
       {
         path: '',
         component: HoiDapComponent
       }
-    ])
+    ]),
+    CKEditorModule
   ]
 })
 export class HoiDapModule {

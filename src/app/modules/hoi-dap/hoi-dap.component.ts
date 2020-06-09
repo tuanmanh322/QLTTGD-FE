@@ -4,7 +4,7 @@ import {Title} from '@angular/platform-browser';
 import {Baiviet} from '../../shared/model/baiviet';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PostBaivietComponent} from './post-baiviet/post-baiviet.component';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {StorageService} from '../../shared/service/storage.service';
 import {UserProfileModel} from '../../shared/model/user-profile.model';
 import {ToastrService} from 'ngx-toastr';
@@ -15,7 +15,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class HoiDapComponent implements OnInit {
   baiVietList: Baiviet[];
-  public editor: ClassicEditor;
+  // public editor: ClassicEditor;
   commentContent: any;
   repCommentContent: any;
   userProfile: UserProfileModel;

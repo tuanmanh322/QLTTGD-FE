@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {ApiService} from '../../../shared/service/api.service';
 import {FormBuilder} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {StorageService} from '../../../shared/service/storage.service';
 import {UserProfileModel} from '../../../shared/model/user-profile.model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {ChuDeCount} from '../../../shared/model/chu-de-count';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-post-baiviet',
@@ -13,10 +14,16 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./post-baiviet.component.css']
 })
 export class PostBaivietComponent implements OnInit {
-  public editor: ClassicEditor;
+  public Editor = ClassicEditor;
   baiVietContent: any;
   userProfile: UserProfileModel;
   tagCauHoi: any;
+  chuDe: ChuDeCount[];
+  idCd: number;
+  title = '';
+  isTitle: boolean = false;
+  isContent: boolean = false;
+
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
@@ -28,19 +35,31 @@ export class PostBaivietComponent implements OnInit {
 
   ngOnInit(): void {
     this.userProfile = this.storageService.getProfileJson();
+    this.apiService.get('/api/chu-de/all').subscribe(res => {
+      this.chuDe = res;
+    });
+
   }
 
   postBaiViet() {
     if (this.baiVietContent === '') {
-      this.toastr.error('Bạn chưa nhập nội dung');
+      this.isContent = true;
+      return;
+    }
+    if (this.title === '') {
+      this.isTitle = true;
       return;
     }
     const baiViet = {
       noidung: this.baiVietContent,
-      idUser: this.userProfile.id
+      idUser: this.userProfile.id,
+      idCD: this.idCd,
+      title: this.title
     };
-    this.apiService.post('/api/baiviet/add', baiViet).subscribe(res => {
-      this.toastr.success('Đăng bài thành công!');
+    console.log(this.idCd);
+    this.apiService.post('/api/baiviet', baiViet).subscribe(res => {
+      this.toastr.success('Đăng bài thành công! Bài viết của bạn cần được duyệt!');
+      this.apiService.onFilter('create-post');
       this.ngbModal.dismiss();
     }, error => {
       this.toastr.error('Đăng bài thất bại!');

@@ -5,6 +5,8 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import { TopicDetailComponent } from './topic-detail/topic-detail.component';
 import {PipeModule} from '../../shared/pipe/pipe.module';
+import {SharedModule} from '../../shared/shared.module';
+import {DataService} from '../../shared/service/data.service';
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import {PipeModule} from '../../shared/pipe/pipe.module';
     RouterModule.forChild([
       {
         path: '',
-        redirectTo: 'all-topic'
+        redirectTo: 'all-topic',
+        pathMatch: 'full'
       },
       {
         path: 'all-topic',
@@ -25,13 +28,14 @@ import {PipeModule} from '../../shared/pipe/pipe.module';
         component: LoadByCategoryComponent
       },
       {
-        path: 'topic/:id',
+        path: 'all-topic/topic/:id',
         component: TopicDetailComponent
       }
     ]),
-    PipeModule
+    PipeModule,
+    SharedModule
   ],
-  providers: []
+  providers: [DataService]
 })
 export class TopicModule {
 

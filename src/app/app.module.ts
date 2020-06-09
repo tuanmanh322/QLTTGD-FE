@@ -30,7 +30,9 @@ import {ErrorInterceptor} from './shared/interceptor/error.interceptor';
     AppBootstrapModule,
     NgbModule,
     SharedModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

@@ -1,35 +1,40 @@
-<div class="post" *ngFor="let bv of baiViet">
-  <div class="wrap-ut pull-left">
-    <div class="userinfo pull-left">
-      <div class="avatar">
-        <img src="../../../../assets/img/avatar.jpg" alt="">
-        <div class="status green">&nbsp;</div>
-      </div>
+<div *ngIf="isRenderDATA === true">
+  <div class="post" *ngFor="let bv of baiViet" >
+    <div class="wrap-ut pull-left">
+      <div class="userinfo pull-left">
+        <div class="avatar">
+          <img src="../../../../assets/img/avatar.jpg" alt="">
+          <div class="status green">&nbsp;</div>
+        </div>
 
-      <div class="icons">
-        <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
+        <div class="icons">
+          <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
+        </div>
+        <div class="icons" style="display: contents!important;">
+          <button class="button-icons"><i class="fa fa-thumbs-up blue"><span>{{bv.luotthich}}</span></i></button>
+          <button class="button-icons"><i class="fa fa-thumbs-down"><span>{{bv.luotkhongthich}}</span></i></button>
+        </div>
       </div>
-      <div class="icons" style="display: contents!important;">
-        <button class="button-icons"><i class="fa fa-thumbs-up blue"><span>{{bv.luotthich}}</span></i></button>
-        <button class="button-icons"><i class="fa fa-thumbs-down"><span>{{bv.luotkhongthich}}</span></i></button>
+      <div class="posttext pull-left">
+        <h2><a routerLink="/topic/{{bv.id}}">{{bv.title}}</a></h2>
+        <p>{{bv.noidung}}</p>
       </div>
+      <div class="clearfix"></div>
     </div>
-    <div class="posttext pull-left">
-      <h2><a routerLink="/topic/{{bv.id}}">{{bv.title}}</a></h2>
-      <p>{{bv.noidung}}</p>
+    <div class="postinfo pull-left">
+      <div class="comments">
+        <div class="commentbg">
+          {{bv.totalComment}}
+          <div class="mark"></div>
+        </div>
+
+      </div>
+      <div class="views"><i class="fa fa-eye"></i> 1,568</div>
+      <div class="time"><i class="fa fa-clock-o"></i>{{bv.dateMili | formatTime: timeFormatter}}</div>
     </div>
     <div class="clearfix"></div>
-  </div>
-  <div class="postinfo pull-left">
-    <div class="comments">
-      <div class="commentbg">
-        {{bv.totalComment}}
-        <div class="mark"></div>
-      </div>
-
-    </div>
-    <div class="views"><i class="fa fa-eye"></i> 1,568</div>
-    <div class="time"><i class="fa fa-clock-o"></i>{{bv.dateMili | formatTime: timeFormatter}}</div>
-  </div>
-  <div class="clearfix"></div>
-</div><!-- POST -->
+  </div><!-- POST -->
+</div>
+<div class="text-danger" *ngIf="isRenderDATA === false">
+  {{message}}
+</div>

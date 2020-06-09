@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ADMIN, AUTHORITIES_KEY, MA_THE, ROLE, TOKEN} from '../model/qlttgd.constant';
+import {ADMIN, AUTHORITIES_KEY, CURRENT_USER, MA_THE, ROLE, TOKEN} from '../model/qlttgd.constant';
 
 
 @Injectable({
@@ -60,7 +60,7 @@ export class StorageService {
   }
 
   getProfileJson() {
-    return JSON.parse(localStorage.getItem('current_user'));
+    return JSON.parse(localStorage.getItem(CURRENT_USER));
   }
 
   public isAdmin(): boolean {

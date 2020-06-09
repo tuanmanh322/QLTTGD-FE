@@ -1,11 +1,12 @@
 <!-- Slider -->
 <div class="tp-banner-container">
-  <div class="tp-banner" >
+  <div class="tp-banner">
     <ul style="list-style: none; display: contents;">
       <!-- SLIDE  -->
-      <li data-transition="fade" data-slotamount="7" data-masterspeed="1500" >
+      <li data-transition="fade" data-slotamount="7" data-masterspeed="1500">
         <!-- MAIN IMAGE -->
-        <img style="width: -webkit-fill-available!important;" src="../../../../assets/img/slide.jpg"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+        <img style="width: -webkit-fill-available!important;" src="../../../../assets/img/slide.jpg" alt="slidebg1"
+             data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
         <!-- LAYERS -->
       </li>
     </ul>
@@ -16,47 +17,51 @@
 <div class="headernav">
   <div class="container">
     <div class="row">
-      <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a routerLink=""><img src="../../../../assets/img/logo.jpg" alt=""  /></a></div>
+      <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo "><a routerLink=""><img src="../../../../assets/img/logo.jpg"
+                                                                                   alt=""/></a></div>
       <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
         <div class="dropdown">
-          <a data-toggle="dropdown" routerLink="" >Borderlands 2</a> <b class="caret"></b>
-          <ul class="dropdown-menu" role="menu">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Borderlands 1</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Borderlands 2</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Borderlands 3</a></li>
+          <a data-toggle="dropdown" routerLink="" class="font-weight-bold text-decoration-none">Quản lý trung tâm giáo
+            dục</a> <b class="caret"></b>
+          <!--          <ul class="dropdown-menu" role="menu">-->
+          <!--            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Borderlands 1</a></li>-->
+          <!--            <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Borderlands 2</a></li>-->
+          <!--            <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Borderlands 3</a></li>-->
 
-          </ul>
+          <!--          </ul>-->
         </div>
       </div>
       <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
         <div class="wrap">
-          <form action="#" method="post" class="form">
-            <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"></div>
-            <div class="pull-right"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></div>
-            <div class="clearfix"></div>
+          <form action="#" method="post" class="form" (ngSubmit)="getDataTitle()">
+          <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics" [(ngModel)]="titles" name="titles"></div>
+          <div class="pull-right" ><button class="btn btn-default table-hover" type="submit"><i class="fa fa-search"></i></button></div>
+          <div class="clearfix"></div>
           </form>
         </div>
       </div>
       <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
         <div class="stnt pull-left">
-            <button class="btn btn-primary" (click)="clickPost()">Đăng bài</button>
+          <button class="btn btn-primary" (click)="clickPost()">Đăng bài</button>
         </div>
         <div class="env pull-left"><i class="fa fa-envelope"></i></div>
 
         <div class="stnt pull-left" *ngIf="!isAuthenticate">
-            <button class="btn btn-primary" (click)="openLogin()">Đăng nhập</button>
+          <button class="btn btn-primary" (click)="openLogin()">Đăng nhập</button>
         </div>
-<!--        <div class="stnt pull-left" *ngIf="!isAuthenticate && !isLoginPage">-->
-<!--          <button class="btn btn-primary">Đăng kí</button>-->
-<!--        </div>-->
+        <!--        <div class="stnt pull-left" *ngIf="!isAuthenticate && !isLoginPage">-->
+        <!--          <button class="btn btn-primary">Đăng kí</button>-->
+        <!--        </div>-->
         <div class="avatar pull-left dropdown" *ngIf="isAuthenticate">
-          <a data-toggle="dropdown" href="#"><img src="../../../../assets/img/avatar.jpg" alt="" /></a> <b class="caret"></b>
+          <a data-toggle="dropdown" href="#"><img style="width: 55px;height: 40px;" [src]="userProfile.imagePath"
+                                                  alt="{{userProfile.imagePath}}"/></a> <b class="caret"></b>
           <div class="status green">&nbsp;</div>
           <ul class="dropdown-menu" role="menu">
-            <li role="presentation"><a role="menuitem"  routerLink="/settings/profile">Trang cá nhân</a></li>
-            <li role="presentation"><a role="menuitem"  routerLink="/admin/qlttgd" *ngIf="isAdmin">Trang điều khiển</a></li>
-            <li role="presentation"><a role="menuitem"  routerLink="">Inbox</a></li>
-            <li role="presentation"><a role="menuitem"  routerLink="" (click)="logOut()">Log Out</a></li>
+            <li role="presentation"><a role="menuitem" routerLink="/settings/profile">Trang cá nhân</a></li>
+            <li role="presentation"><a role="menuitem" routerLink="/admin/qlttgd" *ngIf="isAdmin">Trang điều khiển</a>
+            </li>
+            <li role="presentation"><a role="menuitem" routerLink="">Inbox</a></li>
+            <li role="presentation"><a role="menuitem" routerLink="" (click)="logOut()">Log Out</a></li>
           </ul>
         </div>
 

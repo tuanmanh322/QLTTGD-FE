@@ -1,10 +1,11 @@
-import { StorageService } from './../../../shared/service/storage.service';
+import {StorageService} from './../../../shared/service/storage.service';
 import {Component, OnInit} from '@angular/core';
 import {UserProfileModel} from '../../../shared/model/user-profile.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../../shared/service/api.service';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
+import {ADMIN, ANONYMOUS, CURRENT_USER, ROLE, STUDENT, TEACHER} from '../../../shared/model/qlttgd.constant';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,11 @@ import {Router} from '@angular/router';
 export class ProfileComponent implements OnInit {
   userProfile: UserProfileModel;
   userForm: FormGroup;
+  roleUser: string;
+  preview: string = '';
+  isEmailExisted: boolean;
+  avatarUrl: any;
+  fileTypeImg: any;
 
   constructor(
     private apiService: ApiService,
@@ -25,11 +31,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.storageService.logOut){
-      this.router.navigate[''];
-    }
-    const currentUser = localStorage.getItem('current_user');
-    this.userProfile = JSON.parse(currentUser);
+    this.userProfile = JSON.parse(localStorage.getItem(CURRENT_USER));
     this.userForm = this.fb.group({
       name: new FormControl(this.userProfile.name, [Validators.required]),
       gioitinh: new FormControl(this.userProfile.gioitinh, [Validators.required]),
@@ -42,12 +44,87 @@ export class ProfileComponent implements OnInit {
       quatrinhlamviec: new FormControl(this.userProfile.quatrinhlamviec, [Validators.required]),
       email: new FormControl(this.userProfile.email, [Validators.required]),
       sodt: new FormControl(this.userProfile.sodt, [Validators.required]),
-      tenLop: new FormControl(this.userProfile.ngaycap, [Validators.required])
+      tenLop: new FormControl(this.userProfile.ngaycap, [Validators.required]),
+      imageAvatar: new FormControl()
+    });
+    if (this.userProfile.role === ADMIN) {
+      this.roleUser = 'Quản trị viên';
+    }
+    if (this.userProfile.role === TEACHER) {
+      this.roleUser = 'Giáo viên';
+    }
+    if (this.userProfile.role === STUDENT) {
+      this.roleUser = 'Học sinh';
+    }
+    if (this.userProfile.role === ANONYMOUS) {
+      this.roleUser = 'Khách';
+    }
+    // this.avatarUrl = 'data:image/jpg;base64,' + this.userProfile.imagePath;
+  }
+
+  onEdit() {
+    // if (this.userForm.valid) {
+    let ngaysinh = (new Date(this.userForm.get('ngaysinh').value)).toUTCString();
+    const formData = new FormData();
+    formData.append('name', this.userForm.get('name').value);
+    formData.append('gioitinh', this.userForm.get('gioitinh').value);
+    formData.append('ngaysinh', ngaysinh);
+    formData.append('socmt', this.userForm.get('socmt').value);
+    formData.append('quoctich', this.userForm.get('quoctich').value);
+    formData.append('quequan', this.userForm.get('quequan').value);
+    formData.append('noiohientai', this.userForm.get('noiohientai').value);
+    formData.append('hokhau', this.userForm.get('hokhau').value);
+    formData.append('email', this.userForm.get('email').value);
+    formData.append('sodt', this.userForm.get('sodt').value);
+    formData.append('tenLop', this.userForm.get('tenLop').value);
+    if (this.userForm.get('imageAvatar').value !== null) {
+      formData.append('imageAvatar', this.userForm.get('imageAvatar').value);
+    }
+    this.apiService.post('/api/user/edit-profile', formData).subscribe(res => {
+      this.userProfile = res.data;
+      this.userProfile.role = localStorage.getItem(ROLE);
+      // this.avatarUrl = 'data:' + this.fileTypeImg + ';base64,' + this.userProfile.imagePath;
+      localStorage.removeItem(CURRENT_USER);
+      localStorage.setItem(CURRENT_USER, JSON.stringify(this.userProfile));
+      this.toastr.success('Cập nhật thành công');
+    }, error => {
+      this.toastr.error('Cập nhật thất bại');
+    });
+    // }
+  }
+
+  uploadFile(event) {
+    const imgTypes = [
+      'image/jpeg',
+      'image/pjpeg',
+      'image/png',
+      'image/jpg'
+    ];
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.preview = reader.result as string;
+        if (file.type === 'image/jpeg' || file.type === 'image/pjpeg' || file.type === 'image/png' || file.type === 'image/jpg') {
+          this.fileTypeImg = file.type;
+          this.userForm.get('imageAvatar').setValue(file);
+        } else {
+          this.toastr.error('Định dạng ảnh không đúng!');
+          this.userForm.get('imageAvatar').setValue('');
+        }
+      };
+    }
+  }
+
+  checkMailExist(event) {
+    const email = event.target.value;
+    this.apiService.get('/api/user/check-email?email=' + email.trim()).subscribe(res => {
+      if (res === true) {
+        this.isEmailExisted = true;
+      } else {
+        this.isEmailExisted = false;
+      }
     });
   }
-
-  onEdit(){
-
-  }
-
 }

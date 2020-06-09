@@ -9,7 +9,7 @@
         <label class="UserID" style="font-weight: bold;">{{bv.userName}}</label>
       </div>
       <div class="row">
-        <label class="NoiDung" rows="7">{{bv.noiDung}}</label>
+        <label class="NoiDung" rows="7">{{bv.noidung}}</label>
 
       </div>
       <div *ngFor="let cm of bv.commentDTOS; let i = index">
@@ -21,7 +21,7 @@
           <label class="binhluan" rows="4"><i>{{cm.noiDung}} </i></label>
         </div>
         <div>
-          <ckeditor [editor]="editor" data="<h5>Viết bình luận!</h5>" [(ngModel)]="commentContent"></ckeditor>
+<!--          <ckeditor [editor]="editor" data="<h5>Viết bình luận!</h5>" [(ngModel)]="commentContent"></ckeditor>-->
         </div>
         <div style="margin-top: 10px;">
           <h3 class="postButton" (click)="postComment(bv.id)">Đăng</h3>
@@ -35,7 +35,7 @@
             <label class="repbinhluan" rows="4"><i>{{recm.noidung}} </i></label>
           </div>
           <div>
-            <ckeditor [editor]="editor" data="<h5>Viết bình luận!</h5>" [(ngModel)]="repCommentContent"></ckeditor>
+<!--            <ckeditor [editor]="editor" data="<h5>Viết bình luận!</h5>" [(ngModel)]="repCommentContent"></ckeditor>-->
           </div>
           <div style="margin-top: 10px;">
             <h3 class="postButton" (click)="postRepComment(bv.id,cm.id)">Đăng</h3>

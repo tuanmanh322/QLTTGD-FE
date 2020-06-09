@@ -10,10 +10,13 @@ export interface Baiviet {
   luotkhongthich?: number;
   idBaiViet?: number;
   idUser?: number;
+  chuDe?: string;
+  idCD?: number;
   userName?: string;
   imageAvatar?: string;
   totalComment?: string;
   createDate?: Date;
   dateMili?: number;
+  imageBV?: string;
   commentDTOS?: CommentModel[];
 }

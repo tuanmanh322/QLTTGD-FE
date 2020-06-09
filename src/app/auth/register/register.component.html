@@ -52,22 +52,22 @@
                 Mật khẩu không khớp!
               </div>
             </div>
-            <div class="form-group">
-              <label>Bạn là: </label>
-              <div class="row">
-                <label class="md-check">
-                  <input type="radio" [value]="2" name="idRole" formControlName="idRole" [ngClass]="{'is-invalid' : f.idRole.errors}">
-                  Giáo viên
-                </label>
-                <label class="md-check">
-                  <input type="radio" [value]="3" name="idRole" formControlName="idRole" [ngClass]="{'is-invalid' : f.idRole.errors}">
-                 Học sinh
-                </label>
-                <div *ngIf="f.idRole.errors && (f.idRole.dirty || f.idRole.touched)" class="text-danger">
-                  <div *ngIf="f.idRole.errors.required">Hãy chọn nghề nghiệp của bạn!</div>
-                </div>
-              </div>
-            </div>
+<!--            <div class="form-group">-->
+<!--              <label>Bạn là: </label>-->
+<!--              <div class="row">-->
+<!--                <label class="md-check">-->
+<!--                  <input type="radio" [value]="2" name="idRole" formControlName="idRole" [ngClass]="{'is-invalid' : f.idRole.errors}">-->
+<!--                  Giáo viên-->
+<!--                </label>-->
+<!--                <label class="md-check">-->
+<!--                  <input type="radio" [value]="3" name="idRole" formControlName="idRole" [ngClass]="{'is-invalid' : f.idRole.errors}">-->
+<!--                 Học sinh-->
+<!--                </label>-->
+<!--                <div *ngIf="f.idRole.errors && (f.idRole.dirty || f.idRole.touched)" class="text-danger">-->
+<!--                  <div *ngIf="f.idRole.errors.required">Hãy chọn nghề nghiệp của bạn!</div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
           </form>
           <button type="submit" class="btn btn-primary"  (click)="register()">Đăng ký</button>
 

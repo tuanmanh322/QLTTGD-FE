@@ -8,6 +8,7 @@ import {NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
 import {StorageService} from './service/storage.service';
 import {UserService} from './service/user.service';
 import {EventManagement} from './service/event.management';
+import {DataService} from './service/data.service';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {EventManagement} from './service/event.management';
     ApiService,
     StorageService,
     UserService,
-    EventManagement
+    EventManagement,
+    DataService
   ]
 })
 export class SharedModule {

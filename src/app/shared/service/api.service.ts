@@ -3,11 +3,14 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, Subject, throwError} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {catchError} from 'rxjs/operators';
+import {TITLE} from '../model/qlttgd.constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+    public $title = new Subject<any>();
+
 
   constructor(
     private http: HttpClient
@@ -51,4 +54,8 @@ export class ApiService {
     this._listen.next(filter);
   }
 
+  sendTitle(title){
+    title = localStorage.getItem(TITLE);
+    this.$title.next(title);
+  }
 }

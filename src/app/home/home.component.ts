@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ChuDeCount} from '../shared/model/chu-de-count';
 import {ToastrService} from 'ngx-toastr';
 import {ApiService} from '../shared/service/api.service';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
+import {DataService} from '../shared/service/data.service';
 
 
 @Component({
@@ -12,8 +13,10 @@ import {Title} from '@angular/platform-browser';
   templateUrl: 'home.component.html'
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('getAllVL') getAllVL: ElementRef<HTMLElement>;
   chuDeCount: ChuDeCount[];
   totalCount: number = 0;
+  data = '';
 
   constructor(
     private toastr: ToastrService,
@@ -21,13 +24,14 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private title: Title
   ) {
-
   }
 
   ngOnInit(): void {
     this.title.setTitle('Trang chủ');
     this.getTopic();
-
+    setTimeout(() => {
+      this.getAllVL.nativeElement.click();
+    }, 200);
   }
 
   getTopic() {

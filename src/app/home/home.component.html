@@ -41,7 +41,7 @@
           <div class="divline"></div>
           <div class="blocktxt">
             <ul class="cats">
-              <li><a routerLink="/all-topic">All<span
+              <li><a routerLink="/all-topic" #getAllVL>All<span
                 class="badge pull-right">{{totalCount}}</span></a></li>
               <li *ngFor="let topic of chuDeCount"><a routerLink="/all-topic/by-c/{{topic.id}}">{{topic.tenChude}}<span
                 class="badge pull-right">{{topic.baiVietCount}}</span></a></li>

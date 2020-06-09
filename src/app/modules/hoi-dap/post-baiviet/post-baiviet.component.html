@@ -8,18 +8,40 @@
 <div style="margin-top: 10px;">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Tag</span>
+      <span class="input-group-text" id="basic-addon1">Chủ đề</span>
     </div>
-    <input type="text" class="form-control tag" placeholder="Tag cho câu hỏi" aria-label="Tag cho câu hỏi" aria-describedby="basic-addon1" [(ngModel)]="tagCauHoi">
+    <div class="col-md-6">
+      <select class="form-control form-control-sm" id="cd" [(ngModel)]="idCd">
+        <option selected="">-- Chọn chủ đề---</option>
+        <option *ngFor="let cd of chuDe" [ngValue]="cd.id">{{cd.tenChude}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div style="margin-top: 10px;">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Tiêu đề</span>
+    </div>
+    <div class="col-md-6">
+      <textarea class="form-control form-control-sm" placeholder="Nhập vào tiêu đề" id="cd" rows="5" cols="20" [(ngModel)]="title">
+
+      </textarea>
+      <div *ngIf="isTitle" class="text-danger">
+        Bạn cần nhập vào tiêu đề!
+      </div>
+    </div>
   </div>
 </div>
 <div>
-  <ckeditor [editor]="editor" data="<h5>Viết bình luận!</h5>" [(ngModel)]="baiVietContent"></ckeditor>
+  <ckeditor [editor]="Editor"  placeholder="<p>Viết nội dung!</p>" [(ngModel)]="baiVietContent"></ckeditor>
+</div>
+<div *ngIf="isContent" class="text-danger">
+  Bạn cần nhập vào nội dung!
 </div>
 
-
 <div style="margin-top: 10px;">
-  <button type="submit"  (click)="postBaiViet()" class="btn btn-success">Đăng</button>
+  <button type="submit" (click)="postBaiViet()" class="btn btn-success">Đăng</button>
 </div>
 <div style="border-bottom: 1px solid #cbcbc6;margin-top: 10px;">
 </div>

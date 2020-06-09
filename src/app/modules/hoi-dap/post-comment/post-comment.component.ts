@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {ApiService} from '../../../shared/service/api.service';
 import {ToastrService} from 'ngx-toastr';
 import {StorageService} from '../../../shared/service/storage.service';
@@ -14,7 +14,6 @@ import {Baiviet} from '../../../shared/model/baiviet';
 })
 export class PostCommentComponent implements OnInit {
   @Input() baiviet: any;
-  public editor: ClassicEditor;
   commentContent: any;
   profileUser: UserProfileModel;
   baiViet: Baiviet;

@@ -13,8 +13,10 @@ import {Baiviet} from '../../../shared/model/baiviet';
 export class LoadByCategoryComponent implements OnInit {
   baiViet: Baiviet[];
   date: any;
-  timeFormatter: number = 0;
+  timeFormatter = 0;
   time: any;
+  message = '';
+  isRenderDATA: boolean;
 
   constructor(
     private apiService: ApiService,
@@ -29,7 +31,13 @@ export class LoadByCategoryComponent implements OnInit {
     this.route.params.subscribe(paramMap => {
       const idCD = paramMap.id;
       this.apiService.get('/api/baiviet/by-cd/' + idCD).subscribe(res => {
-        this.baiViet = res;
+        if (res === ' ' || res === undefined || res === null) {
+          this.isRenderDATA = false;
+          this.message = 'Chủ đề này chưa có dữ liệu';
+        } else {
+          this.isRenderDATA = true;
+          this.baiViet = res;
+        }
       });
     });
   }

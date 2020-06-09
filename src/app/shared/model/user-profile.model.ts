@@ -44,4 +44,8 @@ export interface UserProfileModel {
   role?: string;
 
   tenLop?: string;
+
+  imagePath?: string;
+
+  totalBV?: number;
 }

@@ -8,10 +8,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HasAnyAuthorityDirective} from '../directive/has-any-authority.directive';
 import {SharedModule} from '../shared.module';
+import { SearchFormClientComponent } from './search-form-client/search-form-client.component';
 
 
 @NgModule({
-  declarations: [MainClientComponent, NavbarClientComponent, FooterClientComponent, HasAnyAuthorityDirective],
+  declarations: [MainClientComponent, NavbarClientComponent, FooterClientComponent, HasAnyAuthorityDirective, SearchFormClientComponent],
   imports: [
     CommonModule, RouterModule,   NgbModule, FormsModule, SharedModule
   ],
