@@ -4,11 +4,10 @@ import {CommonModule} from '@angular/common';
 import { ProfileComponent } from './profile/profile.component';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { ProfileDetailComponent } from './profile-detail/profile-detail.component';
 
 
 @NgModule({
-  declarations: [ProfileComponent, ProfileDetailComponent],
+  declarations: [ProfileComponent],
   imports: [
     CommonModule,
     ClientLayoutsModule,
@@ -24,10 +23,7 @@ import { ProfileDetailComponent } from './profile-detail/profile-detail.componen
         path: 'profile',
         component: ProfileComponent
       },
-      {
-        path: 'profile-emp/:id',
-        component: ProfileDetailComponent
-      }
+
     ])
   ]
 })

@@ -7,6 +7,8 @@ import { TopicDetailComponent } from './topic-detail/topic-detail.component';
 import {PipeModule} from '../../shared/pipe/pipe.module';
 import {SharedModule} from '../../shared/shared.module';
 import {DataService} from '../../shared/service/data.service';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import {DataService} from '../../shared/service/data.service';
       }
     ]),
     PipeModule,
-    SharedModule
+    SharedModule,
+    CKEditorModule,
+    FormsModule
   ],
   providers: [DataService]
 })

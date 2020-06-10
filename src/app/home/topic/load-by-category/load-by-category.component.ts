@@ -4,6 +4,8 @@ import {Title} from '@angular/platform-browser';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Baiviet} from '../../../shared/model/baiviet';
+import {BaivietSearchTotal} from '../../../shared/model/baiviet-search-total';
+import {BaiVietTotal} from '../../../shared/model/bai-viet-total';
 
 @Component({
   selector: 'app-load-by-category',
@@ -17,7 +19,14 @@ export class LoadByCategoryComponent implements OnInit {
   time: any;
   message = '';
   isRenderDATA: boolean;
-
+  cdName = '';
+  baiVietTotal: BaiVietTotal[];
+  baiVietSearchTotal: BaivietSearchTotal = {
+    page: 0,
+    pageSize: 214748364,
+    titleBV: '',
+    idChuDe: null,
+  };
   constructor(
     private apiService: ApiService,
     private title: Title,
@@ -30,13 +39,17 @@ export class LoadByCategoryComponent implements OnInit {
     setInterval(() => this.timeFormatter = Math.random(), 60 * 10000);
     this.route.params.subscribe(paramMap => {
       const idCD = paramMap.id;
-      this.apiService.get('/api/baiviet/by-cd/' + idCD).subscribe(res => {
+      this.apiService.post('/api/baiviet/search-total-id-cd/' + idCD, this.baiVietSearchTotal).subscribe(res => {
         if (res === ' ' || res === undefined || res === null) {
           this.isRenderDATA = false;
           this.message = 'Chủ đề này chưa có dữ liệu';
         } else {
           this.isRenderDATA = true;
-          this.baiViet = res;
+          this.baiVietSearchTotal = res;
+          this.baiVietTotal = this.baiVietSearchTotal.data;
+          this.baiVietTotal.map(bv => {
+            this.cdName = bv.tenchude;
+          });
         }
       });
     });

@@ -34,7 +34,11 @@ const routes: Routes = [
       {
         path: 'hoi-dap',
         loadChildren: () => import('./modules/hoi-dap/hoi-dap.module').then(m => m.HoiDapModule)
-      }
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./modules/profile-emp/profile-emp.module').then(m => m.ProfileEmpModule)
+      },
     ]
 
   },

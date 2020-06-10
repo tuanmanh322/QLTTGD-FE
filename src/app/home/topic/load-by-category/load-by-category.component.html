@@ -1,12 +1,16 @@
+<h1>Chủ đề : {{cdName}} </h1>
 <div *ngIf="isRenderDATA === true">
-  <div class="post" *ngFor="let bv of baiViet" >
+  <div class="post" *ngFor="let bv of baiVietTotal" >
     <div class="wrap-ut pull-left">
       <div class="userinfo pull-left">
         <div class="avatar">
-          <img src="../../../../assets/img/avatar.jpg" alt="">
+          <img *ngIf="bv.imageUser!=null" [src]="bv.imageUser"  alt="" class="avatar-logo">
+          <img *ngIf="bv.imageUser === null"  src="../../../../assets/img/default.png" class="avatar-logo">
           <div class="status green">&nbsp;</div>
         </div>
-
+        <div>
+          <a style="text-decoration: none" routerLink="/profile/profile-emp/{{bv.idThe}}"><span>{{bv.nameUser}}</span></a>
+        </div>
         <div class="icons">
           <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
         </div>
@@ -16,21 +20,21 @@
         </div>
       </div>
       <div class="posttext pull-left">
-        <h2><a routerLink="/topic/{{bv.id}}">{{bv.title}}</a></h2>
-        <p>{{bv.noidung}}</p>
+        <h2><a routerLink="/all-topic/topic/{{bv.idBV}}">{{bv.titleBV}}</a></h2>
+        <p>{{bv.noidungBV}}</p>
       </div>
       <div class="clearfix"></div>
     </div>
     <div class="postinfo pull-left">
       <div class="comments">
         <div class="commentbg">
-          {{bv.totalComment}}
+          {{bv.rcmCount + bv.cmCount}}
           <div class="mark"></div>
         </div>
 
       </div>
       <div class="views"><i class="fa fa-eye"></i> 1,568</div>
-      <div class="time"><i class="fa fa-clock-o"></i>{{bv.dateMili | formatTime: timeFormatter}}</div>
+      <div class="time"><i class="fa fa-clock-o"></i>{{bv.createDate | date: 'dd-MM-yyyy'}}</div>
     </div>
     <div class="clearfix"></div>
   </div><!-- POST -->
