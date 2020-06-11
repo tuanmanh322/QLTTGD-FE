@@ -42,3 +42,4 @@
 <div class="text-danger" *ngIf="isRenderDATA === false">
   {{message}}
 </div>
+<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="getQuery()"></app-paginator>

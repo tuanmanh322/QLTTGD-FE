@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {HomeComponent} from './home.component';
 import {ClientLayoutsModule} from '../shared/client-layouts/client-layouts.module';
 import {RouterModule} from '@angular/router';
+import {PaginatorModule} from '../shared/paginator/paginator.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {RouterModule} from '@angular/router';
         component: HomeComponent,
         loadChildren: () => import('./topic/topic.module').then(m => m.TopicModule)
       }
-    ])
+    ]),
+    PaginatorModule
   ],
   exports: [HomeComponent]
 })

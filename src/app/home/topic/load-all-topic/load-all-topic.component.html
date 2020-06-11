@@ -1,4 +1,4 @@
-<div class="post" *ngFor="let bv of baiVietTotal">
+<div class="post" *ngFor="let bv of baiVietTotal | paginate: {itemsPerPage: baiVietSearchTotal.pageSize, currentPage: baiVietSearchTotal.page, totalItems: baiVietSearchTotal.totalRecords} ">
   <div class="wrap-ut pull-left">
     <div class="userinfo pull-left">
       <div class="avatar">
@@ -38,4 +38,5 @@
   </div>
   <div class="clearfix"></div>
 </div><!-- POST -->
-
+<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="getQuery()"></app-paginator>
+<!--<pagination-controls (pageChange)="baiVietSearchTotal.page = $event"></pagination-controls>-->

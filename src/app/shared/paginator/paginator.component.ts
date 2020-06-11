@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, OnChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, OnChanges, ViewChild, ElementRef} from '@angular/core';
 import {BaseSearch} from '../model/base-search';
 
 @Component({
@@ -7,6 +7,8 @@ import {BaseSearch} from '../model/base-search';
   styleUrls: ['./paginator.component.css']
 })
 export class PaginatorComponent implements OnInit, OnChanges {
+  @ViewChild('element')ele: ElementRef<HTMLElement>;
+
   @Input()
   searchObject: BaseSearch;
 
@@ -27,6 +29,15 @@ export class PaginatorComponent implements OnInit, OnChanges {
     this.searchObject.page = page;
     this.searchFunction.emit();
     this.redrawPage();
+    switch (this.ele.nativeElement.classList.length) {
+      case 1:
+      case 2:
+        this.ele.nativeElement.classList.add('active');
+        break;
+      case 3:
+        this.ele.nativeElement.classList.remove('active');
+    }
+
   }
 
   previousPage() {

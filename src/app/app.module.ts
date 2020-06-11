@@ -12,6 +12,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from './shared/shared.module';
 import {AuthInterceptor} from './shared/interceptor/auth.interceptor';
 import {ErrorInterceptor} from './shared/interceptor/error.interceptor';
+import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
+import {myStompConfig} from './myrx-stomp-config.config';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,16 @@ import {ErrorInterceptor} from './shared/interceptor/error.interceptor';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {
+      provide: InjectableRxStompConfig,
+      useValue: myStompConfig
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig]
+    }
   ],
   bootstrap: [AppComponent]
 })

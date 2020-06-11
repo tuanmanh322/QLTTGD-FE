@@ -9,6 +9,8 @@ import {SharedModule} from '../../shared/shared.module';
 import {DataService} from '../../shared/service/data.service';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {FormsModule} from '@angular/forms';
+import {PaginatorModule} from '../../shared/paginator/paginator.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import {FormsModule} from '@angular/forms';
     PipeModule,
     SharedModule,
     CKEditorModule,
-    FormsModule
+    FormsModule,
+    PaginatorModule,
+    NgxPaginationModule
   ],
   providers: [DataService]
 })

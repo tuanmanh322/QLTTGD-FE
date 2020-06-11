@@ -50,7 +50,8 @@
               "src/assets/js/jszip.min.js",
               "src/assets/js/pdfmake.min.js",
               "src/assets/js/vfs_fonts.js",
-              "src/assets/js/custom.min.js"
+              "src/assets/js/custom.min.js",
+              "src/assets/js/custom.js"
             ]
           },
           "configurations": {

@@ -13,7 +13,7 @@
             <a class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-left"></i></a>
           </li>
           <li *ngFor="let page of arrPage">
-            <a (click)="goToPage(page)" class="ripple-effect"
+            <a (click)="goToPage(page)" class="ripple-effect" #element
                [ngClass]="{'current-page': page === searchObject.page}">{{page + 1}}</a>
           </li>
           <li class="pagination-arrow" (click)="nextPage()"

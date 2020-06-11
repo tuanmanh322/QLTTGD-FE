@@ -7,6 +7,7 @@ import {CURRENT_USER, MA_THE, ROLE, TOKEN} from '../model/qlttgd.constant';
 import {ToastrService} from 'ngx-toastr';
 import {UserProfileModel} from '../model/user-profile.model';
 import {Router} from '@angular/router';
+import {shareReplay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,8 @@ export class UserService {
 
   login(login: LoginModel): Observable<any> {
     this.rememberMe = login.rememberMe;
-    return this.http.post(`${environment.api_rest}/api/authenticate`, login, {observe: 'response'});
+    return this.http.post(`${environment.api_rest}/api/authenticate`, login, {observe: 'response'})
+      .pipe(shareReplay(1));   // defaults to all values so we set it to just keep and replay last one
   }
 
   isLogin() {

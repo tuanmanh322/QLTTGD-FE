@@ -27,6 +27,7 @@
     "@ckeditor/ckeditor5-media-embed": "^19.1.0",
     "@ckeditor/ckeditor5-upload": "^19.0.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "@stomp/ng2-stompjs": "^7.2.0",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "ngx-bootstrap": "^5.6.1",
@@ -35,6 +36,8 @@
     "ngx-webstorage-service": "^4.1.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
+    "rxjs-compat": "~6.5.4",
+    "sockjs-client": "^1.4.0",
     "toastr": "^2.1.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

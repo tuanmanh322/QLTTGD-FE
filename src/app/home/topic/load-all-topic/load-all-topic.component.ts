@@ -19,9 +19,11 @@ export class LoadAllTopicComponent implements OnInit {
   baiVietTotal: BaiVietTotal[];
   baiVietSearchTotal: BaivietSearchTotal = {
     page: 0,
-    pageSize: 214748364,
+    pageSize: 10,
     titleBV: '',
     idChuDe: null,
+    orders: [],
+    totalRecords: 0
   };
   date: any;
   timeFormatter: number = 0;
@@ -32,7 +34,7 @@ export class LoadAllTopicComponent implements OnInit {
   data = '';
   isLike: boolean;
   isDislike: boolean;
-
+  totalItem;
   constructor(
     private apiService: ApiService,
     private title: Title,
@@ -51,34 +53,32 @@ export class LoadAllTopicComponent implements OnInit {
     this.$refresh.asObservable();
     // this.baiVietSearchTotal.titleBV = localStorage.getItem(TITLE).toString();
     // localStorage.removeItem(TITLE);
-    this.apiService.$title.subscribe(
-      item => {
-        this.baiVietSearchTotal.titleBV = localStorage.getItem(TITLE);
-        console.log(item);
-        console.log(localStorage.getItem(TITLE));
-        localStorage.removeItem(TITLE);
-      },
-      error => this.error = error
-    );
     this.getAllTopic();
   }
 
-  // getQuery() {
-  //   this.subscription = this.apiService.$title.subscribe(
-  //     item => {
-  //       this.baiVietSearchTotal.titleBV = localStorage.getItem(TITLE);
-  //       console.log(item);
-  //       console.log(localStorage.getItem(TITLE));
-  //       localStorage.removeItem(TITLE);
-  //     },
-  //     error => this.error = error
-  //   );
-  // }
+  getQuery() {
+    // this.subscription = this.apiService.$title.subscribe(
+    //   item => {
+        this.baiVietSearchTotal.titleBV = localStorage.getItem(TITLE);
+        console.log(localStorage.getItem(TITLE));
+        localStorage.removeItem(TITLE);
+        this.apiService.post('/api/baiviet/search-total', this.baiVietSearchTotal).subscribe(res => {
+          this.baiVietSearchTotal = res;
+          this.baiVietTotal = this.baiVietSearchTotal.data;
+        });
+    //   },
+    //   error => this.error = error
+    // );
+  }
 
   getAllTopic() {
     this.apiService.post('/api/baiviet/search-total', this.baiVietSearchTotal).subscribe(res => {
       this.baiVietSearchTotal = res;
+      console.log(this.baiVietSearchTotal.totalRecords);
+      this.totalItem = res.totalRecords;
       this.baiVietTotal = this.baiVietSearchTotal.data;
+      this.totalItem = this.baiVietSearchTotal.totalRecords;
+      console.log(this.totalItem);
     });
   }
 
@@ -92,5 +92,9 @@ export class LoadAllTopicComponent implements OnInit {
 
   clickDislike() {
 
+  }
+
+  pageChanged(event) {
+    this.baiVietSearchTotal.page = event;
   }
 }

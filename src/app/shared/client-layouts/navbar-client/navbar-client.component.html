@@ -44,7 +44,8 @@
         <div class="stnt pull-left">
           <button class="btn btn-primary" (click)="clickPost()">Đăng bài</button>
         </div>
-        <div class="env pull-left"><i class="fa fa-envelope"></i></div>
+        <div class="env pull-left"><a><img class="notifications-inbox" src="../../../../assets/img/no-notification.png"
+                                           alt=""/></a></div>
 
         <div class="stnt pull-left" *ngIf="!isAuthenticate">
           <button class="btn btn-primary" (click)="openLogin()">Đăng nhập</button>
