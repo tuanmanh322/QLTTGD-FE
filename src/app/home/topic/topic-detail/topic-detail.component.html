@@ -44,7 +44,7 @@
       <!--      <form>-->
       <div class="form-group">
         <label for="comment">Your Comment</label>
-        <ckeditor [editor]="editor" [(ngModel)]="commentContent"></ckeditor>
+        <ckeditor [editor]="editor" [(ngModel)]="commentContent" (ready)="onReady($event)"></ckeditor>
       </div>
       <button type="submit" (click)="postComment()" class="btn btn-default">Send</button>
       <!--      </form>-->

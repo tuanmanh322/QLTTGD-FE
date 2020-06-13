@@ -74,11 +74,9 @@ export class LoadAllTopicComponent implements OnInit {
   getAllTopic() {
     this.apiService.post('/api/baiviet/search-total', this.baiVietSearchTotal).subscribe(res => {
       this.baiVietSearchTotal = res;
-      console.log(this.baiVietSearchTotal.totalRecords);
       this.totalItem = res.totalRecords;
       this.baiVietTotal = this.baiVietSearchTotal.data;
       this.totalItem = this.baiVietSearchTotal.totalRecords;
-      console.log(this.totalItem);
     });
   }
 

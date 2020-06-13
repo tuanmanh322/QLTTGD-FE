@@ -34,7 +34,7 @@
   </div>
 </div>
 <div>
-  <ckeditor [editor]="Editor"  placeholder="<p>Viết nội dung!</p>" [(ngModel)]="baiVietContent"></ckeditor>
+  <ckeditor [editor]="Editor"  placeholder="<p>Viết nội dung!</p>" [(ngModel)]="baiVietContent" (ready)="onReady($event)"></ckeditor>
 </div>
 <div *ngIf="isContent" class="text-danger">
   Bạn cần nhập vào nội dung!

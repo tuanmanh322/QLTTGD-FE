@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   isEmailExisted: boolean;
   avatarUrl: any;
   fileTypeImg: any;
+  switchTab: number = 1;
 
   constructor(
     private apiService: ApiService,
@@ -36,15 +37,14 @@ export class ProfileComponent implements OnInit {
       name: new FormControl(this.userProfile.name, [Validators.required]),
       gioitinh: new FormControl(this.userProfile.gioitinh, [Validators.required]),
       ngaysinh: new FormControl(this.userProfile.ngaysinh, [Validators.required]),
-      socmt: new FormControl(this.userProfile.socmt, [Validators.required]),
-      quoctich: new FormControl(this.userProfile.quoctich, [Validators.required]),
-      quequan: new FormControl(this.userProfile.quequan, [Validators.required]),
+      // socmt: new FormControl(this.userProfile.socmt, [Validators.required]),
+      // quoctich: new FormControl(this.userProfile.quoctich, [Validators.required]),
+      // quequan: new FormControl(this.userProfile.quequan, [Validators.required]),
       noiohientai: new FormControl(this.userProfile.noiohientai, [Validators.required]),
-      hokhau: new FormControl(this.userProfile.hokhau, [Validators.required]),
-      quatrinhlamviec: new FormControl(this.userProfile.quatrinhlamviec, [Validators.required]),
-      email: new FormControl(this.userProfile.email, [Validators.required]),
+      // hokhau: new FormControl(this.userProfile.hokhau, [Validators.required]),
+      // quatrinhlamviec: new FormControl(this.userProfile.quatrinhlamviec, [Validators.required]),
+      email: new FormControl(this.userProfile.email, [Validators.required, Validators.pattern('^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$')]),
       sodt: new FormControl(this.userProfile.sodt, [Validators.required]),
-      tenLop: new FormControl(this.userProfile.ngaycap, [Validators.required]),
       imageAvatar: new FormControl()
     });
     if (this.userProfile.role === ADMIN) {
@@ -52,6 +52,10 @@ export class ProfileComponent implements OnInit {
     }
     if (this.userProfile.role === TEACHER) {
       this.roleUser = 'Giáo viên';
+      this.userForm.addControl('tenLop', new FormControl(this.userProfile.tenLop, [Validators.required]));
+      this.userForm.addControl('tenMH', new FormControl(this.userProfile.tenMH, [Validators.required]));
+      this.userForm.addControl('tenHangMuc', new FormControl(this.userProfile.tenHangMuc, [Validators.required]));
+      this.userForm.addControl('kipDay', new FormControl(this.userProfile.kipDay, [Validators.required]));
     }
     if (this.userProfile.role === STUDENT) {
       this.roleUser = 'Học sinh';
@@ -69,16 +73,21 @@ export class ProfileComponent implements OnInit {
     formData.append('name', this.userForm.get('name').value);
     formData.append('gioitinh', this.userForm.get('gioitinh').value);
     formData.append('ngaysinh', ngaysinh);
-    formData.append('socmt', this.userForm.get('socmt').value);
-    formData.append('quoctich', this.userForm.get('quoctich').value);
-    formData.append('quequan', this.userForm.get('quequan').value);
+    // formData.append('socmt', this.userForm.get('socmt').value);
+    // formData.append('quoctich', this.userForm.get('quoctich').value);
+    // formData.append('quequan', this.userForm.get('quequan').value);
     formData.append('noiohientai', this.userForm.get('noiohientai').value);
-    formData.append('hokhau', this.userForm.get('hokhau').value);
+    // formData.append('hokhau', this.userForm.get('hokhau').value);
     formData.append('email', this.userForm.get('email').value);
     formData.append('sodt', this.userForm.get('sodt').value);
-    formData.append('tenLop', this.userForm.get('tenLop').value);
     if (this.userForm.get('imageAvatar').value !== null) {
       formData.append('imageAvatar', this.userForm.get('imageAvatar').value);
+    }
+    if (this.userProfile.role === TEACHER) {
+      formData.append('tenLop', this.userForm.get('tenLop').value);
+      formData.append('tenMH', this.userForm.get('tenMH').value);
+      formData.append('tenHangMuc', this.userForm.get('tenHangMuc').value);
+      formData.append('kipDay', this.userForm.get('kipDay').value);
     }
     this.apiService.post('/api/user/edit-profile', formData).subscribe(res => {
       this.userProfile = res.data;
@@ -126,5 +135,36 @@ export class ProfileComponent implements OnInit {
         this.isEmailExisted = false;
       }
     });
+  }
+
+  get f() {
+    return this.userForm.controls;
+  }
+  goMain() {
+    this.switchTab = 1;
+  }
+
+  goHocBa() {
+    this.switchTab = 2;
+  }
+
+  goToClass() {
+    this.switchTab = 3;
+  }
+
+  goToPoints() {
+    this.switchTab = 4;
+  }
+
+  goCheckIn() {
+    this.switchTab = 5;
+  }
+
+  goTaiLieu() {
+    this.switchTab = 6;
+  }
+
+  goThongKe() {
+    this.switchTab = 7;
   }
 }

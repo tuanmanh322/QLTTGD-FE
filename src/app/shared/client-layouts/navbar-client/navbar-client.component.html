@@ -54,8 +54,10 @@
         <!--          <button class="btn btn-primary">Đăng kí</button>-->
         <!--        </div>-->
         <div class="avatar pull-left dropdown" *ngIf="isAuthenticate">
-          <a data-toggle="dropdown" href="#"><img style="width: 55px;height: 40px;" [src]="userProfile.imagePath"
+          <a data-toggle="dropdown" href="#" *ngIf="userProfile.imagePath"><img style="width: 55px;height: 40px;" [src]="userProfile.imagePath"
                                                   alt="{{userProfile.imagePath}}"/></a> <b class="caret"></b>
+          <a data-toggle="dropdown" href="#" *ngIf="userProfile.imagePath === null || !userProfile.imagePath"><img style="width: 55px;height: 40px;" src="../../../../assets/img/default.png"
+                                                  alt="default"/></a> <b class="caret"></b>
           <div class="status green">&nbsp;</div>
           <ul class="dropdown-menu" role="menu">
             <li role="presentation"><a role="menuitem" routerLink="/settings/profile">Trang cá nhân</a></li>

@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <h4 class="modal-title">Chi tiết lớp </h4>
+  <button type="button" class="close" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<div class="modal-boy">
+  <div class="container">
+    <div class="form-group">
+      <label for="maLop">Mã lớp : </label>
+      <span id="maLop">{{hocBaModel.maLop}}</span>
+    </div>
+    <div class="form-group">
+      <label for="tenLop">Tên lớp: </label>
+      <span id="tenLop">{{hocBaModel.tenLop}}</span>
+    </div>
+    <div class="form-group">
+      <label for="siso">Sĩ số :</label>
+      <span id="siso">{{hocBaModel.siSo}}</span>
+    </div>
+    <div class="form-group">
+      <label for="thoigianbatdau">Thời gian bắt đầu :</label>
+      <span id="thoigianbatdau">{{hocBaModel.ngayKhaiGiang | date: 'yyyy-MM-dd'}}</span>
+    </div>
+    <div class="form-group">
+      <label for="thoigianketthuc">Thòi gian kết thúc :</label>
+      <span id="thoigianketthuc">{{hocBaModel.ngayKetThuc | date: 'yyyy-MM-dd'}}</span>
+    </div>
+    <div class="form-group">
+      <label for="diadiem">Địa điểm :</label>
+      <span id="diadiem">{{hocBaModel.diaDiem}}</span>
+    </div>
+    <div class="form-group">
+      <label for="hocphi">Học phí :</label>
+      <span id="hocphi">{{hocBaModel.hocPhi}}</span>
+    </div>
+    <div class="form-group">
+      <label for="tenMonHoc">Tên môn học : </label>
+      <span id="tenMonHoc">{{hocBaModel.tenMonHoc}}</span>
+    </div>
+    <div class="form-group">
+      <label for="thu">Thứ : </label>
+      <span id="thu">{{hocBaModel.thu}}</span>
+    </div>
+    <div class="form-group">
+      <label for="gioBatDau">Giờ bắt đầu : </label>
+      <span id="gioBatDau">{{hocBaModel.gioBatDau}}</span>
+    </div>
+    <div class="form-group">
+      <label for="gioKetThuc">Giờ kết thúc : </label>
+      <span id="gioKetThuc">{{hocBaModel.gioKetThuc}}</span>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger"
+          (click)="cancel()">
+    Close
+  </button>
+</div>

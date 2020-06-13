@@ -48,4 +48,10 @@ export interface UserProfileModel {
   imagePath?: string;
 
   totalBV?: number;
+
+  tenMH?: string;
+
+  tenHangMuc?: string;
+
+  kipDay?: string;
 }

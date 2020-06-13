@@ -1,0 +1,17 @@
+li{
+  border: ridge;
+}
+
+button:hover{
+  color: red;
+}
+
+button{
+
+  width: max-content;
+}
+
+a:hover{
+  cursor: pointer;
+  text-shadow: 2px 2px 5px red;
+}

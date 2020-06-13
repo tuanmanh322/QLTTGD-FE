@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">STT</th>
+    <th scope="col">LỚP HỌC</th>
+    <th scope="col">MÔN HỌC</th>
+    <th scope="col">NGÀY KHAI GIẢNG</th>
+    <th scope="col">NGÀY KẾT THÚC</th>
+    <th scope="col">KÍP DẠY</th>
+    <th scope="col">SĨ SỐ</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cl of lopHocModel; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{cl.tenLop}}</td>
+    <td>{{cl.tenMonHoc}}</td>
+    <td>{{cl.ngayKhaiGiang| date: 'dd-MM-yyyy'}}</td>
+    <td>{{cl.ngayKetThuc| date: 'dd-MM-yyyy'}}</td>
+    <td>{{cl.kipDay}}</td>
+    <td>{{cl.siSo}}</td>
+  </tr>
+  </tbody>
+</table>
+<app-paginator [searchObject]="lopHocSearch" (searchFunction)="getAll()"></app-paginator>

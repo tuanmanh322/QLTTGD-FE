@@ -5,6 +5,8 @@ import {Title} from '@angular/platform-browser';
 import {Baiviet} from '../../../shared/model/baiviet';
 import * as EditorClassic from '@ckeditor/ckeditor5-build-classic';
 import {ToastrService} from 'ngx-toastr';
+import {UploadAdapter} from '../../../shared/model/upload-adapter';
+
 @Component({
   selector: 'app-topic-detail',
   templateUrl: './topic-detail.component.html',
@@ -14,13 +16,22 @@ export class TopicDetailComponent implements OnInit {
   public editor = EditorClassic;
   baiViet: Baiviet;
   timeFormatter: number = 0;
-  commentContent ='';
+  commentContent = '';
+
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private title: Title,
     private toastr: ToastrService
   ) {
+  }
+
+  loader: any;
+
+  public onReady(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+      return new UploadAdapter(loader);
+    };
   }
 
   ngOnInit(): void {
@@ -33,13 +44,14 @@ export class TopicDetailComponent implements OnInit {
       });
     });
   }
-  showComment(){
+
+  showComment() {
 
   }
 
-  postComment(){
+  postComment() {
     this.apiService.post('/api/comment').subscribe(res => {
-        console.log(res);
-    })
+      console.log(res);
+    });
   }
 }
