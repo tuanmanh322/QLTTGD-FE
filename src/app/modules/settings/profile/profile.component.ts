@@ -6,6 +6,9 @@ import {ApiService} from '../../../shared/service/api.service';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {ADMIN, ANONYMOUS, CURRENT_USER, ROLE, STUDENT, TEACHER} from '../../../shared/model/qlttgd.constant';
+import {MonHocModel} from '../../../shared/model/mon-hoc.model';
+import {HangMucModel} from '../../../shared/model/hang-muc-model';
+import {LopHocModel} from '../../../shared/model/lop-hoc.model';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +24,17 @@ export class ProfileComponent implements OnInit {
   avatarUrl: any;
   fileTypeImg: any;
   switchTab: number = 1;
-
+  monHocList: MonHocModel[];
+  hangMucModel: HangMucModel[];
+  lopHocModel: LopHocModel[];
+  Nam = 'Nam';
+  Nu = 'Nu';
+  kip1 = 'Kíp 1(7h - 9h)';
+  kip2 = 'Kíp 2(9h30- 12h)';
+  kip3 = 'Kíp 3(13h-15h)';
+  kip4 = 'Kíp 4(15h-18h)';
+  kip5 = 'Kíp 5(18h30-21h30)';
+  fileSelect: boolean;
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
@@ -33,6 +46,15 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userProfile = JSON.parse(localStorage.getItem(CURRENT_USER));
+    this.apiService.get('/api/mon-hoc/all').subscribe(data => {
+      this.monHocList = data;
+    });
+    this.apiService.get('/api/hang-muc/all').subscribe(data => {
+      this.hangMucModel = data;
+    });
+    this.apiService.get('/api/lop-hoc/all').subscribe(data => {
+      this.lopHocModel = data;
+    });
     this.userForm = this.fb.group({
       name: new FormControl(this.userProfile.name, [Validators.required]),
       gioitinh: new FormControl(this.userProfile.gioitinh, [Validators.required]),
@@ -63,6 +85,7 @@ export class ProfileComponent implements OnInit {
     if (this.userProfile.role === ANONYMOUS) {
       this.roleUser = 'Khách';
     }
+
     // this.avatarUrl = 'data:image/jpg;base64,' + this.userProfile.imagePath;
   }
 
@@ -118,6 +141,7 @@ export class ProfileComponent implements OnInit {
         if (file.type === 'image/jpeg' || file.type === 'image/pjpeg' || file.type === 'image/png' || file.type === 'image/jpg') {
           this.fileTypeImg = file.type;
           this.userForm.get('imageAvatar').setValue(file);
+          this.fileSelect = true;
         } else {
           this.toastr.error('Định dạng ảnh không đúng!');
           this.userForm.get('imageAvatar').setValue('');
@@ -140,6 +164,7 @@ export class ProfileComponent implements OnInit {
   get f() {
     return this.userForm.controls;
   }
+
   goMain() {
     this.switchTab = 1;
   }

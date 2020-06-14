@@ -67,7 +67,7 @@ export class PostBaivietComponent implements OnInit {
     };
     console.log(this.idCd);
     this.apiService.post('/api/baiviet', baiViet).subscribe(res => {
-      this.toastr.success('Đăng bài thành công! Bài viết của bạn cần được duyệt!');
+      this.toastr.success('Đăng bài thành công!');
       this.apiService.onFilter('create-post');
       this.ngbModal.dismiss();
     }, error => {

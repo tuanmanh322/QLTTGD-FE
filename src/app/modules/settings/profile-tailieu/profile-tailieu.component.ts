@@ -30,10 +30,13 @@ export class ProfileTailieuComponent implements OnInit {
     private toastr: ToastrService,
     private ngbModal: NgbModal
   ) {
+    this.apiService.onLoad().subscribe(() => {
+      this.getAll();
+    });
   }
 
   ngOnInit(): void {
-    this.doSearch();
+    this.getAll();
   }
 
   getAll() {
@@ -51,6 +54,7 @@ export class ProfileTailieuComponent implements OnInit {
   delete(idDc: number) {
     this.apiService.delete('/api/document/delete/' + idDc).subscribe(res => {
       this.toastr.success('Xóa thành công tài liệu!');
+      this.getAll();
     }, error => {
       this.toastr.error('Xóa thất bại!');
     });

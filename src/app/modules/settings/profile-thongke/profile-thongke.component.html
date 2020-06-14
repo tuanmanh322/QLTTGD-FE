@@ -1,16 +1,19 @@
 <div class="row">
-  <div class="col-md-6 item form-group">
-    <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày Khai giảng <span
-      class="required">*</span>
-    </label>
-    <div class="col-md-3 col-sm-3 ">
-      <input  class="date-picker form-control" required="required" type="date" name="startDate"
-              placeholder="Từ ngày" [(ngModel)]="baiVietSearch.startDate">
+  <div class="col-md-12 item form-group">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 ">
+        Ngày Khai giảng Từ: <input  class="date-picker form-control" required="required" type="date" name="startDate"
+                                    placeholder="Từ ngày" [(ngModel)]="baiVietSearch.startDate">
+      </div>
+      <div class="col-md-6 col-sm-6 ">
+        Ngày Khai giảng đến:  <input  class="date-picker form-control" required="required" type="date" name="endDate"
+                                      placeholder="Đến ngày" [(ngModel)]="baiVietSearch.endDate">
+      </div>
     </div>
-    <div class="col-md-3 col-sm-3 ">
-      <input  class="date-picker form-control" required="required" type="date" name="endDate"
-              placeholder="Đến ngày" [(ngModel)]="baiVietSearch.endDate">
-    </div>
+<!--    <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày Khai giảng <span-->
+<!--      class="required">*</span>-->
+<!--    </label>-->
+
   </div>
 </div>
 <div class="item form-group">

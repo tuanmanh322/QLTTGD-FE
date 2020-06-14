@@ -30,7 +30,7 @@ export class ProfileTailieuEditComponent implements OnInit {
     this.taiLieu = this.document;
     this.taiLieuForm = this.fb.group({
       title: new FormControl(this.taiLieu.title, [Validators.required]),
-      noidung: new FormControl(this.taiLieu.title, [Validators.required]),
+      noidung: new FormControl(this.taiLieu.noidung, [Validators.required]),
       fileDocument: new FormControl('', [Validators.required])
     });
   }
@@ -70,6 +70,8 @@ export class ProfileTailieuEditComponent implements OnInit {
     }
     this.apiService.post('/api/document/edit/' + this.taiLieu.id, formData).subscribe(res => {
       this.toastr.success('Cập nhật thành công!');
+      this.apiService.onFilter('edit tai lieu');
+      this.modalActivate.dismiss();
     }, error => {
       this.toastr.error('Cập nhật thất bại!');
     });

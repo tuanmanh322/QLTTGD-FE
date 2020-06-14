@@ -68,6 +68,8 @@ export class ProfileTailieuAddComponent implements OnInit {
     }
     this.apiService.post('/api/document/add', formData).subscribe(res => {
       this.toastr.success('Cập nhật thành công!');
+      this.apiService.onFilter('add tailieu');
+      this.modalActivate.dismiss();
     }, error => {
       this.toastr.error('Cập nhật thất bại!');
     });

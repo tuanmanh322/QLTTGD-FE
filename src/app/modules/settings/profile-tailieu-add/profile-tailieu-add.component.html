@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Đăng Ký</h4>
+  <h4 class="modal-title">Thêm tài liệu</h4>
   <button type="button" class="close" aria-label="Close"
           (click)="modalActivate.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
@@ -40,7 +40,7 @@
               <span class="uploadButton-file-name">Maximum file size: 10 MB</span>
             </div>
           </form>
-          <button type="submit" class="btn btn-primary"  (click)="onAdd()" [disabled]="taiLieuForm.invalid || !taiLieuForm.dirty">Chỉnh sửa</button>
+          <button type="submit" class="btn btn-primary"  (click)="onAdd()" [disabled]="taiLieuForm.invalid || !taiLieuForm.dirty">Upload</button>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onCancle()">Close</button>
