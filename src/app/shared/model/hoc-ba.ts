@@ -14,4 +14,8 @@ export interface HocBa {
   thu?: string;
   gioBatDau?: Time;
   gioKetThuc?: Time;
+  diemMieng?: number;
+  diem15p?: number;
+  diem90p?: number;
+  diemTB?: number;
 }

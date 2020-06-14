@@ -1,1 +1,60 @@
-<p>profile-tailieu works!</p>
+<div class="row">
+  <div class="col-md-6 item form-group">
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Tên tiêu đề <span
+      class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 ">
+      <input type="text" id="last-name" name="Tên tiêu đề" required="required" class="form-control"
+             [(ngModel)]="taiLieuSearch.title">
+    </div>
+  </div>
+  <div class="col-md-6 item form-group">
+    <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày Khai giảng <span
+      class="required">*</span>
+    </label>
+    <div class="col-md-3 col-sm-3 ">
+      <input  class="date-picker form-control" required="required" type="date" name="startDate"
+              placeholder="Từ ngày" [(ngModel)]="taiLieuSearch.startDate">
+    </div>
+    <div class="col-md-3 col-sm-3 ">
+      <input  class="date-picker form-control" required="required" type="date" name="endDate"
+              placeholder="Đến ngày" [(ngModel)]="taiLieuSearch.endDate">
+    </div>
+  </div>
+</div>
+<div class="item form-group">
+  <div class="col-md-8 col-sm-6 offset-md-5">
+    <button type="submit" class="btn btn-success" (click)="doSearch()">Search</button>
+  </div>
+</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="doCreate()">
+  Thêm mới lớp học
+</button>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">STT</th>
+    <th scope="col">NGÀY</th>
+    <th scope="col">CÂU HỎI</th>
+    <th scope="col">CÂU TRẢ LỜI</th>
+    <th scope="col">LIKE</th>
+    <th scope="col">DISLIKE</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tl of taiLieuModel; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{tl.title | date: 'dd-MM-yyyy'}}</td>
+    <td>{{tl.noidung}}</td>
+    <td>{{tl.createdDate}}</td>
+    <td>{{tl.linkDownload}}</td>
+    <td>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="doEdit(tl)"> Edit</button>
+        <button class="btn btn-danger" (click)="delete(tl.id)"> Xóa</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<app-paginator [searchObject]="taiLieuSearch" (searchFunction)="doSearch()"></app-paginator>

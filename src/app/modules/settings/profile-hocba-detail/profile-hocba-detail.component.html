@@ -50,6 +50,22 @@
       <label for="gioKetThuc">Giờ kết thúc : </label>
       <span id="gioKetThuc">{{hocBaModel.gioKetThuc}}</span>
     </div>
+    <div class="form-group">
+      <label for="diemMieng">Điểm miệng : </label>
+      <span id="diemMieng">{{hocBaModel.diemMieng}}</span>
+    </div>
+    <div class="form-group">
+      <label for="diem15p">Điểm kiểm tra 15 phút : </label>
+      <span id="diem15p">{{hocBaModel.diem15p}}</span>
+    </div>
+    <div class="form-group">
+      <label for="diem90p">Điểm kiểm tra 90 phút : </label>
+      <span id="diem90p">{{hocBaModel.diem90p}}</span>
+    </div>
+    <div class="form-group">
+      <label for="diemTB">Điểm trung bình : </label>
+      <span id="diemTB">{{((hocBaModel.diemMieng + hocBaModel.diem15p) + hocBaModel.diem90p*2)/4}}</span>
+    </div>
   </div>
 </div>
 <div class="modal-footer">

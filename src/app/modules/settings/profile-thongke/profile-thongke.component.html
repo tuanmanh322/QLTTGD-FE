@@ -1,1 +1,43 @@
-<p>profile-thongke works!</p>
+<div class="row">
+  <div class="col-md-6 item form-group">
+    <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày Khai giảng <span
+      class="required">*</span>
+    </label>
+    <div class="col-md-3 col-sm-3 ">
+      <input  class="date-picker form-control" required="required" type="date" name="startDate"
+              placeholder="Từ ngày" [(ngModel)]="baiVietSearch.startDate">
+    </div>
+    <div class="col-md-3 col-sm-3 ">
+      <input  class="date-picker form-control" required="required" type="date" name="endDate"
+              placeholder="Đến ngày" [(ngModel)]="baiVietSearch.endDate">
+    </div>
+  </div>
+</div>
+<div class="item form-group">
+  <div class="col-md-8 col-sm-6 offset-md-5">
+    <button type="submit" class="btn btn-success" (click)="search()">Search</button>
+  </div>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">STT</th>
+    <th scope="col">NGÀY</th>
+    <th scope="col">CÂU HỎI</th>
+    <th scope="col">CÂU TRẢ LỜI</th>
+    <th scope="col">LIKE</th>
+    <th scope="col">DISLIKE</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cl of baiVietModel; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{cl.createDate | date: 'dd-MM-yyyy'}}</td>
+    <td>{{cl.titleBV}}</td>
+    <td>{{cl.noidungBV}}</td>
+    <td>{{cl.luotthich}}</td>
+    <td>{{cl.luotkhongthich}}</td>
+  </tr>
+  </tbody>
+</table>
+<app-paginator [searchObject]="baiVietSearch" (searchFunction)="search()"></app-paginator>

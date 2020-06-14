@@ -12,10 +12,13 @@ import { ProfileThongkeComponent } from './profile-thongke/profile-thongke.compo
 import { ProfileTailieuComponent } from './profile-tailieu/profile-tailieu.component';
 import {PaginatorModule} from '../../shared/paginator/paginator.module';
 import { ProfileHocbaDetailComponent } from './profile-hocba-detail/profile-hocba-detail.component';
+import { ProfileTailieuAddComponent } from './profile-tailieu-add/profile-tailieu-add.component';
+import { ProfileTailieuEditComponent } from './profile-tailieu-edit/profile-tailieu-edit.component';
+import { ProfilePointsAddComponent } from './profile-points-add/profile-points-add.component';
 
 
 @NgModule({
-  declarations: [ProfileComponent, ProfileClassComponent, ProfileHocbaComponent, ProfilePointsComponent, ProfileCheckinComponent, ProfileThongkeComponent, ProfileTailieuComponent, ProfileHocbaDetailComponent],
+  declarations: [ProfileComponent, ProfileClassComponent, ProfileHocbaComponent, ProfilePointsComponent, ProfileCheckinComponent, ProfileThongkeComponent, ProfileTailieuComponent, ProfileHocbaDetailComponent, ProfileTailieuAddComponent, ProfileTailieuEditComponent, ProfilePointsAddComponent],
   imports: [
     CommonModule,
     ClientLayoutsModule,
