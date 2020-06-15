@@ -61,7 +61,7 @@
           <div class="status green">&nbsp;</div>
           <ul class="dropdown-menu" role="menu">
             <li role="presentation"><a role="menuitem" routerLink="/settings/profile">Trang cá nhân</a></li>
-            <li role="presentation"><a role="menuitem" routerLink="/admin/qlttgd" *ngIf="isAdmin">Trang điều khiển</a>
+            <li role="presentation"><a role="menuitem" routerLink="/admin/qlttgd"  *appHasAnyAuthority="['ROLE_ADMIN']">Trang điều khiển</a>
             </li>
             <li role="presentation"><a role="menuitem" routerLink="">Inbox</a></li>
             <li role="presentation"><a role="menuitem" routerLink="" (click)="logOut()">Log Out</a></li>

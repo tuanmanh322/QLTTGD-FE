@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrService} from 'ngx-toastr';
 import {LoginComponent} from '../../../auth/login/login.component';
-import {ROLE, TITLE, USER_PROFILE_CHANGED} from '../../model/qlttgd.constant';
+import {ADMIN, ROLE, TITLE, USER_PROFILE_CHANGED} from '../../model/qlttgd.constant';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {EventManagement} from '../../service/event.management';
@@ -13,6 +13,7 @@ import {UserService} from '../../service/user.service';
 import {ApiService} from '../../service/api.service';
 import {PostBaivietComponent} from '../../../modules/hoi-dap/post-baiviet/post-baiviet.component';
 import {DataService} from '../../service/data.service';
+import {GuardsGuard} from '../../guard/guard.guard';
 
 
 const CURRENT_USER = 'current_user';
@@ -30,8 +31,9 @@ export class NavbarClientComponent implements OnInit {
   test: Subscription;
   isAdmin: boolean;
   testtt: boolean;
-  titles ='';
+  titles = '';
   data = '';
+
   constructor(
     private router: Router,
     private eventManagement: EventManagement,
@@ -42,39 +44,38 @@ export class NavbarClientComponent implements OnInit {
     private title: Title,
     private storageService: StorageService,
     private userService: UserService,
-    private apiService: ApiService,
-    private dataService: DataService
+    private apiService: ApiService
   ) {
-    this.apiService.onLoad().subscribe(() => {
-      this.getProfile();
-    });
   }
 
   ngOnInit(): void {
-    // this.eventManagement.subscribe(USER_PROFILE_CHANGED, () => {
-    //   this.getProfile();
-    // });
-    const authenticate = this.userService.isLogin();
-    if (!authenticate) {
-      this.userProfile = {};
-      this.isAuthenticate = false;
-      return;
-    }
-    this.userService.identity().then(userProfile => {
-      this.userProfile = userProfile;
-      this.isAuthenticate = true;
-      localStorage.removeItem(ROLE);
-      localStorage.setItem(ROLE, this.userProfile.role);
+    this.eventManagement.subscribe(USER_PROFILE_CHANGED, () => {
+      this.getProfile();
     });
-    console.log(this.userProfile);
-    this.isAuthenticate = this.storageService.isAuthenticated();
-    this.isAdmin = this.storageService.isAdmin();
+    this.userProfile = {};
+    this.isAuthenticate = this.userService.isAuthenticated();
     this.isLoginPage = this.router.url === '/auth/login';
-
+    if (this.isAuthenticate) {
+      this.userService.identity().then(userProfile => {
+        this.userProfile = userProfile;
+      });
+    }
+    this.userService.getAuthState().subscribe(() => {
+      this.getProfile();
+    });
+    // this.userService.identity().then(userProfile => {
+    //   this.userProfile = userProfile;
+    //   this.isAuthenticate = true;
+    //   if (this.userProfile.role === ADMIN){
+    //     this.isAdmin = true;
+    //   }
+    //   localStorage.removeItem(ROLE);
+    //   localStorage.setItem(ROLE, this.userProfile.role);
+    // });
+    console.log(this.userProfile);
     this.apiService.$title.subscribe(data => {
       this.data = data;
-      console.log(this.data);
-    })
+    });
   }
 
   getProfile() {
@@ -89,7 +90,11 @@ export class NavbarClientComponent implements OnInit {
       this.isAuthenticate = true;
       localStorage.removeItem(ROLE);
       localStorage.setItem(ROLE, this.userProfile.role);
+      if (localStorage.getItem(ROLE) === ADMIN){
+        this.isAdmin = true;
+      }
     });
+
   }
 
 
@@ -118,6 +123,7 @@ export class NavbarClientComponent implements OnInit {
       this.message.error('Bạn cần đăng nhập để đăng bài!');
     }
   }
+
   getDataTitle() {
     localStorage.removeItem(TITLE);
     localStorage.setItem(TITLE, this.titles);
