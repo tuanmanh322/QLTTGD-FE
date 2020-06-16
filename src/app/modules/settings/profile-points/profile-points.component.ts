@@ -69,7 +69,11 @@ export class ProfilePointsComponent implements OnInit {
   }
 
   exportToExcelFile() {
-
+    this.apiService.get('/api/diem/download/points.xlsx').subscribe(res => {
+      this.toastr.success('File đã được tải xuống!');
+    }, error => {
+      this.toastr.error('Lỗi tải file!');
+    });
   }
 
   editPoints(points) {
