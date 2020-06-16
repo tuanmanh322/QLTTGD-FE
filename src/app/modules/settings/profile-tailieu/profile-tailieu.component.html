@@ -33,6 +33,7 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="doCreate()">
   Thêm mới tài liệu
 </button>
+<h5 class="float-right">Tổng số bản ghi : {{taiLieuSearch.totalRecords}}</h5>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -50,7 +51,7 @@
     <td>{{tl.title}}</td>
     <td>{{tl.noidung}}</td>
     <td>{{tl.createdDate}}</td>
-    <td><a [href]="tl.linkDownload"><span>{{tl.title}}</span></a></td>
+    <td><a [href]="tl.linkDownload"><span>Download Now!</span></a></td>
     <td>
       <div class="form-group">
         <button class="btn btn-primary" (click)="doEdit(tl)"> Edit</button>

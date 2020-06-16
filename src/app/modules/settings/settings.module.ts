@@ -15,10 +15,11 @@ import { ProfileHocbaDetailComponent } from './profile-hocba-detail/profile-hocb
 import { ProfileTailieuAddComponent } from './profile-tailieu-add/profile-tailieu-add.component';
 import { ProfileTailieuEditComponent } from './profile-tailieu-edit/profile-tailieu-edit.component';
 import { ProfilePointsAddComponent } from './profile-points-add/profile-points-add.component';
+import { ProfilePointsEditComponent } from './profile-points-edit/profile-points-edit.component';
 
 
 @NgModule({
-  declarations: [ProfileComponent, ProfileClassComponent, ProfileHocbaComponent, ProfilePointsComponent, ProfileCheckinComponent, ProfileThongkeComponent, ProfileTailieuComponent, ProfileHocbaDetailComponent, ProfileTailieuAddComponent, ProfileTailieuEditComponent, ProfilePointsAddComponent],
+  declarations: [ProfileComponent, ProfileClassComponent, ProfileHocbaComponent, ProfilePointsComponent, ProfileCheckinComponent, ProfileThongkeComponent, ProfileTailieuComponent, ProfileHocbaDetailComponent, ProfileTailieuAddComponent, ProfileTailieuEditComponent, ProfilePointsAddComponent, ProfilePointsEditComponent],
   imports: [
     CommonModule,
     ClientLayoutsModule,

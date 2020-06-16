@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Cập nhật bảng điểm </h4>
+  <h4 class="modal-title">Chi tiết bảng điểm </h4>
   <button type="button" class="close" aria-label="Close"
           (click)="activeModal.dismiss('Cross click')">
     <span aria-hiDDen="true">&times;</span>
@@ -10,13 +10,17 @@
     <form [formGroup]="pointForm">
 
 
-
       <div class="form-group">
-        <label for="idUser">Họ và tên : </label>
-        <select  formControlName="idUser" name="idUser" id="idUser">
-          <option value="" selected disabled>--Chọn học sinh--</option>
-          <option *ngFor="let us of userList" [value]="us.id">{{us.name}}</option>
-        </select>
+        <label for="maLop">Mã thẻ : </label>
+        <span id="maLop">{{pointModel.maThe}}</span>
+      </div>
+      <div class="form-group">
+        <label for="userName">Họ và tên : </label>
+        <span id="userName">{{pointModel.userName}}</span>
+      </div>
+      <div class="form-group">
+        <label for="ngaySinh">Ngày sinh :</label>
+        <span id="ngaySinh">{{pointModel.ngaySinh | date: 'yyyy-MM-dd'}}</span>
       </div>
       <div class="form-group">
         <label for="diemMieng">Điểm miệng :</label>
@@ -56,10 +60,10 @@
       </div>
       <div class="form-group">
         <label for="idLop">Tên lớp :</label>
-        <select  formControlName="idLop" name="idLop" id="idLop">
-          <option value="" selected disabled>--Chọn lớp--</option>
-          <option *ngFor="let lo of lopHoc" [value]="lo.id">{{lo.tenlop}}</option>
-        </select>
+         <select  formControlName="idLop" name="idLop" id="idLop">
+           <option value="" selected disabled>--Chọn lớp--</option>
+           <option *ngFor="let lo of lopHoc" [value]="lo.id">{{lo.tenlop}}</option>
+         </select>
       </div>
       <div class="form-group">
         <label for="diemTB">Điểm trung bình : </label>
@@ -69,8 +73,8 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" type="submit" (click)="onAdd()" [disabled]="pointForm.invalid || !pointForm.dirty">
-    Thêm mới
+  <button class="btn btn-primary" type="submit" (click)="onEdit()" [disabled]="pointForm.invalid || !pointForm.dirty">
+    Chỉnh sửa
   </button>
   <button class="btn btn-danger"
           (click)="cancel()">

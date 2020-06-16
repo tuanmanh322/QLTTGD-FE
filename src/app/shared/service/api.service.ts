@@ -32,7 +32,7 @@ export class ApiService {
   }
 
   put(path: string, body: Object = {}): Observable<any> {
-    return this.put(`${environment.api_rest}${path}`, body)
+    return this.http.put(`${environment.api_rest}${path}`, body)
       .pipe(catchError(err => {
         return throwError(err);
       }));

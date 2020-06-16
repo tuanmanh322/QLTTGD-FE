@@ -1,1 +1,23 @@
-<p>profile-checkin works!</p>
+<h5 class="float-right">Tổng số bản ghi : {{checkInSearch.totalRecords}}</h5>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">STT</th>
+    <th scope="col">HỌ VÀ TÊN</th>
+    <th scope="col">NGÀY VÀO</th>
+    <th scope="col">NGÀY RA</th>
+    <th scope="col">TRẠNG THÁI</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let ck of checkInModel; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{ck.name}}</td>
+    <td>{{ck.ngayVao | date: 'dd-MM-yyyy'}}</td>
+    <td>{{ck.thoiGianRa | date: 'dd-MM-yyyy'}}</td>
+    <td *ngIf="ck.trangthai == 1">Hoạt động</td>
+    <td *ngIf="ck.trangthai == 0">Không hoạt động</td>
+  </tr>
+  </tbody>
+</table>
+<app-paginator [searchObject]="checkInSearch" (searchFunction)="getAll()"></app-paginator>

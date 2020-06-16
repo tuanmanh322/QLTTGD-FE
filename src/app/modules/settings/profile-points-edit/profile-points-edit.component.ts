@@ -1,20 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PointsModel} from '../../../shared/model/points-model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {LopHocModel} from '../../../shared/model/lop-hoc.model';
 import {ApiService} from '../../../shared/service/api.service';
+import {LopHocModel} from '../../../shared/model/lop-hoc.model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrService} from 'ngx-toastr';
-import {UserModel} from '../../../shared/model/user-model';
 
 @Component({
-  selector: 'app-profile-points-add',
-  templateUrl: './profile-points-add.component.html',
-  styleUrls: ['./profile-points-add.component.css']
+  selector: 'app-profile-points-edit',
+  templateUrl: './profile-points-edit.component.html',
+  styleUrls: ['./profile-points-edit.component.css']
 })
-export class ProfilePointsAddComponent implements OnInit {
+export class ProfilePointsEditComponent implements OnInit {
+  @Input() points: any;
 
-  userList: UserModel[];
   pointModel: PointsModel;
   pointForm: FormGroup;
   lopHoc: LopHocModel[];
@@ -33,40 +32,42 @@ export class ProfilePointsAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiService.get('/api/user/all').subscribe(data => {
-      this.userList = data;
-    });
+    this.pointModel = this.points;
     this.apiService.get('/api/lop-hoc/all').subscribe(res => {
       this.lopHoc = res;
     });
+
     this.pointForm = this.fb.group({
-      idUser: new FormControl('', [Validators.required]),
-      kipDay: new FormControl('', [Validators.required]),
-      idLop: new FormControl('', [Validators.required]),
-      diemMieng: new FormControl('', [Validators.required, Validators.pattern('^(10|\\d)(\\.\\d{1,2})?$')]),
-      diem15p: new FormControl('', [Validators.required, Validators.pattern('^(10|\\d)(\\.\\d{1,2})?$')]),
-      diem90p: new FormControl('', [Validators.required, Validators.pattern('^(10|\\d)(\\.\\d{1,2})?$')]),
+      kipDay: new FormControl(this.pointModel.kipDay, [Validators.required]),
+      idLop: new FormControl(this.pointModel.idLop, [Validators.required]),
+      diemMieng: new FormControl(this.pointModel.diemMieng, [Validators.required, Validators.pattern('^(10|\\d)(\\.\\d{1,2})?$')]),
+      diem15p: new FormControl(this.pointModel.diem15p, [Validators.required, Validators.pattern('^(10|\\d)(\\.\\d{1,2})?$')]),
+      diem90p: new FormControl(this.pointModel.diem90p, [Validators.required, Validators.pattern('^(10|\\d)(\\.\\d{1,2})?$')]),
     });
   }
 
   // tenLop
-  onAdd() {
+  onEdit() {
     if (this.pointForm.valid) {
       const points = {
+        id: this.pointModel.id,
+        maDiem: this.pointModel.maDiem,
         maLop: this.pointForm.get('idLop').value,
-        idUser:  this.pointForm.get('idUser').value,
+        idUser: this.pointModel.idUser,
         diemmieng: this.pointForm.get('diemMieng').value,
         diem15p: this.pointForm.get('diem15p').value,
         diem90p: this.pointForm.get('diem90p').value,
         diemtb: this.parseDiemTB(),
+        username: this.pointModel.userName,
         kipDay: this.pointForm.get('kipDay').value,
+        idLopOld: this.pointModel.idLop
       };
-      this.apiService.post('/api/diem/add', points).subscribe(res => {
-        this.toastr.success('Thêm mới thành công!');
+      this.apiService.put('/api/diem/edit', points).subscribe(res => {
+        this.toastr.success('Cập nhật thành công!');
         this.activeModal.dismiss();
-        this.apiService.onFilter('add');
+        this.apiService.onFilter('edit');
       }, error => {
-        this.toastr.error('Thêm mới thất bại!');
+        this.toastr.error('Cập nhật thất bại!');
       });
     }
   }
@@ -83,5 +84,4 @@ export class ProfilePointsAddComponent implements OnInit {
   get f() {
     return this.pointForm.controls;
   }
-
 }

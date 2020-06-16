@@ -1,1 +1,92 @@
-<p>profile-points works!</p>
+<div class="row">
+  <div class="col-md-6 item form-group">
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="kipDay">Kíp dạy <span
+      class="required">*</span>
+    </label>
+    <select [(ngModel)]="pointSearch.kipDay" id="kipDay">
+      <option value="" selected disabled>--Chọn kíp dạy--</option>
+      <option value="">All</option>
+      <option [value]="1">{{kip1}}</option>
+      <option [value]="2">{{kip2}}</option>
+      <option [value]="3">{{kip3}}</option>
+      <option [value]="4">{{kip4}}</option>
+      <option [value]="5">{{kip5}}</option>
+    </select>
+    <!--    <div class="col-md-6 col-sm-6 ">-->
+    <!--      <input type="text" id="kipDay" name="Kíp dạy" required="required" placeholder="nhập kíp dạy" class="form-control"-->
+    <!--             [(ngModel)]="pointSearch.kipDay">-->
+
+    <!--    </div>-->
+  </div>
+  <div class="col-md-6 item form-group">
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="tenLop">Tên lớp <span
+      class="required">*</span>
+    </label>
+    <select [(ngModel)]="pointSearch.tenLop" id="tenLop">
+      <option value="" selected disabled>--Chọn lớp học--</option>
+      <option value="">All</option>
+      <option *ngFor="let lo of lopHocList" [value]="lo.tenlop">{{lo.tenlop}}</option>
+    </select>
+    <!--    <div class="col-md-6 col-sm-6 ">-->
+    <!--      <input type="text" id="tenLop" name="Tên lớp" required="required" placeholder="nhập tên lớp" class="form-control"-->
+    <!--             [(ngModel)]="pointSearch.tenLop">-->
+    <!--    </div>-->
+  </div>
+</div>
+<div class="item form-group">
+  <div class="col-md-8 col-sm-6 offset-md-5">
+    <button type="submit" class="btn btn-success" (click)="doSearch()">Search</button>
+  </div>
+</div>
+<button type="button" class="btn btn-success button-set" data-toggle="modal" data-target="#exampleModal" (click)="openAddPoints()">
+  Cập nhật điểm
+</button>
+<button type="button" class="btn btn-secondary button-set" data-toggle="modal" data-target="#exampleModal" (click)="importExcelFile()">
+  Cập nhật điểm excel file
+</button>
+<button type="button" class="btn btn-info button-set" data-toggle="modal" data-target="#exampleModal" (click)="exportToExcelFile()">
+   Xuất dữ liệu ra excel file
+</button>
+<h5 class="float-right">Tổng số bản ghi : {{pointSearch.totalRecords}}</h5>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">STT</th>
+    <th scope="col">MÃ HỌC SINH</th>
+    <th scope="col">HỌ VÀ TÊN</th>
+    <th scope="col">NGÀY SINH</th>
+    <th scope="col">ĐIỂM 15'</th>
+    <th scope="col">ĐIỂM 45'</th>
+    <th scope="col">ĐIỂM 90'</th>
+    <th scope="col">KÍP DẠY</th>
+    <th scope="col">TÊN LỚP</th>
+    <th scope="col">MÔN HỌC</th>
+    <th scope="col">ACTION</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let po of pointModel; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{po.maThe}}</td>
+    <td>{{po.userName}}</td>
+    <td>{{po.ngaySinh| date: 'dd-MM-yyyy'}}</td>
+    <td>{{po.diemMieng}}</td>
+    <td>{{po.diem15p}}</td>
+    <td>{{po.diem90p}}</td>
+    <td *ngIf="po.kipDay == 1">{{kip1}}</td>
+    <td *ngIf="po.kipDay == 2">{{kip2}}</td>
+    <td *ngIf="po.kipDay == 3">{{kip3}}</td>
+    <td *ngIf="po.kipDay == 4">{{kip4}}</td>
+    <td *ngIf="po.kipDay == 5">{{kip5}}</td>
+    <td>{{po.tenLop}}</td>
+    <td>{{po.tenMonHoc}}</td>
+    <td>
+      <div class="form-group">
+        <button class="btn btn-info" (click)="editPoints(po)">Edit</button>
+        <button class="btn btn-danger" (click)="delete(po.id)">Delete</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<app-paginator [searchObject]="pointSearch" (searchFunction)="getAll()"></app-paginator>
