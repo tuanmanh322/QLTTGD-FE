@@ -10,6 +10,7 @@ import {UserService} from './service/user.service';
 import {EventManagement} from './service/event.management';
 import {DataService} from './service/data.service';
 import {NotificationService} from './service/notification.service';
+import {ChuDeService} from './service/chu-de.service';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {NotificationService} from './service/notification.service';
     UserService,
     EventManagement,
     DataService,
-    NotificationService
+    NotificationService,
+    ChuDeService
   ]
 })
 export class SharedModule {

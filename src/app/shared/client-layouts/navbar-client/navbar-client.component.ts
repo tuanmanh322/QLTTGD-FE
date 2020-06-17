@@ -72,7 +72,6 @@ export class NavbarClientComponent implements OnInit {
     //   localStorage.removeItem(ROLE);
     //   localStorage.setItem(ROLE, this.userProfile.role);
     // });
-    console.log(this.userProfile);
     this.apiService.$title.subscribe(data => {
       this.data = data;
     });

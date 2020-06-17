@@ -5,6 +5,7 @@ import {ApiService} from '../shared/service/api.service';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {DataService} from '../shared/service/data.service';
+import {ChuDeService} from '../shared/service/chu-de.service';
 
 
 @Component({
@@ -22,16 +23,24 @@ export class HomeComponent implements OnInit {
     private toastr: ToastrService,
     private apiService: ApiService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private chuDeSerivce: ChuDeService
   ) {
   }
 
   ngOnInit(): void {
     this.title.setTitle('Trang chủ');
     this.getTopic();
+
+    // this.chuDeSerivce.getChuDeStates().subscribe(() => {
+    //   this.getTopic();
+    // });
     setTimeout(() => {
       this.getAllVL.nativeElement.click();
     }, 200);
+    // this.chuDeCount.map(cd => {
+    //   this.totalCount = this.totalCount + cd.baiVietCount;
+    // });
   }
 
   getTopic() {

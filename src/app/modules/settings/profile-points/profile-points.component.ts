@@ -7,6 +7,8 @@ import {PointsSearch} from '../../../shared/model/points-search';
 import {ProfilePointsAddComponent} from '../profile-points-add/profile-points-add.component';
 import {LopHocModel} from '../../../shared/model/lop-hoc.model';
 import {ProfilePointsEditComponent} from '../profile-points-edit/profile-points-edit.component';
+import {UserProfileModel} from '../../../shared/model/user-profile.model';
+import {CURRENT_USER} from '../../../shared/model/qlttgd.constant';
 
 @Component({
   selector: 'app-profile-points',
@@ -14,7 +16,7 @@ import {ProfilePointsEditComponent} from '../profile-points-edit/profile-points-
   styleUrls: ['./profile-points.component.css']
 })
 export class ProfilePointsComponent implements OnInit {
-
+  userProfile: UserProfileModel;
   pointModel: PointsModel[];
   pointSearch: PointsSearch = {
     page: 0,
@@ -30,7 +32,7 @@ export class ProfilePointsComponent implements OnInit {
   kip3 = 'Kíp 3(13h-15h)';
   kip4 = 'Kíp 4(15h-18h)';
   kip5 = 'Kíp 5(18h30-21h30)';
-
+  downloadLink = '';
   constructor(
     private apiService: ApiService,
     private toastr: ToastrService,
@@ -42,6 +44,8 @@ export class ProfilePointsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userProfile = JSON.parse(localStorage.getItem(CURRENT_USER));
+    this.downloadLink = 'http://localhost:1234/api/diem/download/points.xlsx?d=' + this.userProfile.id;
     this.getAll();
     this.apiService.get('/api/lop-hoc/all').subscribe(res => {
       this.lopHocList = res;
