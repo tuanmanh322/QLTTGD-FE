@@ -42,7 +42,15 @@
   <button type="button" class="btn btn-success button-set" data-toggle="modal" data-target="#exampleModal" (click)="openAddPoints()">
     Cập nhật điểm
   </button>
-  <button type="button" class="btn btn-secondary button-set" data-toggle="modal" data-target="#exampleModal" (click)="importExcelFile()">
+  <input class="uploadButton-input" type="file"
+         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+         id="upload" name="cvFile"
+         (change)="uploadFile($event)"
+         multiple/>
+  <label class="uploadButton-button ripple-effect"
+         for="upload"> Cập nhật điểm excel file</label>
+  <span class="uploadButton-file-name">Maximum file size: 10 MB</span>
+  <button type="file"  name="file" (click)="importExcelFile()">
     Cập nhật điểm excel file
   </button>
   <div style="background-color: darkseagreen;">

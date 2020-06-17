@@ -9,6 +9,7 @@ import {LopHocModel} from '../../../shared/model/lop-hoc.model';
 import {ProfilePointsEditComponent} from '../profile-points-edit/profile-points-edit.component';
 import {UserProfileModel} from '../../../shared/model/user-profile.model';
 import {CURRENT_USER} from '../../../shared/model/qlttgd.constant';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-profile-points',
@@ -33,10 +34,17 @@ export class ProfilePointsComponent implements OnInit {
   kip4 = 'Kíp 4(15h-18h)';
   kip5 = 'Kíp 5(18h30-21h30)';
   downloadLink = '';
+  isSelectFile: boolean;
+  file: File;
+
+  uploadForm: FormGroup = new FormGroup({
+    fileUp: new FormControl('')
+  });
   constructor(
     private apiService: ApiService,
     private toastr: ToastrService,
     private ngbModal: NgbModal
+
   ) {
     this.apiService.onLoad().subscribe(() => {
       this.getAll();
@@ -50,6 +58,7 @@ export class ProfilePointsComponent implements OnInit {
     this.apiService.get('/api/lop-hoc/all').subscribe(res => {
       this.lopHocList = res;
     });
+
   }
 
   doSearch() {
@@ -69,15 +78,18 @@ export class ProfilePointsComponent implements OnInit {
   }
 
   importExcelFile() {
-
-  }
-
-  exportToExcelFile() {
-    this.apiService.get('/api/diem/download/points.xlsx').subscribe(res => {
-      this.toastr.success('File đã được tải xuống!');
-    }, error => {
-      this.toastr.error('Lỗi tải file!');
-    });
+    if (this.isSelectFile === true) {
+      const formData = new FormData();
+      formData.append('excelFile', this.uploadForm.get('fileUp').value);
+      this.apiService.post('/api/media/file-excel', formData).subscribe(res => {
+        this.toastr.success('Tải lên thành công!');
+        setTimeout(() => {
+          this.getAll();
+        }, 5000);
+      }, error => {
+        this.toastr.error('Tải lên thất bại!');
+      });
+    }
   }
 
   editPoints(points) {
@@ -92,5 +104,23 @@ export class ProfilePointsComponent implements OnInit {
     }, error => {
       this.toastr.error('Xóa thất bại!');
     });
+  }
+
+  uploadFile(event) {
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      const fileSize = parseInt(file.size) / 1024;
+      if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+        if (fileSize < 10240) {
+          this.isSelectFile = true;
+          this.uploadForm.get('fileUp').setValue(file);
+        } else {
+          this.toastr.error('Kích thước file quá lớn, bạn chỉ được chọn file có kích thước dưới 10MB');
+        }
+      } else {
+        this.isSelectFile = false;
+        this.toastr.error('Định dạng file không đúng');
+      }
+    }
   }
 }
