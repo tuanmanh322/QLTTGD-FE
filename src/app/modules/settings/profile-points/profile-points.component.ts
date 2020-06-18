@@ -38,7 +38,8 @@ export class ProfilePointsComponent implements OnInit {
   file: File;
 
   uploadForm: FormGroup = new FormGroup({
-    fileUp: new FormControl('')
+    fileUp: new FormControl(''),
+    idUser: new FormControl('')
   });
   constructor(
     private apiService: ApiService,
@@ -58,6 +59,7 @@ export class ProfilePointsComponent implements OnInit {
     this.apiService.get('/api/lop-hoc/all').subscribe(res => {
       this.lopHocList = res;
     });
+    // this.uploadForm.get('idUser').setValue(this.userProfile.id);
 
   }
 
@@ -81,7 +83,7 @@ export class ProfilePointsComponent implements OnInit {
     if (this.isSelectFile === true) {
       const formData = new FormData();
       formData.append('excelFile', this.uploadForm.get('fileUp').value);
-      this.apiService.post('/api/media/file-excel', formData).subscribe(res => {
+      this.apiService.post('/api/media/file-excel/'+ this.userProfile.id, formData).subscribe(res => {
         this.toastr.success('Tải lên thành công!');
         setTimeout(() => {
           this.getAll();
