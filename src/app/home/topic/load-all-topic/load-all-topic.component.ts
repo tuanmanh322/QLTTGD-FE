@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Baiviet} from '../../../shared/model/baiviet';
 import {ApiService} from '../../../shared/service/api.service';
 import {Title} from '@angular/platform-browser';
@@ -6,7 +6,6 @@ import {BaivietSearchTotal} from '../../../shared/model/baiviet-search-total';
 import {BaiVietTotal} from '../../../shared/model/bai-viet-total';
 import {DataService} from '../../../shared/service/data.service';
 import {Subject, Subscription} from 'rxjs';
-import {retry, tap} from 'rxjs/operators';
 import {TITLE} from '../../../shared/model/qlttgd.constant';
 
 @Component({

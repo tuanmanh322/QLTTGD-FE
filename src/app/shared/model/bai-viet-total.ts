@@ -34,4 +34,6 @@ export interface BaiVietTotal {
   cmCount?: number;
 
   rcmCount?: number;
+
+  viewCounts?: number;
 }

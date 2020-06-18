@@ -24,3 +24,14 @@ a:hover{
 .notifications-inbox{
   height: 25px;
 }
+.img-avt-comment{
+  border-radius: 50%;
+  width: 43px;
+  height: 37px;
+}
+.content-bv{
+  width: 542px!important;
+}
+figure.image>img{
+  width: 542px!important;
+}

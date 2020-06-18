@@ -7,7 +7,6 @@ import {UserProfileModel} from '../../../shared/model/user-profile.model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ChuDeCount} from '../../../shared/model/chu-de-count';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import loader from '@angular-devkit/build-angular/src/angular-cli-files/plugins/single-test-transform';
 import {UploadAdapter} from '../../../shared/model/upload-adapter';
 
 @Component({

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrService} from 'ngx-toastr';
 import {LoginComponent} from '../../../auth/login/login.component';
@@ -14,6 +14,7 @@ import {ApiService} from '../../service/api.service';
 import {PostBaivietComponent} from '../../../modules/hoi-dap/post-baiviet/post-baiviet.component';
 import {DataService} from '../../service/data.service';
 import {GuardsGuard} from '../../guard/guard.guard';
+import {NotificationService} from '../../service/notification.service';
 
 
 const CURRENT_USER = 'current_user';
@@ -44,11 +45,20 @@ export class NavbarClientComponent implements OnInit {
     private title: Title,
     private storageService: StorageService,
     private userService: UserService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private notificationService: NotificationService,
+    private renderer: Renderer2
   ) {
   }
 
   ngOnInit(): void {
+    this.notificationService.isUnread().subscribe((response: { status: boolean }) => {
+      if (response.status) {
+
+      }
+    });
+
+
     this.eventManagement.subscribe(USER_PROFILE_CHANGED, () => {
       this.getProfile();
     });
@@ -89,7 +99,7 @@ export class NavbarClientComponent implements OnInit {
       this.isAuthenticate = true;
       localStorage.removeItem(ROLE);
       localStorage.setItem(ROLE, this.userProfile.role);
-      if (localStorage.getItem(ROLE) === ADMIN){
+      if (localStorage.getItem(ROLE) === ADMIN) {
         this.isAdmin = true;
       }
     });

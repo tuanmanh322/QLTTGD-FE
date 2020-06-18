@@ -20,4 +20,5 @@ export interface Baiviet {
   imageBV?: string;
   commentDTOS?: CommentModel[];
   idThe?: number;
+  viewCounts?: number;
 }

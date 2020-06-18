@@ -6,6 +6,10 @@ import {Baiviet} from '../../../shared/model/baiviet';
 import * as EditorClassic from '@ckeditor/ckeditor5-build-classic';
 import {ToastrService} from 'ngx-toastr';
 import {UploadAdapter} from '../../../shared/model/upload-adapter';
+import {UserProfileModel} from '../../../shared/model/user-profile.model';
+import {CURRENT_USER} from '../../../shared/model/qlttgd.constant';
+
+declare var $: any;
 
 @Component({
   selector: 'app-topic-detail',
@@ -17,6 +21,7 @@ export class TopicDetailComponent implements OnInit {
   baiViet: Baiviet;
   timeFormatter: number = 0;
   commentContent = '';
+  userProfile: UserProfileModel;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +40,11 @@ export class TopicDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    $(document).ready(function() {
+      $('.reply-popup').click(function() {
+        $('.reply-box').toggle();
+      });
+    });
     setInterval(() => this.timeFormatter = Math.random(), 60 * 1000);
     this.route.params.subscribe(routeParam => {
       const idBV = routeParam.id;
@@ -43,15 +53,25 @@ export class TopicDetailComponent implements OnInit {
         this.title.setTitle(this.baiViet.title);
       });
     });
+    this.userProfile = JSON.parse(localStorage.getItem(CURRENT_USER));
   }
 
   showComment() {
 
   }
 
-  postComment() {
-    this.apiService.post('/api/comment').subscribe(res => {
+  postComment(idBv: number) {
+    if (this.commentContent === '') {
+      this.toastr.error('Bạn cần nhập vào nội dung');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('noiDung', this.commentContent);
+
+    this.apiService.post('/api/comment/is-comment/' + idBv, formData).subscribe(res => {
       console.log(res);
+      this.commentContent = '';
     });
   }
 }
