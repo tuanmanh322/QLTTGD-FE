@@ -4,7 +4,7 @@ import {TOKEN} from './shared/model/qlttgd.constant';
 
 export const myStompConfig: InjectableRxStompConfig ={
   // Which server?
-  brokerURL: 'ws://localhost:1234/greeting',
+  brokerURL: 'ws://localhost:1234/greeting/websocket',
 
 //   Headers
 //   Typical keys: login, passcode, host

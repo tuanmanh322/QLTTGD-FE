@@ -2,7 +2,7 @@
   <div class="wrap-ut pull-left">
     <div class="userinfo pull-left">
       <div class="avatar">
-        <img *ngIf="baiViet.imageAvatar!=null" [src]="baiViet.imageAvatar" alt="" class="avatar-logo">
+        <img *ngIf="baiViet.imageAvatar !== null" [src]="baiViet.imageAvatar" alt="" class="avatar-logo">
         <img *ngIf="baiViet.imageAvatar === null" src="../../../../assets/img/default.png" class="avatar-logo">
         <div class="status green">&nbsp;</div>
       </div>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="posttext pull-left">
-      <h2><a routerLink="/all-topic/topic/{{baiViet.idBaiViet}}">{{baiViet.title}}</a></h2>
+      <h2>{{baiViet.title}}</h2>
       <div [innerHTML]="baiViet.noidung">
       </div>
     </div>
@@ -42,20 +42,63 @@
     <button class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
     <button class="fa-share"><i class="fa fa-share" aria-hidden="true"></i> Share</button>
   </div>
+
+  <hr class="border-bottom p-2"/>
+  <div *ngFor="let cm of baiViet.commentDTOS; let i = index">
+    <a routerLink="/profile/profile-emp/{{cm.idUser}}">
+     <span class="commenter-pic">
+              <img *ngIf="cm.imageAvatarCM !== null" src="{{cm.imageAvatarCM}}"
+                   class="img-fluid img-avt-recomment">
+               <img *ngIf="cm.imageAvatarCM === null" src="../../../../assets/img/default.png"
+                    class="img-fluid img-avt-recomment">
+            </span>
+      <span>{{cm.userName}}</span>
+    </a>
+    <div [innerHTML]="cm.noiDung"></div>
+    <div class="icons" style="display: contents!important;">
+      <div class="form-group">
+        <button class="button-icons"><i class="fa fa-thumbs-up blue"><span>{{cm.luotThich}}</span></i></button>
+        <button class="button-icons"><i class="fa fa-thumbs-down"><span>{{cm.loutKhongthich}}</span></i></button>
+        <button class="comment-reply reply-popup{{i}}" (click)="clickToggle(i)"><i class="fa fa-reply-all"
+                                                                                   aria-hidden="true"></i> Reply
+        </button>
+        <span>{{cm.commentDate| date: 'dd-MM-yyyy'}}</span>
+      </div>
+    </div>
+    <div class="container" *ngIf="userProfile">
+      <div class="comment-box add-comment reply-box{{i}} toggler" id="toggletest{{i}}">
+           <span class="commenter-pic">
+              <img *ngIf="userProfile.imagePath !== null" src="{{userProfile.imagePath}}"
+                   class="img-fluid img-avt-comment">
+               <img *ngIf="userProfile.imagePath === null" src="../../../../assets/img/default.png" class="avatar-logo">
+            </span>
+        <span>{{userProfile.name}}</span>
+        <span class="commenter-name">
+              <ckeditor [editor]="editor" [(ngModel)]="repcomment" (ready)="onReady($event)"
+                        placeholder="Add a public reply" name="Add Comment"></ckeditor>
+              <button type="submit" class="btn btn-default" (click)="postRepComment(cm.id)">Reply</button>
+              <button type="cancel" class="btn btn-default reply-popup" (click)="removeDisplay(i)">Cancel</button>
+            </span>
+      </div>
+    </div>
+
+  </div>
   <hr class="border-bottom p-2"/>
 
   <!-- comment and repcomment -->
-  <div class="container">
-    <div class="comment-box add-comment reply-box">
+  <div class="container" *ngIf="userProfile">
+    <div class="comment-box add-comment reply-box" id="mainComment">
             <span class="commenter-pic">
-              <img src="{{userProfile.imagePath}}" class="img-fluid img-avt-comment">
+              <img *ngIf="userProfile.imagePath !== null" src="{{userProfile.imagePath}}"
+                   class="img-fluid img-avt-comment">
+               <img *ngIf="userProfile.imagePath === null" src="../../../../assets/img/default.png" class="avatar-logo">
             </span>
       <span>{{userProfile.name}}</span>
       <span class="commenter-name">
               <ckeditor [editor]="editor" [(ngModel)]="commentContent" (ready)="onReady($event)"
                         placeholder="Add a public reply" name="Add Comment"></ckeditor>
               <button type="submit" class="btn btn-default" (click)="postComment(baiViet.id)">Reply</button>
-              <button type="cancel" class="btn btn-default reply-popup">Cancel</button>
+              <button type="cancel" class="btn btn-default reply-popup" (click)="cancle()">Cancel</button>
             </span>
     </div>
     <!--    <div class="post-comments">-->

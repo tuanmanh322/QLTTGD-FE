@@ -12,11 +12,10 @@ import {StorageService} from '../../service/storage.service';
 import {UserService} from '../../service/user.service';
 import {ApiService} from '../../service/api.service';
 import {PostBaivietComponent} from '../../../modules/hoi-dap/post-baiviet/post-baiviet.component';
-import {DataService} from '../../service/data.service';
-import {GuardsGuard} from '../../guard/guard.guard';
 import {NotificationService} from '../../service/notification.service';
+import {NotificationModel} from '../../model/notification-model';
 
-
+declare var $: any;
 const CURRENT_USER = 'current_user';
 
 @Component({
@@ -34,6 +33,9 @@ export class NavbarClientComponent implements OnInit {
   testtt: boolean;
   titles = '';
   data = '';
+  isLogin: boolean;
+  notiCount = 0;
+  notification: NotificationModel[];
 
   constructor(
     private router: Router,
@@ -52,19 +54,17 @@ export class NavbarClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.notificationService.isUnread().subscribe((response: { status: boolean }) => {
-      if (response.status) {
-
-      }
-    });
-
-
+    // this.notificationService.isUnread().subscribe((response: { status: boolean }) => {
+    //   if (response.status) {
+    //
+    //   }
+    // });
     this.eventManagement.subscribe(USER_PROFILE_CHANGED, () => {
       this.getProfile();
     });
     this.userProfile = {};
     this.isAuthenticate = this.userService.isAuthenticated();
-    this.isLoginPage = this.router.url === '/auth/login';
+    this.isLoginPage = this.userService.isLogin();
     if (this.isAuthenticate) {
       this.userService.identity().then(userProfile => {
         this.userProfile = userProfile;
@@ -72,6 +72,19 @@ export class NavbarClientComponent implements OnInit {
     }
     this.userService.getAuthState().subscribe(() => {
       this.getProfile();
+      this.notificationClick();
+    });
+
+    // $('.notifications-inbox').click(function() {
+    //   $('.notifications-show').toggle();
+    // });
+
+    // $('.notifications-inbox1').click(function() {
+    //   $('.notifications-show1').toggle();
+    // });
+
+    this.apiService.get('/api/notification/all-need').subscribe(res => {
+      this.notiCount = res.length;
     });
     // this.userService.identity().then(userProfile => {
     //   this.userProfile = userProfile;
@@ -84,6 +97,77 @@ export class NavbarClientComponent implements OnInit {
     // });
     this.apiService.$title.subscribe(data => {
       this.data = data;
+    });
+  }
+
+  isReadAll() {
+    if (this.notiCount > 0) {
+      this.apiService.get('/api/notification/read-all').subscribe(res => {
+        console.log(res);
+        this.notiCount = 0;
+      });
+    }
+  }
+
+  checkMoveDetail() {
+    if (this.notiCount === 0){
+      return;
+    } else {
+      this.notiCount--;
+    }
+  }
+
+  notificationClick() {
+
+    // this.apiService.get('/api/notification/all').subscribe((response: any) => {
+    //   console.log('emitted');
+    //   let modal: HTMLDivElement = <HTMLDivElement> document.getElementById('modal');
+    //   modal.classList.add('is-active');
+    //   this.addNotification(response);
+    //   console.log(response);
+    //   var img = <HTMLImageElement> document.getElementById('notification-icon');
+    //   img.src = 'assets\\no-notification.png';
+    // });
+    if (!this.userProfile) {
+      return;
+    }
+    this.apiService.get('/api/notification/all-detail').subscribe((response: any) => {
+      this.notification = response;
+    });
+  }
+
+  addNotification(data: any) {
+    let allNotification: HTMLDivElement = <HTMLDivElement> document.getElementById('all-notification');
+    if (data.length == 0) {
+      allNotification.textContent = 'No notification to show.';
+
+    } else {
+      for (let item of data) {
+        let notificationDiv: HTMLDivElement = <HTMLDivElement> document.createElement('div');
+        notificationDiv.classList.add('notification-item');
+        allNotification.appendChild(notificationDiv);
+        notificationDiv.textContent = item.message;
+      }
+
+      let button: HTMLButtonElement = <HTMLButtonElement> document.createElement('button');
+      button.classList.add('button');
+      allNotification.appendChild(button);
+      button.textContent = 'Clear Notification';
+      this.renderer.listen(button, 'click', () => {
+        this.clearNotifications();
+      });
+
+    }
+  }
+
+  clearNotifications() {
+    console.log('okay');
+    this.apiService.delete('/api/notification/clear-notification').subscribe((response: { status: boolean }) => {
+      if (response.status == true) {
+        console.log('cleared');
+        let allNotification: HTMLDivElement = <HTMLDivElement> document.getElementById('all-notification');
+        allNotification.innerHTML = 'No notification to show.';
+      }
     });
   }
 
@@ -138,5 +222,17 @@ export class NavbarClientComponent implements OnInit {
     localStorage.setItem(TITLE, this.titles);
     this.apiService.sendTitle(this.titles);
     this.titles = '';
+  }
+
+  showNoti() {
+    let eleNoti = document.getElementById('shownoti');
+    switch (eleNoti.classList.length) {
+      case 1:
+        eleNoti.classList.add('toggler');
+        break;
+      case 2:
+        eleNoti.classList.remove('toggler');
+        break;
+    }
   }
 }

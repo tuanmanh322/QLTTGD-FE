@@ -1,0 +1,17 @@
+.notifications-show{
+  position: absolute;
+  z-index: 1000;
+  background-color: #cfcdfb;
+  list-style: none;
+  margin-top: 55px;
+}
+.notifications-show1{
+  position: absolute;
+  z-index: 1000;
+  background-color: #cfcdfb;
+  list-style: none;
+  margin-top: 55px;
+}
+.notification-item{
+  list-style: none;
+}

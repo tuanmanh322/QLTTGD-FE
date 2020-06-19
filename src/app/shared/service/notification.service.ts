@@ -22,9 +22,9 @@ export class NotificationService {
     if (!this.rxStompService.active) {
       this.rxStompService.activate();
     }
-    this.notification = this.rxStompService.watch('/user/api/feed').subscribe((message) => {
+    this.notification = this.rxStompService.watch('/user/queue/feed').subscribe((message) => {
       var img = <HTMLImageElement> document.getElementById('notification-icon');
-      img.src = 'assets\\notification.png';
+      img.src = '../../../assets/img/no-notification.png';
 
       var mainDiv: HTMLDivElement = <HTMLDivElement> document.getElementById('container');
       // notification.classList.toggle("notification-off");
