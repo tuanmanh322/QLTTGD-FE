@@ -106,6 +106,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
   }
 
   clickToggle(i: number) {
+    this.checkLogin();
     let elem = document.getElementById('toggletest' + i);
     switch (elem.classList.length) {
       case 3:
@@ -128,6 +129,13 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     let eleMain = document.getElementById('mainComment');
     if (eleMain.classList.length === 3) {
       eleMain.classList.add('toggler');
+    }
+  }
+
+  checkLogin() {
+    if (!this.userProfile){
+      this.toastr.error('Bạn cần phải đăng nhập để thực hiện thao tác này!');
+      return;
     }
   }
 }

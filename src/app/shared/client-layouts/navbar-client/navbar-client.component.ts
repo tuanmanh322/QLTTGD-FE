@@ -14,6 +14,7 @@ import {ApiService} from '../../service/api.service';
 import {PostBaivietComponent} from '../../../modules/hoi-dap/post-baiviet/post-baiviet.component';
 import {NotificationService} from '../../service/notification.service';
 import {NotificationModel} from '../../model/notification-model';
+import {PasswordChangeComponent} from '../../../auth/password-change/password-change.component';
 
 declare var $: any;
 const CURRENT_USER = 'current_user';
@@ -233,6 +234,12 @@ export class NavbarClientComponent implements OnInit {
       case 2:
         eleNoti.classList.remove('toggler');
         break;
+    }
+  }
+
+  changePassword() {
+    if (this.isLogin === true){
+      this.modalService.open(PasswordChangeComponent,{size: 'lg'});
     }
   }
 }

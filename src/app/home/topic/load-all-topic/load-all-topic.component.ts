@@ -6,7 +6,9 @@ import {BaivietSearchTotal} from '../../../shared/model/baiviet-search-total';
 import {BaiVietTotal} from '../../../shared/model/bai-viet-total';
 import {DataService} from '../../../shared/service/data.service';
 import {Subject, Subscription} from 'rxjs';
-import {TITLE} from '../../../shared/model/qlttgd.constant';
+import {CURRENT_USER, TITLE} from '../../../shared/model/qlttgd.constant';
+import {UserProfileModel} from '../../../shared/model/user-profile.model';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-load-all-topic',
@@ -34,10 +36,13 @@ export class LoadAllTopicComponent implements OnInit {
   isLike: boolean;
   isDislike: boolean;
   totalItem;
+  userProfile: UserProfileModel;
+  clickCount = 0;
   constructor(
     private apiService: ApiService,
     private title: Title,
-    private dataService: DataService
+    private dataService: DataService,
+    private toastr: ToastrService
   ) {
     this.apiService.onLoad().subscribe(() => {
       this.getAllTopic();
@@ -53,18 +58,19 @@ export class LoadAllTopicComponent implements OnInit {
     // this.baiVietSearchTotal.titleBV = localStorage.getItem(TITLE).toString();
     // localStorage.removeItem(TITLE);
     this.getAllTopic();
+    this.userProfile = JSON.parse(localStorage.getItem(CURRENT_USER));
   }
 
   getQuery() {
     // this.subscription = this.apiService.$title.subscribe(
     //   item => {
-        this.baiVietSearchTotal.titleBV = localStorage.getItem(TITLE);
-        console.log(localStorage.getItem(TITLE));
-        localStorage.removeItem(TITLE);
-        this.apiService.post('/api/baiviet/search-total', this.baiVietSearchTotal).subscribe(res => {
-          this.baiVietSearchTotal = res;
-          this.baiVietTotal = this.baiVietSearchTotal.data;
-        });
+    this.baiVietSearchTotal.titleBV = localStorage.getItem(TITLE);
+    console.log(localStorage.getItem(TITLE));
+    localStorage.removeItem(TITLE);
+    this.apiService.post('/api/baiviet/search-total', this.baiVietSearchTotal).subscribe(res => {
+      this.baiVietSearchTotal = res;
+      this.baiVietTotal = this.baiVietSearchTotal.data;
+    });
     //   },
     //   error => this.error = error
     // );
@@ -83,15 +89,68 @@ export class LoadAllTopicComponent implements OnInit {
   //   this.apiService.get().;
   // }
 
-  clickLike() {
-
+  clickLike(idBV: number, likeCount: number) {
+    this.checkLogin();
+    this.checkAlreadyLike(idBV);
+    this.clickCount++;
+    if (this.isLike === true && this.clickCount === 1) {
+      const bv = {
+        luotthich: likeCount - 1
+      };
+      this.apiService.post('/api/baiviet/like/' + idBV, bv).subscribe(res => {
+        this.getAllTopic();
+      });
+    } else if (this.isLike === false && this.clickCount === 1){
+      const bv = {
+        luotthich: likeCount + 1
+      };
+      this.apiService.post('/api/baiviet/like/' + idBV, bv).subscribe(res => {
+        this.getAllTopic();
+      });
+    }
   }
 
-  clickDislike() {
-
+  clickDislike(idBV: number, disLikeCount: number) {
+    this.checkLogin();
+    this.checkAlreadyDisLike(idBV);
+    this.clickCount++;
+    if (this.isDislike === true && this.clickCount === 1) {
+      const bv = {
+        luotkhongthich: disLikeCount - 1
+      };
+      this.apiService.post('/api/baiviet/dislike/' + idBV, bv).subscribe(res => {
+        this.getAllTopic();
+      });
+    } else if (this.isDislike === false && this.clickCount === 1 ){
+      const bv = {
+        luotkhongthich: disLikeCount + 1
+      };
+      this.apiService.post('/api/baiviet/dislike/' + idBV, bv).subscribe(res => {
+        this.getAllTopic();
+      });
+    }
   }
 
   pageChanged(event) {
     this.baiVietSearchTotal.page = event;
+  }
+
+  checkLogin() {
+    if (!this.userProfile) {
+      this.toastr.error('Bạn cần phải đăng nhập để thực hiện thao tác này!');
+      return;
+    }
+  }
+
+  checkAlreadyLike(idBV: number) {
+    this.apiService.get('/api/notification/already-like/' + idBV).subscribe(res => {
+      this.isLike = res;
+    });
+  }
+
+  checkAlreadyDisLike(idBV: number) {
+    this.apiService.get('/api/notification/already-dislike/' + idBV).subscribe(res => {
+      this.isDislike = res;
+    });
   }
 }
