@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {GiaoVienModel} from '../../../shared/model/giao-vien.model';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-teacher-detail',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teacher-detail.component.css']
 })
 export class TeacherDetailComponent implements OnInit {
+  @Input() gv: any;
 
-  constructor() { }
+  giaoVien: GiaoVienModel;
 
-  ngOnInit() {
+  constructor(
+    public activeModal: NgbActiveModal
+  ) {
   }
 
+  ngOnInit() {
+    this.giaoVien = this.gv;
+  }
+
+  cancel() {
+    this.activeModal.dismiss();
+  }
 }

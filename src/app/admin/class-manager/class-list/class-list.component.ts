@@ -9,6 +9,7 @@ import {Order} from '../../../shared/model/order';
 import {LopHocSearch} from '../../../shared/model/lop-hoc-search';
 import {LopHocModel} from '../../../shared/model/lop-hoc.model';
 import {ApiService} from '../../../shared/service/api.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-class-list',
@@ -38,7 +39,8 @@ export class ClassListComponent implements OnInit {
     private apiService: ApiService,
     private toast: ToastrService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private title: Title
   ) {
     this.apiService.onLoad().subscribe((m: any) => {
       console.log(m);
@@ -47,6 +49,7 @@ export class ClassListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.title.setTitle('Quản lý lớp học');
     this.search();
   }
 

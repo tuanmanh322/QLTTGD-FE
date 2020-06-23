@@ -1,6 +1,6 @@
 <!--<div class="post" *ngFor="let bv of baiVietTotal | paginate: {itemsPerPage: baiVietSearchTotal.pageSize, currentPage: baiVietSearchTotal.page, totalItems: baiVietSearchTotal.totalRecords} ">-->
 <div class="post"
-     *ngFor="let bv of baiVietTotal">
+     *ngFor="let bv of baiVietTotal; let i = index">
   <div class="wrap-ut pull-left">
     <div class="userinfo pull-left">
       <div class="avatar">
@@ -15,9 +15,9 @@
         <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
       </div>
       <div class="icons" style="display: contents!important;">
-        <button class="button-icons" (click)="clickLike(bv.idBV, bv.luotthich)"  ><i
-          class="fa fa-thumbs-up" [ngStyle]="{'color': isLike===true ?'blue' : 'black'} "><span>{{bv.luotthich}}</span></i></button>
-        <button class="button-icons" (click)="clickDislike(bv.idBV, bv.luotkhongthich)"   ><i
+        <button class="button-icons" (click)="clickLike(bv, i)"  ><i
+          class="fa fa-thumbs-up" [ngStyle]="{'color': isLike===true && clickCount === i ?'blue' : 'black'} "><span>{{bv.luotthich}}</span></i></button>
+        <button class="button-icons" (click)="clickDislike(bv, i)"   ><i
           class="fa fa-thumbs-down"><span>{{bv.luotkhongthich}}</span></i></button>
       </div>
     </div>

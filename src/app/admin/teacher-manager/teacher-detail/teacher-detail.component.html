@@ -1,1 +1,48 @@
-<p>teacher-detail works!</p>
+<div class="modal-header">
+  <h4 class="modal-title">Chi tiết lớp </h4>
+  <button type="button" class="close" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<div class="modal-boy">
+  <div class="container">
+    <div class="form-group">
+      <label for="maThe">Mã Thẻ : </label>
+      <span id="maThe">{{giaoVien.maThe}}</span>
+    </div>
+    <div class="form-group">
+      <label for="name">Tên : </label>
+      <span id="name">{{giaoVien.name}}</span>
+    </div>
+    <div class="form-group">
+      <label for="NgaySinh">Ngày sinh :</label>
+      <span id="NgaySinh">{{giaoVien.NgaySinh| date: 'dd-MM-yyyy'}}</span>
+    </div>
+    <div class="form-group">
+      <label for="GioiTinh">Giới tính :</label>
+      <span id="GioiTinh">{{giaoVien.GioiTinh}}</span>
+    </div>
+    <div class="form-group">
+      <label for="maLop">Mã lớp :</label>
+      <span id="maLop">{{giaoVien.maLop}}</span>
+    </div>
+    <div class="form-group">
+      <label for="tenLop">Tên lớp :</label>
+      <span id="tenLop">{{giaoVien.tenLop}}</span>
+    </div>
+    <div class="form-group">
+      <label for="socmt">Số cmt :</label>
+      <span id="socmt">{{giaoVien.socmt}}</span>
+    </div>
+    <div class="form-group">
+      <label for="sodt">Số điện thoại: </label>
+      <span id="sodt">{{giaoVien.sodt}}</span>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger"
+          (click)="cancel()">
+    Cancel
+  </button>
+</div>

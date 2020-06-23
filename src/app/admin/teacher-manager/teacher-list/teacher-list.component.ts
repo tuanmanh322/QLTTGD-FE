@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {GiaoVienModel} from '../../../shared/model/giao-vien.model';
+import {GiaovienSearch} from '../../../shared/model/giaovien-search';
+import {ApiService} from '../../../shared/service/api.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Title} from '@angular/platform-browser';
+import {ToastrService} from 'ngx-toastr';
+import {TeacherDetailComponent} from '../teacher-detail/teacher-detail.component';
+import {TeacherEditComponent} from '../teacher-edit/teacher-edit.component';
+import {TeacherCreateComponent} from '../teacher-create/teacher-create.component';
 
 @Component({
   selector: 'app-teacher-list',
@@ -6,10 +15,71 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teacher-list.component.css']
 })
 export class TeacherListComponent implements OnInit {
+  gvList: GiaoVienModel[];
 
-  constructor() { }
+  gvSearch: GiaovienSearch = {
+    page: 0,
+    pageSize: 10,
+    totalPages: 0,
+    totalRecords: 0,
+    orders: [],
+    Name: '',
+    tenLop: ''
+  };
+  kip1 = 'Kíp 1(7h - 9h)';
+  kip2 = 'Kíp 2(9h30- 12h)';
+  kip3 = 'Kíp 3(13h-15h)';
+  kip4 = 'Kíp 4(15h-18h)';
+  kip5 = 'Kíp 5(18h30-21h30)';
 
-  ngOnInit() {
+  constructor(
+    private apiService: ApiService,
+    private ngbModal: NgbModal,
+    private title: Title,
+    private toastr: ToastrService
+  ) {
+    this.apiService.onLoad().subscribe(() => {
+      this.fetch();
+    });
   }
 
+  ngOnInit() {
+    this.title.setTitle('Quản lý giáo viên');
+    this.fetch();
+  }
+
+  fetch() {
+    this.apiService.post('/api/giao-vien/search', this.gvSearch).subscribe(res => {
+      console.log(res);
+      this.gvSearch = res;
+      this.gvList = this.gvSearch.data;
+      console.log(this.gvList);
+    });
+  }
+
+  doSearch() {
+    this.gvSearch.page = 0;
+    this.fetch();
+  }
+
+  deleteTeac(id: number) {
+    this.apiService.delete('/api/giao-vien/delete/' + id).subscribe(res => {
+      this.toastr.success('Xoá thành công!');
+      this.fetch();
+    });
+  }
+
+  moveDetail(gv: GiaoVienModel) {
+    const modalRef = this.ngbModal.open(TeacherDetailComponent,{size: 'lg'});
+    modalRef.componentInstance.gv = gv;
+  }
+
+  moveEdit(gv: GiaoVienModel) {
+    const modalRef = this.ngbModal.open(TeacherEditComponent,{size: 'lg'});
+    modalRef.componentInstance.gv = gv;
+  }
+
+  moveCreate() {
+    this.ngbModal.open(TeacherCreateComponent,{size: 'lg'});
+  }
 }
