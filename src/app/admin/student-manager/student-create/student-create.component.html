@@ -1,1 +1,93 @@
-<p>student-create works!</p>
+<div class="modal-header">
+    <h4 class="modal-title">Tạo mới học sinh</h4>
+    <button type="button" class="close" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <form [formGroup]="hocSinhForm" (ngSubmit)="onSubmit()">
+    <div class="modal-boy">
+      <div class="container">
+        <div class="form-group">
+        <label for="maHocSinh">Mã học sinh</label>
+        <input type="text"
+               class="form-control"
+               formControlName="maHocSinh" id="maHocSinh"/>
+      </div>
+        <div class="form-group">
+          <label for="tenhocsinh">Tên học sinh</label>
+          <input type="text" class="form-control" formControlName="tenhocsinh" id="tenhocsinh">
+          <div *ngIf="f.tenhocsinh.errors && (f.tenhocsinh.dirty || f.tenhocsinh.touched)" class="text-danger">
+            <div *ngIf="f.tenhocsinh.errors.required">Tên học sinh không được để trống</div>
+          </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label for="Nam" class="col-form-label">Giới tính </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Nam" value="Nam">
+                <label class="form-check-label" for="inlineRadio1">Nam</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Nu" value="Nu">
+                <label class="form-check-label" for="inlineRadio2">Nữ</label>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="ngaysinh">Ngày sinh</label>
+          <input type="date" class="form-control" formControlName="ngaysinh" id="ngaysinh">
+          <div *ngIf="f.ngaysinh.errors && (f.ngaysinh.dirty || f.ngaysinh.touched)" class="text-danger">
+            <div *ngIf="f.ngaysinh.errors.required">Thời gian bắt đầu không được để trống</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="sodt">Số điện thoại </label>
+          <input type="text" class="form-control" formControlName="sodt" id="sodt">
+          <div *ngIf="f.sodt.errors && (f.sodt.dirty || f.sodt.touched)" class="text-danger">
+            <div *ngIf="f.sodt.errors.required">Số điện thoại không được để trống</div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" formControlName="email" id="sodt">
+            <div *ngIf="f.email.errors && (f.email.dirty || f.email.touched)" class="text-danger">
+              <div *ngIf="f.email.errors.required">Email không được để trống</div>
+            </div>
+          </div>
+        <div class="form-group">
+          <label for="diachi">Địa chỉ </label>
+          <input type="text" class="form-control" formControlName="diachi" id="diachi">
+          <div *ngIf="f.diachi.errors && (f.diachi.dirty || f.diachi.touched)" class="text-danger">
+            <div *ngIf="f.diachi.errors.required">Địa chỉ</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="maMonhoc">Môn học </label>
+          <input type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">
+          <div *ngIf="f.maMonhoc.errors && (f.maMonhoc.dirty || f.maMonhoc.touched)" class="text-danger">
+            <div *ngIf="f.maMonhoc.errors.required">Mã môn học không được để trống</div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="lopHoc">Lớp học </label>
+            <select type="text" class="form-control" formControlName="lopHoc" id="lopHoc" onclick="getLop()">
+
+            </select>
+            <div *ngIf="f.lopHoc.errors && (f.lopHoc.dirty || f.lopHoc.touched)" class="text-danger">
+              <div *ngIf="f.lopHoc.errors.required">Lớp học không được để trống</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success"
+              [disabled]="hocSinhForm.invalid">
+        ADD
+      </button>
+      <button class="btn btn-danger" #submitele
+              (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+  

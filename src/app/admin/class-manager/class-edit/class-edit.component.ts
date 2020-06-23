@@ -28,7 +28,7 @@ export class ClassEditComponent implements OnInit {
   ngOnInit() {
     this.lopHocModel = this.lophoc;
     this.lopHocForm = this.fb.group({
-      maLop: new FormControl({value: this.lopHocModel.id, disable:true}),
+      maLop: new FormControl({value: this.lopHocModel.id, disable: true}),
       tenlop: new FormControl(this.lopHocModel.tenLop, [Validators.required]),
       siso: new FormControl(this.lopHocModel.siSo, [Validators.required]),
       thoigianbatdau: new FormControl(this.lopHocModel.ngayKhaiGiang, [Validators.required]),
