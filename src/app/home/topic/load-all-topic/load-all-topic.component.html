@@ -3,7 +3,7 @@
   <div class="wrap">
     <form action="#" method="post" type="submit" class="form" id="titlebv" >
       <div class="pull-left txt" style="width: 708px"><input type="text" class="form-control" placeholder="Search Topics"
-                                                        (focus)="titleBV.setValue('')"     name="titleTopic" [formControl]="titleBV"></div>
+                                                        (focus)="titleBV.setValue('') ; doSearch('')"     name="titleTopic" [formControl]="titleBV"></div>
       <div class="pull-right">
         <button class="btn btn-default table-hover" type="submit" (click)="onSend()"><i class="fa fa-search"></i></button>
       </div>
