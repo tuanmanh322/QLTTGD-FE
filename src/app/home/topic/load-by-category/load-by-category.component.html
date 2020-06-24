@@ -1,14 +1,18 @@
 <div class="">
   <div class="wrap">
-    <form action="#" method="post" class="form"  >
+    <form action="#" method="post" type="submit" class="form" id="titlebv" >
       <div class="pull-left txt" style="width: 708px"><input type="text" class="form-control" placeholder="Search Topics"
-                                                             name="titleTopic" [(ngModel)]="titleTopic"></div>
-      <div class="pull-right">
-        <button class="btn btn-default table-hover" type="submit" (click)="doSearch()"><i class="fa fa-search"></i></button>
-      </div>
+                                                  (focus)="bvTitle.setValue('')"           name="titleTopic" [formControl]="bvTitle"></div>
+            <div class="pull-right">
+              <button class="btn btn-default table-hover" type="submit" (click)="onSend()"><i class="fa fa-search"></i></button>
+            </div>
       <div class="clearfix"></div>
     </form>
   </div>
+</div>
+<div   class="searchList">
+  <!--  <span *ngIf="isLoading" 1i8n>Loading</span>-->
+  <span class="dropdown-item"   *ngFor="let tit of baivietAuto | async"  (click)="Search(tit.titleBV)">{{tit.titleBV}}</span>
 </div>
 <h1>Chủ đề : {{cdName}} </h1>
 <div *ngIf="isRenderDATA === true">
@@ -55,4 +59,4 @@
 <div class="text-danger" *ngIf="isRenderDATA === false">
   {{message}}
 </div>
-<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="doSearch()"></app-paginator>
+<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="Search(titleNew)"></app-paginator>

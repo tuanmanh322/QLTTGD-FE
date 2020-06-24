@@ -8,7 +8,7 @@ import {PipeModule} from '../../shared/pipe/pipe.module';
 import {SharedModule} from '../../shared/shared.module';
 import {DataService} from '../../shared/service/data.service';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PaginatorModule} from '../../shared/paginator/paginator.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 
@@ -41,7 +41,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CKEditorModule,
     FormsModule,
     PaginatorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [DataService]
 })

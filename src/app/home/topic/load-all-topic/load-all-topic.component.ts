@@ -5,12 +5,17 @@ import {Title} from '@angular/platform-browser';
 import {BaivietSearchTotal} from '../../../shared/model/baiviet-search-total';
 import {BaiVietTotal} from '../../../shared/model/bai-viet-total';
 import {DataService} from '../../../shared/service/data.service';
-import {Subject, Subscription} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import {ADMIN, CURRENT_USER, ROLE, TITLE, TOKEN, USER_PROFILE_CHANGED} from '../../../shared/model/qlttgd.constant';
 import {UserProfileModel} from '../../../shared/model/user-profile.model';
 import {ToastrService} from 'ngx-toastr';
 import {UserService} from '../../../shared/service/user.service';
 import {EventManagement} from '../../../shared/service/event.management';
+import {FormControl} from '@angular/forms';
+import {debounceTime, distinctUntilChanged, switchMap, tap} from 'rxjs/operators';
+import {BaiVietService} from '../../../shared/service/bai-viet.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-load-all-topic',
@@ -44,13 +49,19 @@ export class LoadAllTopicComponent implements OnInit {
   disableLike: boolean;
   disableDislike: boolean;
   isAuthenticate: boolean;
+  isLoading: boolean;
+  titleBV = new FormControl();
+
+  bvauto: Observable<Baiviet[] | Observable<Baiviet[]>>;
+
   constructor(
     private apiService: ApiService,
     private title: Title,
     private dataService: DataService,
     private toastr: ToastrService,
     private userService: UserService,
-    private eventManagement: EventManagement
+    private eventManagement: EventManagement,
+    private baiVietService: BaiVietService
   ) {
     this.apiService.onLoad().subscribe(() => {
       this.getAllTopic();
@@ -62,9 +73,9 @@ export class LoadAllTopicComponent implements OnInit {
     this.eventManagement.subscribe(USER_PROFILE_CHANGED, () => {
       this.getProfile();
     });
-    this.userService.getAuthState().subscribe(() =>{
+    this.userService.getAuthState().subscribe(() => {
       this.getProfile();
-    })
+    });
 
     setInterval(() => this.timeFormatter = Math.random(), 60 * 1000);
     this.time = new Date().getTime();
@@ -74,7 +85,17 @@ export class LoadAllTopicComponent implements OnInit {
     this.getAllTopic();
     this.userProfile = JSON.parse(localStorage.getItem(CURRENT_USER));
     this.getQuery();
+    this.bvauto = this.titleBV.valueChanges.pipe(
+      debounceTime(400),
+      distinctUntilChanged(),
+      tap(() => this.isLoading = true),
+      switchMap(title => this.baiVietService.loadAutoComplete(title)),
+      tap(() => this.isLoading = false));
+
+    $('#titlebv').reset();
+    $('form').children('input:not(#submit)').val('');
   }
+
   getProfile() {
     const authenticate = this.userService.isLogin();
     if (!authenticate) {
@@ -88,6 +109,17 @@ export class LoadAllTopicComponent implements OnInit {
     });
 
   }
+
+  doSearch(title: string) {
+    this.baiVietSearchTotal.titleBV = title;
+    this.getAllTopic();
+    this.titleTopic = title;
+    // $('input, textarea').each(function() {
+    //   $(this).attr('placeholder', $(this).val());
+    //   $(this).val('');
+    // });
+  }
+
   getQuery() {
     this.apiService.sub.subscribe(
       item => {
@@ -96,6 +128,15 @@ export class LoadAllTopicComponent implements OnInit {
       },
       error => this.error = error
     );
+  }
+
+  autoComplete(keysword: string) {
+    const auto = {
+      keyword: keysword,
+      excludeKeywords: []
+    };
+    this.apiService.post('/api/auto-complete/bv', auto);
+
   }
 
   getAllTopic() {
@@ -184,7 +225,7 @@ export class LoadAllTopicComponent implements OnInit {
   }
 
   onSend() {
-    this.apiService.sendTitle(this.titleTopic);
-    this.titleTopic = '';
+    this.apiService.sendTitle(this.titleBV.value);
+    this.titleBV.setValue('');
   }
 }
