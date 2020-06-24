@@ -30,7 +30,7 @@ export class LoadByCategoryComponent implements OnInit {
     orders: [],
     totalRecords: 0
   };
-
+  titleTopic = '';
   constructor(
     private apiService: ApiService,
     private title: Title,
@@ -44,16 +44,10 @@ export class LoadByCategoryComponent implements OnInit {
     this.getAllByCDid();
   }
 
-  getQuery() {
-    // this.subscription = this.apiService.$title.subscribe(
-    //   item => {
-    this.baiVietSearchTotal.titleBV = localStorage.getItem(TITLE);
-    console.log(localStorage.getItem(TITLE));
-    localStorage.removeItem(TITLE);
+  doSearch() {
+    this.baiVietSearchTotal.titleBV = this.titleTopic;
     this.getAllByCDid();
-    //   },
-    //   error => this.error = error
-    // );
+    this.titleTopic = '';
   }
   getAllByCDid() {
     this.route.params.subscribe(paramMap => {
@@ -73,5 +67,8 @@ export class LoadByCategoryComponent implements OnInit {
       });
     });
   }
-
+  // onSend() {
+  //   this.apiService.sendTitle(this.titleTopic);
+  //   this.a
+  // }
 }

@@ -10,8 +10,7 @@ import {TITLE} from '../model/qlttgd.constant';
 })
 export class ApiService {
     public $title = new Subject<any>();
-
-
+    sub = this.$title.asObservable();
   constructor(
     private http: HttpClient
   ) {
@@ -55,7 +54,6 @@ export class ApiService {
   }
 
   sendTitle(title){
-    title = localStorage.getItem(TITLE);
     this.$title.next(title);
   }
 

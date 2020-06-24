@@ -32,16 +32,16 @@
         </div>
       </div>
       <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
-        <div class="wrap">
-          <form action="#" method="post" class="form" (ngSubmit)="getDataTitle()">
-            <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"
-                                              [(ngModel)]="titles" name="titles"></div>
-            <div class="pull-right">
-              <button class="btn btn-default table-hover" type="submit"><i class="fa fa-search"></i></button>
-            </div>
-            <div class="clearfix"></div>
-          </form>
-        </div>
+<!--        <div class="wrap">-->
+<!--          <form action="#" method="post" class="form" (ngSubmit)="getDataTitle()">-->
+<!--            <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"-->
+<!--                                              [(ngModel)]="titles" name="titles"></div>-->
+<!--            <div class="pull-right">-->
+<!--              <button class="btn btn-default table-hover" type="submit"><i class="fa fa-search"></i></button>-->
+<!--            </div>-->
+<!--            <div class="clearfix"></div>-->
+<!--          </form>-->
+<!--        </div>-->
       </div>
       <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
         <div class="stnt pull-left">
@@ -49,11 +49,11 @@
         </div>
         <div class="env pull-left"><a (click)="showNoti()"><img class="notifications-inbox" src="../../../../assets/img/no-notification.png"
                                            alt="Notification" id="notification-icon" (click)="isReadAll()"/><span
-          class="noti-count" *ngIf="isLogin">{{notiCount}}</span></a></div>
+          class="noti-count" *ngIf="isAuthenticate">{{notiCount}}</span></a></div>
         <div class="notifications-show toggler" *ngIf="isAuthenticate" id="shownoti">
           <ul class="notification-item">
             <li *ngFor="let noti of notification"><a (click)="checkMoveDetail()" [routerLink]="['/all-topic/topic/',noti.idBaiViet]">
-              <div [ngStyle]="{
+              <div   id="itemnoti" [ngStyle]="{
               'background-color': noti.isRead == 0 ? 'darkturquoise': 'white'
               }">
                 {{noti.userName}} đã {{noti.message}} về bài viết {{noti.titleBV}} của bạn!
@@ -87,7 +87,7 @@
             <li role="presentation"><a role="menuitem" routerLink="/admin/qlttgd" *appHasAnyAuthority="['ROLE_ADMIN']">Trang
               điều khiển</a>
             </li>
-            <li role="presentation"><a role="menuitem" routerLink="">Inbox</a></li>
+<!--            <li role="presentation"><a role="menuitem" routerLink="">Inbox</a></li>-->
             <li role="presentation"><a role="menuitem"   (click)="changePassword()">Thay đổi mật khẩu</a></li>
             <li role="presentation"><a role="menuitem" routerLink="" (click)="logOut()">Log Out</a></li>
           </ul>

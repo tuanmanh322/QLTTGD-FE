@@ -1,4 +1,16 @@
 <!--<div class="post" *ngFor="let bv of baiVietTotal | paginate: {itemsPerPage: baiVietSearchTotal.pageSize, currentPage: baiVietSearchTotal.page, totalItems: baiVietSearchTotal.totalRecords} ">-->
+<div class="">
+  <div class="wrap">
+    <form action="#" method="post" class="form"  >
+      <div class="pull-left txt" style="width: 708px"><input type="text" class="form-control" placeholder="Search Topics"
+                                                             name="titleTopic" [(ngModel)]="titleTopic"></div>
+      <div class="pull-right">
+        <button class="btn btn-default table-hover" type="submit" (click)="onSend()"><i class="fa fa-search"></i></button>
+      </div>
+      <div class="clearfix"></div>
+    </form>
+  </div>
+</div>
 <div class="post"
      *ngFor="let bv of baiVietTotal; let i = index">
   <div class="wrap-ut pull-left">

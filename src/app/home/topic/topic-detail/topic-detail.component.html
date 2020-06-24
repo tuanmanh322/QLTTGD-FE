@@ -14,8 +14,8 @@
         <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
       </div>
       <div class="icons" style="display: contents!important;">
-        <button class="button-icons"><i class="fa fa-thumbs-up blue"><span>{{baiViet.luotthich}}</span></i></button>
-        <button class="button-icons"><i class="fa fa-thumbs-down"><span>{{baiViet.luotkhongthich}}</span></i></button>
+        <button class="button-icons" (click)="checkLogin()"><i class="fa fa-thumbs-up blue"><span>{{baiViet.luotthich}}</span></i></button>
+        <button class="button-icons"  (click)="checkLogin()"><i class="fa fa-thumbs-down"><span>{{baiViet.luotkhongthich}}</span></i></button>
       </div>
     </div>
     <div class="posttext pull-left">
@@ -57,8 +57,8 @@
     <div [innerHTML]="cm.noiDung"></div>
     <div class="icons" style="display: contents!important;">
       <div class="form-group">
-        <button class="button-icons"><i class="fa fa-thumbs-up blue"><span>{{cm.luotThich}}</span></i></button>
-        <button class="button-icons"><i class="fa fa-thumbs-down"><span>{{cm.loutKhongthich}}</span></i></button>
+        <button class="button-icons"  (click)="checkLogin()"><i class="fa fa-thumbs-up blue"><span>{{cm.luotThich}}</span></i></button>
+        <button class="button-icons"  (click)="checkLogin()"><i class="fa fa-thumbs-down"><span>{{cm.loutKhongthich}}</span></i></button>
         <button class="comment-reply reply-popup{{i}}" (click)="clickToggle(i)"><i class="fa fa-reply-all"
                                                                                    aria-hidden="true"></i> Reply
         </button>

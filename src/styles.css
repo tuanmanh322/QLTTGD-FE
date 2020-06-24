@@ -55,3 +55,6 @@ figure.image>img{
   color: red;
   font-size: 30px;
 }
+.item-noti{
+  background-color: white!important;
+}
