@@ -89,7 +89,7 @@ export class LoadAllTopicComponent implements OnInit {
       debounceTime(400),
       distinctUntilChanged(),
       tap(() => this.isLoading = true),
-      switchMap(title => this.baiVietService.loadAutoComplete(title)),
+      switchMap(title => this.baiVietService.loadAutoCompleteBV(title)),
       tap(() => this.isLoading = false));
 
     $('#titlebv').reset();

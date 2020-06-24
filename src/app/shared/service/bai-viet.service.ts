@@ -14,13 +14,28 @@ export class BaiVietService {
 
   }
 
-  public loadAutoComplete(title: string): Observable<Baiviet[]> {
+  public loadAutoCompleteBV(title: string): Observable<Baiviet[]> {
     if (!title) {
       return of([]);
     }
     const auto = {
       keyword: title,
       excludeKeywords: []
+    };
+    return this.http.post<Baiviet[]>(`${environment.api_rest}/api/auto-complete/bv`, auto).pipe(
+      catchError(err => {
+        return Observable.throw(err);
+      })
+    );
+  }
+  public loadAutoCompleteCD(title: string, idCd: number): Observable<Baiviet[]> {
+    if (!title) {
+      return of([]);
+    }
+    const auto = {
+      keyword: title,
+      excludeKeywords: [],
+      idCD: idCd
     };
     return this.http.post<Baiviet[]>(`${environment.api_rest}/api/auto-complete/bv`, auto).pipe(
       catchError(err => {

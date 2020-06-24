@@ -40,6 +40,7 @@ export class LoadByCategoryComponent implements OnInit {
   isloading: boolean;
   titleNew = '';
   bvTitle = new FormControl();
+  idCD = 0;
 
   constructor(
     private apiService: ApiService,
@@ -58,7 +59,7 @@ export class LoadByCategoryComponent implements OnInit {
       debounceTime(400),
       distinctUntilChanged(),
       tap(() => this.isloading = true),
-      switchMap((title) => this.baivietService.loadAutoComplete(title)),
+      switchMap((title) => this.baivietService.loadAutoCompleteCD(title, this.idCD)),
       tap(() => this.isloading = false)
     );
     this.getQuery();
@@ -85,8 +86,8 @@ export class LoadByCategoryComponent implements OnInit {
 
   getAllByCDid() {
     this.route.params.subscribe(paramMap => {
-      const idCD = paramMap.id;
-      this.apiService.post('/api/baiviet/search-total-id-cd/' + idCD, this.baiVietSearchTotal).subscribe(res => {
+      this.idCD = paramMap.id;
+      this.apiService.post('/api/baiviet/search-total-id-cd/' + this.idCD, this.baiVietSearchTotal).subscribe(res => {
         if (res === ' ' || res === undefined || res === null) {
           this.isRenderDATA = false;
           this.message = 'Chủ đề này chưa có dữ liệu';
