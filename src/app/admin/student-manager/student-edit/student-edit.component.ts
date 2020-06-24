@@ -28,7 +28,7 @@ export class StudentEditComponent implements OnInit {
     this.hocSinhModel = this.hocsinh;
     this.hocSinhForm = this.fb.group({
       maHocSinh: new FormControl({value: this.hocSinhModel.id, disable:true}),
-      tenhocsinh: new FormControl(this.hocSinhModel.Name, [Validators.required]),
+      tenhocsinh: new FormControl(this.hocSinhModel.name, [Validators.required]),
       ngaysinh: new FormControl(this.hocSinhModel.NgaySinh, [Validators.required]),
       sodt: new FormControl(this.hocSinhModel.sodt, [Validators.required]),
       email: new FormControl(this.hocSinhModel.email, [Validators.required]),

@@ -114,8 +114,8 @@
                         <tr role="row" class="odd" *ngFor="let u of hocSinhList ; let i = index">
                           <td class="sorting_1">{{i + 1}}</td>
                           <td>{{u.tenLop}}</td>
-                          <td>{{u.Name}}</td>
-                          <td>{{u.NgaySinh| date: 'yyyy-MM-dd'}}</td>
+                          <td>{{u.name}}</td>
+                          <td>{{u.NgaySinh| date: 'dd-MM-yyyy'}}</td>
                           <td>{{u.sodt}}</td>
                           <td>{{u.maThe}}</td>
                           <td>

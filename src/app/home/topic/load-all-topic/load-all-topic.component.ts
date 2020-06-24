@@ -89,43 +89,43 @@ export class LoadAllTopicComponent implements OnInit {
   //   this.apiService.get().;
   // }
 
-  clickLike(idBV: number, likeCount: number) {
+  clickLike(bv: BaiVietTotal, index: number) {
     this.checkLogin();
-    this.checkAlreadyLike(idBV);
-    this.clickCount++;
-    if (this.isLike === true && this.clickCount === 1) {
-      const bv = {
-        luotthich: likeCount - 1
+    this.checkAlreadyLike(bv.idBV);
+    this.clickCount = index;
+    if (this.isLike === true ) {
+      const bvp = {
+        luotthich: bv.luotthich - 1
       };
-      this.apiService.post('/api/baiviet/like/' + idBV, bv).subscribe(res => {
+      this.apiService.post('/api/baiviet/like/' + bv.idBV, bvp).subscribe(res => {
         this.getAllTopic();
       });
-    } else if (this.isLike === false && this.clickCount === 1){
-      const bv = {
-        luotthich: likeCount + 1
+    } else if (this.isLike === false){
+      const bvp = {
+        luotthich: bv.luotthich + 1
       };
-      this.apiService.post('/api/baiviet/like/' + idBV, bv).subscribe(res => {
+      this.apiService.post('/api/baiviet/like/' + bv.idBV, bvp).subscribe(res => {
         this.getAllTopic();
       });
     }
   }
 
-  clickDislike(idBV: number, disLikeCount: number) {
+  clickDislike(bv: BaiVietTotal, index: number) {
     this.checkLogin();
-    this.checkAlreadyDisLike(idBV);
+    this.checkAlreadyDisLike(bv.idBV);
     this.clickCount++;
-    if (this.isDislike === true && this.clickCount === 1) {
-      const bv = {
-        luotkhongthich: disLikeCount - 1
+    if (this.isDislike === true ) {
+      const bvp = {
+        luotkhongthich: bv.luotkhongthich - 1
       };
-      this.apiService.post('/api/baiviet/dislike/' + idBV, bv).subscribe(res => {
+      this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bv).subscribe(res => {
         this.getAllTopic();
       });
-    } else if (this.isDislike === false && this.clickCount === 1 ){
-      const bv = {
-        luotkhongthich: disLikeCount + 1
+    } else if (this.isDislike === false  ){
+      const bvp = {
+        luotkhongthich: bv.luotkhongthich + 1
       };
-      this.apiService.post('/api/baiviet/dislike/' + idBV, bv).subscribe(res => {
+      this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
         this.getAllTopic();
       });
     }

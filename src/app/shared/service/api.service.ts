@@ -58,4 +58,8 @@ export class ApiService {
     title = localStorage.getItem(TITLE);
     this.$title.next(title);
   }
+
+  onRef(object: any) {
+    this._listen.next(object);
+  }
 }

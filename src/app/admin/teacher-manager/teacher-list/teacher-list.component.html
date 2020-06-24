@@ -23,17 +23,20 @@
           <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left">
             <div class="row">
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Họ và tên <span class="required">*</span>
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Họ và tên <span
+                  class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input type="text" id="last-name" name="last-name" required="required" class="form-control">
+                  <input type="text" id="last-name" name="Name" required="required" class="form-control"
+                         [(ngModel)]="gvSearch.Name">
                 </div>
               </div>
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align">Kíp dạy <span class="required">*</span>
+                <label class="col-form-label col-md-3 col-sm-3 label-align">Tên lớp <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input id="KipDay" class="date-picker form-control" required="required" type="text">
+                  <input id="KipDay" class="date-picker form-control" required="required" type="text" name="tenLop"
+                         [(ngModel)]="gvSearch.tenLop">
                 </div>
               </div>
             </div>
@@ -43,10 +46,12 @@
                 <label class="col-form-label col-md-3 col-sm-3 label-align">Giới tính</label>
                 <div class="col-md-6 col-sm-6 ">
                   <div id="gender" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                    <label class="btn btn-secondary" data-toggle-class="btn-primary"
+                           data-toggle-passive-class="btn-default">
                       <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Nam &nbsp;
                     </label>
-                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                    <label class="btn btn-primary" data-toggle-class="btn-primary"
+                           data-toggle-passive-class="btn-default">
                       <input type="radio" name="gender" value="female" class="join-btn"> Nữ
                     </label>
                   </div>
@@ -55,7 +60,7 @@
             </div>
             <div class="item form-group">
               <div class="col-md-8 col-sm-6 offset-md-5">
-                <button type="submit" class="btn btn-success">Search</button>
+                <button type="submit" class="btn btn-success" (click)="doSearch()">Search</button>
               </div>
             </div>
           </form>
@@ -67,9 +72,10 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card-box table-responsive">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="moveCreate()">
             Thêm mới giáo viên
           </button>
+          <h5 class="float-right">Tổng số bản ghi : {{gvSearch.totalRecords}}</h5>
           <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width:100%">
             <thead>
             <tr>
@@ -77,79 +83,43 @@
               <th>Mã thẻ</th>
               <th>Họ và tên</th>
               <th>Ngày sinh</th>
-              <th>Mã Lớp</th>
+              <th>Sĩ số</th>
+              <th>Tên lớp</th>
               <th>Kíp</th>
               <th>Chi Tiết</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>1</td>
-              <td>NHOM1_TOAN6</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>45</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>NHOM2_TOAN6</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>NHOM1_TOAN7</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>NHOM2_TOAN7</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>NHOM1_TOAN8</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>NHOM2_TOAN8</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>NHOM1_TOAN9</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>NHOM2_TOAN9</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
+            <tr *ngFor="let gv of gvList; let i = index">
+              <td>{{i}}</td>
+              <td>{{gv.maThe}}</td>
+              <td>{{gv.name}}</td>
+              <td>{{gv.NgaySinh}}</td>
+              <td>{{gv.siso}}</td>
+              <td>{{gv.tenLop}}</td>
+              <td *ngIf="gv.kipDay == 1">{{kip1}}</td>
+              <td *ngIf="gv.kipDay == 2">{{kip2}}</td>
+              <td *ngIf="gv.kipDay == 3">{{kip3}}</td>
+              <td *ngIf="gv.kipDay == 4">{{kip4}}</td>
+              <td *ngIf="gv.kipDay == 5">{{kip5}}</td>
+              <td>
+                <div class="form-group">
+                  <button (click)="moveEdit(gv)" class="btn btn-primary"
+                          title="sửa">Sửa<span
+                    class="icon-line-awesome-edit text-primary"></span></button>
+                  <button (click)="moveDetail(gv)" class="btn btn-success"
+                          title="chi tiết">Chi tiết<span
+                    class="icon-material-outline-description text-info"></span></button>
+                  <button class="btn-delete" (click)="deleteTeac(gv.id)" class="btn btn-danger"
+                          title="xóa">Xóa<span
+                    class="icon-feather-trash-2 text-danger"></span></button>
+                </div>
+              </td>
             </tr>
             </tbody>
           </table>
         </div>
+        <app-paginator [searchObject]="gvSearch" (searchFunction)="doSearch()" ></app-paginator>
       </div>
     </div>
   </div>

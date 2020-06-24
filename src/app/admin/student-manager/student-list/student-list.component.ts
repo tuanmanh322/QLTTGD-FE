@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 
 import { Component, OnInit } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
@@ -37,7 +38,8 @@ export class StudentListComponent implements OnInit {
     private apiService: ApiService,
     private toast: ToastrService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private title: Title
   ) {
     this.apiService.onLoad().subscribe((m: any) => {
       console.log(m);
@@ -45,6 +47,8 @@ export class StudentListComponent implements OnInit {
     });
    }
   ngOnInit() {
+    this.title.setTitle('Quản lý học sinh');
+    this.getAll();
   }
   search() {
     this.hocSinhSearch.page = 0;

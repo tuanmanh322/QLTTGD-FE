@@ -3,8 +3,8 @@ import {Time} from '@angular/common';
 export interface HocSinhModel {
   id?: number;
   maHocSinh?: string;
-  Name?: string;
-  GioiTinh?: string;
+  name?: string;
+  gioiTinh?: string;
   NgaySinh?: Date;
   socmt?: number;
   sodt?: number;
