@@ -37,7 +37,6 @@ export class NavbarClientComponent implements OnInit {
   isLogin: boolean;
   notiCount = 0;
   notification: NotificationModel[];
-
   constructor(
     private router: Router,
     private eventManagement: EventManagement,
@@ -74,6 +73,9 @@ export class NavbarClientComponent implements OnInit {
     this.userService.getAuthState().subscribe(() => {
       this.getProfile();
       this.notificationClick();
+      this.apiService.get('/api/notification/all-need').subscribe(res => {
+        this.notiCount = res.length;
+      });
     });
 
     // $('.notifications-inbox').click(function() {
@@ -84,9 +86,7 @@ export class NavbarClientComponent implements OnInit {
     //   $('.notifications-show1').toggle();
     // });
 
-    this.apiService.get('/api/notification/all-need').subscribe(res => {
-      this.notiCount = res.length;
-    });
+
     // this.userService.identity().then(userProfile => {
     //   this.userProfile = userProfile;
     //   this.isAuthenticate = true;
@@ -107,6 +107,8 @@ export class NavbarClientComponent implements OnInit {
         console.log(res);
         this.notiCount = 0;
       });
+      let elem = document.getElementById('itemnoti');
+      elem.classList.add('item-noti');
     }
   }
 

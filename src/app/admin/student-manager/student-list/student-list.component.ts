@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/shared/service/api.service';
 import { HocSinhModel } from './../../../shared/model/hoc-sinh-model';
 import { StudentCreateComponent } from '../student-create/student-create.component';
 import { StudentEditComponent } from '../student-edit/student-edit.component';
+import {Title} from '@angular/platform-browser';
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',

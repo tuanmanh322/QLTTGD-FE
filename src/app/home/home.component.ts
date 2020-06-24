@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   chuDeCount: ChuDeCount[];
   totalCount: number = 0;
   data = '';
-
+  titleTopic = '';
   constructor(
     private toastr: ToastrService,
     private apiService: ApiService,
@@ -57,5 +57,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.totalCount = this.totalCount + cd.baiVietCount;
       });
     });
+  }
+  onSend() {
+    this.apiService.sendTitle(this.titleTopic);
   }
 }

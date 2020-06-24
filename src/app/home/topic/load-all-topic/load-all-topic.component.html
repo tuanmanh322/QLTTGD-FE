@@ -1,4 +1,20 @@
 <!--<div class="post" *ngFor="let bv of baiVietTotal | paginate: {itemsPerPage: baiVietSearchTotal.pageSize, currentPage: baiVietSearchTotal.page, totalItems: baiVietSearchTotal.totalRecords} ">-->
+<div class="">
+  <div class="wrap">
+    <form action="#" method="post" type="submit" class="form" id="titlebv" >
+      <div class="pull-left txt" style="width: 708px"><input type="text" class="form-control" placeholder="Search Topics"
+                                                        (focus)="titleBV.setValue('') ; doSearch('')"     name="titleTopic" [formControl]="titleBV"></div>
+      <div class="pull-right">
+        <button class="btn btn-default table-hover" type="submit" (click)="onSend()"><i class="fa fa-search"></i></button>
+      </div>
+      <div class="clearfix"></div>
+    </form>
+  </div>
+</div>
+<div   class="searchList">
+<!--  <span *ngIf="isLoading" 1i8n>Loading</span>-->
+  <span class="dropdown-item"   *ngFor="let tit of bvauto | async"  (click)="doSearch(tit.titleBV)">{{tit.titleBV}}</span>
+</div>
 <div class="post"
      *ngFor="let bv of baiVietTotal; let i = index">
   <div class="wrap-ut pull-left">
@@ -42,5 +58,5 @@
   </div>
   <div class="clearfix"></div>
 </div><!-- POST -->
-<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="getQuery()"></app-paginator>
+<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="doSearch(titleTopic)"></app-paginator>
 <!--<pagination-controls (pageChange)="baiVietSearchTotal.page = $event"></pagination-controls>-->

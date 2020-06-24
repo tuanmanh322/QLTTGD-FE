@@ -1,0 +1,12 @@
+.searchList {
+  background-color: aqua;
+  padding-right: 20px;
+  position: absolute;
+  z-index: 1;
+  border: solid 1px black;
+  ul {
+    li:hover {
+      background: #BBBBBB;
+     }
+             }
+}
