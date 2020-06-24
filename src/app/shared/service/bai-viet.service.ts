@@ -37,7 +37,7 @@ export class BaiVietService {
       excludeKeywords: [],
       idCD: idCd
     };
-    return this.http.post<Baiviet[]>(`${environment.api_rest}/api/auto-complete/bv`, auto).pipe(
+    return this.http.post<Baiviet[]>(`${environment.api_rest}/api/auto-complete/cd`, auto).pipe(
       catchError(err => {
         return Observable.throw(err);
       })
