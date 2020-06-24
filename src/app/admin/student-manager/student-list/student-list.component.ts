@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/shared/service/api.service';
 import { HocSinhModel } from './../../../shared/model/hoc-sinh-model';
 import { StudentCreateComponent } from '../student-create/student-create.component';
 import { StudentEditComponent } from '../student-edit/student-edit.component';
+import {Title} from '@angular/platform-browser';
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
@@ -37,7 +38,8 @@ export class StudentListComponent implements OnInit {
     private apiService: ApiService,
     private toast: ToastrService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private title: Title
   ) {
     this.apiService.onLoad().subscribe((m: any) => {
       console.log(m);
@@ -45,6 +47,8 @@ export class StudentListComponent implements OnInit {
     });
    }
   ngOnInit() {
+    this.title.setTitle('Quản lý học sinh');
+    this.getAll();
   }
   search() {
     this.hocSinhSearch.page = 0;
