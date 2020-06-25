@@ -41,7 +41,7 @@ export class TeacherCreateComponent implements OnInit {
       this.lopHocList = res;
     });
     this.gvForm = this.fb.group({
-      maGiaoVien: new FormControl('', [Validators.required]),
+      // maGiaoVien: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
       sex: new FormControl('', [Validators.required]),
       birthday: new FormControl('', [Validators.required]),

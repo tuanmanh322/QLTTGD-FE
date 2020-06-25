@@ -54,4 +54,6 @@ export interface UserProfileModel {
   tenHangMuc?: string;
 
   kipDay?: string;
+
+  maGV?: string;
 }

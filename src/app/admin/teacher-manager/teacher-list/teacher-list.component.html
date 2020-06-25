@@ -35,26 +35,40 @@
                 <label class="col-form-label col-md-3 col-sm-3 label-align">Tên lớp <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input id="KipDay" class="date-picker form-control" required="required" type="text" name="tenLop"
-                         [(ngModel)]="gvSearch.tenLop">
+                  <select  [formControl]="tlop" >
+                    <option value="" selected disabled>--Chọn lớp--</option>
+                    <option value="" >All</option>
+                    <option *ngFor="let lh of lopList" [value]="lh.tenlop">{{lh.tenlop}}</option>
+                  </select>
+<!--                  <input id="KipDay" class="date-picker form-control" required="required" type="text" name="tenLop"-->
+<!--                         [(ngModel)]="gvSearch.tenLop">-->
                 </div>
               </div>
             </div>
             <div class="row">
 
+<!--              <div class="col-md-6 item form-group">-->
+<!--                <label class="col-form-label col-md-3 col-sm-3 label-align">Giới tính</label>-->
+<!--                <div class="col-md-6 col-sm-6 ">-->
+<!--                  <div id="gender" class="btn-group" data-toggle="buttons">-->
+<!--                    <label class="btn btn-secondary" data-toggle-class="btn-primary"-->
+<!--                           data-toggle-passive-class="btn-default">-->
+<!--                      <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Nam &nbsp;-->
+<!--                    </label>-->
+<!--                    <label class="btn btn-primary" data-toggle-class="btn-primary"-->
+<!--                           data-toggle-passive-class="btn-default">-->
+<!--                      <input type="radio" name="gender" value="female" class="join-btn"> Nữ-->
+<!--                    </label>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align">Giới tính</label>
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Mã giáo viên <span
+                  class="required">*</span>
+                </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <div id="gender" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-secondary" data-toggle-class="btn-primary"
-                           data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Nam &nbsp;
-                    </label>
-                    <label class="btn btn-primary" data-toggle-class="btn-primary"
-                           data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="female" class="join-btn"> Nữ
-                    </label>
-                  </div>
+                  <input type="text" id="last-name" name="Name" required="required" class="form-control"
+                         [(ngModel)]="gvSearch.maGiaoVien">
                 </div>
               </div>
             </div>
@@ -80,7 +94,7 @@
             <thead>
             <tr>
               <th>STT</th>
-              <th>Mã thẻ</th>
+              <th>Mã giáo viên</th>
               <th>Họ và tên</th>
               <th>Ngày sinh</th>
               <th>Sĩ số</th>
@@ -92,7 +106,7 @@
             <tbody>
             <tr *ngFor="let gv of gvList; let i = index">
               <td>{{i}}</td>
-              <td>{{gv.maThe}}</td>
+              <td>{{gv.maGiaoVien}}</td>
               <td>{{gv.name}}</td>
               <td>{{gv.NgaySinh}}</td>
               <td>{{gv.siso}}</td>

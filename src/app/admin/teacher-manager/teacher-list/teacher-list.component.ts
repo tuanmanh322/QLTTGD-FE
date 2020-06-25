@@ -8,6 +8,8 @@ import {ToastrService} from 'ngx-toastr';
 import {TeacherDetailComponent} from '../teacher-detail/teacher-detail.component';
 import {TeacherEditComponent} from '../teacher-edit/teacher-edit.component';
 import {TeacherCreateComponent} from '../teacher-create/teacher-create.component';
+import {LopHocModel} from '../../../shared/model/lop-hoc.model';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-teacher-list',
@@ -16,7 +18,7 @@ import {TeacherCreateComponent} from '../teacher-create/teacher-create.component
 })
 export class TeacherListComponent implements OnInit {
   gvList: GiaoVienModel[];
-
+  lopList: LopHocModel[];
   gvSearch: GiaovienSearch = {
     page: 0,
     pageSize: 10,
@@ -24,8 +26,10 @@ export class TeacherListComponent implements OnInit {
     totalRecords: 0,
     orders: [],
     Name: '',
-    tenLop: ''
+    tenLop: '',
+    maGiaoVien: ''
   };
+  tlop = new FormControl();
   kip1 = 'Kíp 1(7h - 9h)';
   kip2 = 'Kíp 2(9h30- 12h)';
   kip3 = 'Kíp 3(13h-15h)';
@@ -45,23 +49,27 @@ export class TeacherListComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Quản lý giáo viên');
+    this.apiService.get('/api/lop-hoc/all').subscribe(res => {
+      this.lopList = res;
+    });
     this.fetch();
   }
 
   fetch() {
     this.apiService.post('/api/giao-vien/search', this.gvSearch).subscribe(res => {
-      console.log(res);
       this.gvSearch = res;
       this.gvList = this.gvSearch.data;
-      console.log(this.gvList);
     });
   }
 
   doSearch() {
+    this.gvSearch.tenLop = this.tlop.value;
     this.gvSearch.page = 0;
     this.fetch();
   }
-
+  getValueOp(event) {
+    this.gvSearch.maGiaoVien = event.target.value;
+  }
   deleteTeac(id: number) {
     this.apiService.delete('/api/giao-vien/delete/' + id).subscribe(res => {
       this.toastr.success('Xoá thành công!');
@@ -70,16 +78,16 @@ export class TeacherListComponent implements OnInit {
   }
 
   moveDetail(gv: GiaoVienModel) {
-    const modalRef = this.ngbModal.open(TeacherDetailComponent,{size: 'lg'});
+    const modalRef = this.ngbModal.open(TeacherDetailComponent, {size: 'lg'});
     modalRef.componentInstance.gv = gv;
   }
 
   moveEdit(gv: GiaoVienModel) {
-    const modalRef = this.ngbModal.open(TeacherEditComponent,{size: 'lg'});
+    const modalRef = this.ngbModal.open(TeacherEditComponent, {size: 'lg'});
     modalRef.componentInstance.gv = gv;
   }
 
   moveCreate() {
-    this.ngbModal.open(TeacherCreateComponent,{size: 'lg'});
+    this.ngbModal.open(TeacherCreateComponent, {size: 'lg'});
   }
 }

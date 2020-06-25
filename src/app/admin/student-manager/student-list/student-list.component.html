@@ -23,43 +23,46 @@
           <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left">
             <div class="row">
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Tên lớp học <span
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Tên học sinh <span
                   class="required">*</span>
                 </label>
-                <input type="text" id="last-name" name="tenLop" required="required" class="form-control"
-                         [(ngModel)]="hocSinhSearch.tenLop">
+                <input type="text" id="last-name" name="hocsinhName" required="required" class="form-control"
+                         [(ngModel)]="hocSinhSearch.hocsinhName">
               </div>
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Họ và tên <span
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Lớp học <span
                   class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input type="text" id="last-name" name="tenHS" required="required" class="form-control"
-                         [(ngModel)]="hocSinhSearch.tenHS">
+                  <select  [formControl]="tlop" >
+                    <option value="" selected disabled>--Chọn lớp--</option>
+                    <option value="" >All</option>
+                    <option *ngFor="let lh of lopList" [value]="lh.tenlop">{{lh.tenlop}}</option>
+                  </select>
                 </div>
               </div>
             </div>
             <div class="row">
-              <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày sinh <span
-                class="required"></span>
-              </label>
-              <div class="col-md-3 col-sm-3 ">
-                <input  class="date-picker form-control" required="required" type="date" name="ngaySinh"
-                       placeholder="Từ ngày" [(ngModel)]="hocSinhSearch.ngaySinh">
-              </div>
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align">Giới tinh</label>
-                <div class="col-md-6 col-sm-6 ">
-                  <div id="gender" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="male" class="join-btn" [(ngModel)]="hocSinhSearch.gioiTinh"> &nbsp; Nam &nbsp;
-                    </label>
-                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                      <input type="radio" name="gender" value="female" class="join-btn" [(ngModel)]="hocSinhSearch.gioiTinh"> Nữ
-                    </label>
-                  </div>
-                </div>
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Mã học sinh <span
+                  class="required">*</span>
+                </label>
+                <input type="text" id="last-name" name="maHocSinh" required="required" class="form-control"
+                       [(ngModel)]="hocSinhSearch.maHocSinh">
               </div>
+<!--              <div class="col-md-6 item form-group">-->
+<!--                <label class="col-form-label col-md-3 col-sm-3 label-align">Giới tinh</label>-->
+<!--                <div class="col-md-6 col-sm-6 ">-->
+<!--                  <div id="gender" class="btn-group" data-toggle="buttons">-->
+<!--                    <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">-->
+<!--                      <input type="radio" name="gender" value="male" class="join-btn" [(ngModel)]="hocSinhSearch.gioiTinh"> &nbsp; Nam &nbsp;-->
+<!--                    </label>-->
+<!--                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">-->
+<!--                      <input type="radio" name="gender" value="female" class="join-btn" [(ngModel)]="hocSinhSearch.gioiTinh"> Nữ-->
+<!--                    </label>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
             </div>
             <div class="item form-group">
               <div class="col-md-8 col-sm-6 offset-md-5">
@@ -94,6 +97,9 @@
                               aria-label="Mã lớp: activate to sort column ascending" style="width: 185px;">Tên lớp
                           </th>
                           <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                              aria-label="Ngày khai giảng: activate to sort column ascending" style="width: 225px;">Mã học sinh
+                          </th>
+                          <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                               aria-label="Ngày khai giảng: activate to sort column ascending" style="width: 225px;">Tên học sinh
                           </th>
                           <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
@@ -106,6 +112,9 @@
                               aria-label="Chi tiết: activate to sort column ascending" style="width: 121px;">Số thẻ
                           </th>
                           <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                              aria-label="Chi tiết: activate to sort column ascending" style="width: 121px;">Tên lớp
+                          </th>
+                          <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                               aria-label="Chi tiết: activate to sort column ascending" style="width: 121px;">Action
                           </th>
                         </tr>
@@ -114,10 +123,12 @@
                         <tr role="row" class="odd" *ngFor="let u of hocSinhList ; let i = index">
                           <td class="sorting_1">{{i + 1}}</td>
                           <td>{{u.tenLop}}</td>
-                          <td>{{u.Name}}</td>
+                          <td>{{u.soThe}}</td>
+                          <td>{{u.hocsinhName}}</td>
                           <td>{{u.NgaySinh| date: 'yyyy-MM-dd'}}</td>
                           <td>{{u.sodt}}</td>
                           <td>{{u.maThe}}</td>
+                          <td>{{u.tenLop}}</td>
                           <td>
                             <div class="form-group">
                               <button (click)="moveEdit(u)" class="btn btn-primary"

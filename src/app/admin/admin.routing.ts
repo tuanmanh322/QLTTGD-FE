@@ -32,6 +32,10 @@ const routes: Routes = [
       {
         path: 'comment',
         loadChildren: () => import('./comment-manager/comment-manager.module').then(m => m.CommentManagerModule)
+      },
+      {
+        path: 'user',
+        loadChildren: () => import('./user-manager/user-manager.module').then(m => m.UserManagerModule)
       }
     ]
   }

@@ -4,4 +4,5 @@ export interface CardModel {
   ngaycap?: Date;
   password?: string;
   nameRole?: string;
+  maGV?: string;
 }

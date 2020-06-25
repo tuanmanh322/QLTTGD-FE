@@ -26,4 +26,8 @@ export interface GiaoVienModel {
   idLop?: number;
 
   siso?: number;
+
+  maGV?: string;
+
+  sex?: string;
 }

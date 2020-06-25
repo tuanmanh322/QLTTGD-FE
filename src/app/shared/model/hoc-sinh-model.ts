@@ -15,4 +15,6 @@ export interface HocSinhModel {
   diachi?: string;
   maMonHoc?: string;
   tenMonHoc?: string;
+  hocsinhName?: string;
+  soThe?: string;
 }

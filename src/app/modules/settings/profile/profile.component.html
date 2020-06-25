@@ -82,52 +82,56 @@
       <ul class="nav nav-tabs" role="tablist">
         <div class="col-xl-2" *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
           <li role="presentation" class="active">
-            <a  style="padding-right: 96px;" (click)="goMain()">Thông tin cá nhân</a>
+            <a style="padding-right: 96px;" (click)="goMain()">Thông tin cá nhân</a>
           </li>
         </div>
-        <div class="col-xl-2" *ngIf="this.userProfile.role === 'ROLE_STUDENT' || this.userProfile.role === 'ROLE_ADMIN'">
+        <div class="col-xl-2"
+             *ngIf="this.userProfile.role === 'ROLE_STUDENT' || this.userProfile.role === 'ROLE_ADMIN'">
           <li role="presentation" class="active">
-            <a  style="padding-right: 96px;" (click)="goMain()">Thông tin cá nhân</a>
+            <a style="padding-right: 96px;" (click)="goMain()">Thông tin cá nhân</a>
           </li>
         </div>
         <div class="col-xl-2" *ngIf="this.userProfile.role === 'ROLE_STUDENT'">
           <li role="presentation" class="active">
-            <a  style="padding-right: 167px;" (click)="goHocBa()">Học bạ</a>
+            <a style="padding-right: 167px;" (click)="goHocBa()">Học bạ</a>
           </li>
         </div>
         <div class="col-xl-2" *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
           <li role="presentation">
-            <a  style="padding-right: 161px;" (click)="goToClass()">Lớp học</a>
+            <a style="padding-right: 161px;" (click)="goToClass()">Lớp học</a>
           </li>
         </div>
-        <div class="col-xl-2" *ngIf="this.userProfile.role === 'ROLE_STUDENT' || this.userProfile.role === 'ROLE_ADMIN'">
+        <div class="col-xl-2"
+             *ngIf="this.userProfile.role === 'ROLE_STUDENT' || this.userProfile.role === 'ROLE_ADMIN'">
           <li role="presentation">
-            <a  style="padding-right: 161px;" (click)="goToClass()">Lớp học</a>
+            <a style="padding-right: 161px;" (click)="goToClass()">Lớp học</a>
           </li>
         </div>
         <div class="col-xl-4" *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
           <li role="presentation">
-            <a  style="padding-right: 366px;" (click)="goToPoints()">Cập nhật điểm</a>
+            <a style="padding-right: 366px;" (click)="goToPoints()">Cập nhật điểm</a>
           </li>
         </div>
-        <div class="col-xl-3" *ngIf="this.userProfile.role === 'ROLE_STUDENT' || this.userProfile.role === 'ROLE_ADMIN'">
+        <div class="col-xl-3"
+             *ngIf="this.userProfile.role === 'ROLE_STUDENT' || this.userProfile.role === 'ROLE_ADMIN'">
           <li role="presentation">
-            <a  style="padding-right: 218px;" (click)="goCheckIn()">Lịch sử checkin</a>
-          </li>
-        </div>
-        <div class="col-xl-2" *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
-          <li role="presentation">
-            <a  style="padding-right: 110px;"  (click)="goCheckIn()">Lịch sử checkin</a>
+            <a style="padding-right: 218px;" (click)="goCheckIn()">Lịch sử checkin</a>
           </li>
         </div>
         <div class="col-xl-2" *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
           <li role="presentation">
-            <a  style="padding-right: 110px;" (click)="goTaiLieu()">Quản lí tài liệu</a>
+            <a style="padding-right: 110px;" (click)="goCheckIn()">Lịch sử checkin</a>
           </li>
         </div>
-        <div class="col-xl-3" *ngIf="this.userProfile.role === 'ROLE_STUDENT' || this.userProfile.role === 'ROLE_ADMIN'">
+        <div class="col-xl-2" *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
           <li role="presentation">
-            <a  style="padding-right: 210px;" (click)="goThongKe()">Thống kê tương tác</a>
+            <a style="padding-right: 110px;" (click)="goTaiLieu()">Quản lí tài liệu</a>
+          </li>
+        </div>
+        <div class="col-xl-3"
+             *ngIf="this.userProfile.role === 'ROLE_STUDENT' || this.userProfile.role === 'ROLE_ADMIN'">
+          <li role="presentation">
+            <a style="padding-right: 210px;" (click)="goThongKe()">Thống kê tương tác</a>
           </li>
         </div>
       </ul>
@@ -150,7 +154,8 @@
             </div>
           </div>
           <div class="form-group">
-            Số điện thoại phụ huynh: <input class="form-control form-control-sm" type="text" placeholder="nhập số điện thoại"
+            Số điện thoại phụ huynh: <input class="form-control form-control-sm" type="text"
+                                            placeholder="nhập số điện thoại"
                                             id="sodt"
                                             formControlName="sodt">
             <div *ngIf="f.sodt.errors && (f.sodt.dirty || f.sodt.touched)" class="text-danger">
@@ -158,7 +163,8 @@
             </div>
           </div>
           <div class="form-group">
-            Địa chỉ: <input class="form-control form-control-sm" type="text" placeholder="nhập nơi ở hiện tại" id="noiohientai"
+            Địa chỉ: <input class="form-control form-control-sm" type="text" placeholder="nhập nơi ở hiện tại"
+                            id="noiohientai"
                             formControlName="noiohientai">
             <div *ngIf="f.noiohientai.errors && (f.noiohientai.dirty || f.noiohientai.touched)" class="text-danger">
               <div *ngIf="f.noiohientai.errors.required">Địa chỉ không được để trống</div>
@@ -166,12 +172,12 @@
           </div>
           <div *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
             <div class="form-group">
-             Môn học <select formControlName="tenMH" id="tenMH">
-                <option value="" selected disabled>--Chọn môn học--</option>
-                <option *ngFor="let mh of monHocList" [value]="mh.tenmonhoc">{{mh.tenmonhoc}}</option>
-              </select>
-<!--              Môn học: <input class="form-control form-control-sm" type="text" placeholder="nhập tên môn học" id="tenMH"-->
-<!--                              formControlName="tenMH">-->
+              Môn học <select formControlName="tenMH" id="tenMH">
+              <option value="" selected disabled>--Chọn môn học--</option>
+              <option *ngFor="let mh of monHocList" [value]="mh.tenmonhoc">{{mh.tenmonhoc}}</option>
+            </select>
+              <!--              Môn học: <input class="form-control form-control-sm" type="text" placeholder="nhập tên môn học" id="tenMH"-->
+              <!--                              formControlName="tenMH">-->
               <div *ngIf="f.tenMH.errors && (f.tenMH.dirty || f.tenMH.touched)" class="text-danger">
                 <div *ngIf="f.tenMH.errors.required">Tên môn học không được để trống</div>
               </div>
@@ -181,8 +187,8 @@
               <option value="" selected disabled>--Chọn hạng mục--</option>
               <option *ngFor="let hm of hangMucModel" [value]="hm.tenhangmuc">{{hm.tenhangmuc}}</option>
             </select>
-<!--              Hạng mục: <input class="form-control form-control-sm" type="text" placeholder="nhập tên hạng mục" id="tenHangMuc"-->
-<!--                               formControlName="tenHangMuc">-->
+              <!--              Hạng mục: <input class="form-control form-control-sm" type="text" placeholder="nhập tên hạng mục" id="tenHangMuc"-->
+              <!--                               formControlName="tenHangMuc">-->
               <div *ngIf="f.tenHangMuc.errors && (f.tenHangMuc.dirty || f.tenHangMuc.touched)" class="text-danger">
                 <div *ngIf="f.tenHangMuc.errors.required">Tên hạng mục không được để trống</div>
               </div>
@@ -191,19 +197,20 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            Giới tính:  <select formControlName="gioitinh" id="gioitinh">
+            Giới tính: <select formControlName="gioitinh" id="gioitinh">
             <option value="" selected disabled>--Chọn giới tính--</option>
             <option [value]="Nam">Nam</option>
             <option [value]="Nu">Nữ</option>
           </select>
-<!--            Giới tính: <input class="form-control form-control-sm" type="text" placeholder="nhập giới tính" id="gioitinh"-->
-<!--                              formControlName="gioitinh">-->
+            <!--            Giới tính: <input class="form-control form-control-sm" type="text" placeholder="nhập giới tính" id="gioitinh"-->
+            <!--                              formControlName="gioitinh">-->
             <div *ngIf="f.gioitinh.errors && (f.gioitinh.dirty || f.gioitinh.touched)" class="text-danger">
               <div *ngIf="f.gioitinh.errors.required">Giới tính không được để trống</div>
             </div>
           </div>
           <div class="form-group">
-            Email: <input class="form-control form-control-sm" type="text" placeholder="nhập email" id="email" (change)="checkMailExist($event)"
+            Email: <input class="form-control form-control-sm" type="text" placeholder="nhập email" id="email"
+                          (change)="checkMailExist($event)"
                           formControlName="email">
             <div *ngIf="f.email.errors && (f.email.dirty || f.email.touched)" class="text-danger">
               <div *ngIf="f.email.errors.required">Email không được để trống</div>
@@ -216,18 +223,25 @@
           </div>
           <div *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
             <div class="form-group">
-            Lớp học:  <select formControlName="tenLop" id="tenLop">
+              Mã giáo viên: <input class="form-control form-control-sm" type="text" placeholder="Mã giáo viên"
+                                   id="HoTen"
+                                   [disabled]="true" [value]="userProfile.maGV">
+            </div>
+          </div>
+          <div *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
+            <div class="form-group">
+              Lớp học: <select formControlName="tenLop" id="tenLop">
               <option value="" selected disabled>--Chọn lớp học--</option>
               <option *ngFor="let lo of lopHocModel" [value]="lo.tenlop">{{lo.tenlop}}</option>
             </select>
-<!--              Lớp học: <input class="form-control form-control-sm" type="text" placeholder="nhập tên lớp" id="tenLop"-->
-<!--                              formControlName="tenLop">-->
+              <!--              Lớp học: <input class="form-control form-control-sm" type="text" placeholder="nhập tên lớp" id="tenLop"-->
+              <!--                              formControlName="tenLop">-->
               <div *ngIf="f.tenLop.errors && (f.tenLop.dirty || f.tenLop.touched)" class="text-danger">
                 <div *ngIf="f.tenLop.errors.required">Tên lớp không được để trống</div>
               </div>
             </div>
             <div class="form-group">
-              Kíp dạy:  <select formControlName="kipDay" id="kipDay">
+              Kíp dạy: <select formControlName="kipDay" id="kipDay">
               <option value="" selected disabled>--Chọn kíp dạy--</option>
               <option [value]="kip1">{{kip1}}</option>
               <option [value]="kip2">{{kip2}}</option>
@@ -235,8 +249,8 @@
               <option [value]="kip4">{{kip4}}</option>
               <option [value]="kip5">{{kip5}}</option>
             </select>
-<!--              Kíp dạy: <input class="form-control form-control-sm" type="text" placeholder="nhập kíp dạy" id="kipDay"-->
-<!--                              formControlName="kipDay">-->
+              <!--              Kíp dạy: <input class="form-control form-control-sm" type="text" placeholder="nhập kíp dạy" id="kipDay"-->
+              <!--                              formControlName="kipDay">-->
               <div *ngIf="f.kipDay.errors && (f.kipDay.dirty || f.kipDay.touched)" class="text-danger">
                 <div *ngIf="f.kipDay.errors.required">Kíp dạy không được để trống</div>
               </div>
@@ -270,7 +284,8 @@
 
       </div>
       <div class="col-md-4">
-        <button type="submit" class="btn btn-success" (click)="onEdit()" style="padding-right: 143px" [disabled]="userForm.invalid || !fileSelect"><span class="text-center">Cập nhật</span></button>
+        <button type="submit" class="btn btn-success" (click)="onEdit()" style="padding-right: 143px"
+                [disabled]="userForm.invalid || !fileSelect"><span class="text-center">Cập nhật</span></button>
       </div>
       <div class="col-md-4">
 
