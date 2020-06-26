@@ -56,7 +56,7 @@ export class StudentListComponent implements OnInit {
     this.apiService.get('/api/lop-hoc/all').subscribe(res => {
       this.lopList = res;
     });
-    this.getAll();
+    this.search();
   }
 
   search() {

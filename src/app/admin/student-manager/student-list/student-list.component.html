@@ -27,7 +27,7 @@
                   class="required">*</span>
                 </label>
                 <input type="text" id="last-name" name="hocsinhName" required="required" class="form-control"
-                         [(ngModel)]="hocSinhSearch.hocsinhName">
+                         [(ngModel)]="hocSinhSearch.hocsinhName" (focus)="this.hocSinhSearch.hocsinhName = ''; search() ">
               </div>
               <div class="col-md-6 item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Lớp học <span
@@ -48,7 +48,7 @@
                   class="required">*</span>
                 </label>
                 <input type="text" id="last-name" name="maHocSinh" required="required" class="form-control"
-                       [(ngModel)]="hocSinhSearch.maHocSinh">
+                       [(ngModel)]="hocSinhSearch.maHocSinh" (focus)="this.hocSinhSearch.maHocSinh = ''; search() ">
               </div>
 <!--              <div class="col-md-6 item form-group">-->
 <!--                <label class="col-form-label col-md-3 col-sm-3 label-align">Giới tinh</label>-->
@@ -145,7 +145,7 @@
               </div>
             </div>
           </div>
-          <app-paginator [searchObject]="hocSinhSearch" (searchFunction)="search()" ></app-paginator>
+          <app-paginator [searchObject]="hocSinhSearch" (searchFunction)="getAll()" ></app-paginator>
     </div>
   </div>
 </div>

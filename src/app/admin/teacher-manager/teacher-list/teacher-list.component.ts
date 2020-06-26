@@ -52,7 +52,7 @@ export class TeacherListComponent implements OnInit {
     this.apiService.get('/api/lop-hoc/all').subscribe(res => {
       this.lopList = res;
     });
-    this.fetch();
+    this.doSearch();
   }
 
   fetch() {

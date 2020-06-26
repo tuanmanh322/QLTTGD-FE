@@ -28,7 +28,7 @@
                 </label>
                 <div class="col-md-6 col-sm-6 ">
                   <input type="text" id="last-name" name="Name" required="required" class="form-control"
-                         [(ngModel)]="gvSearch.Name">
+                         [(ngModel)]="gvSearch.Name" (focus)="gvSearch.Name = ''; doSearch()">
                 </div>
               </div>
               <div class="col-md-6 item form-group">
@@ -68,7 +68,7 @@
                 </label>
                 <div class="col-md-6 col-sm-6 ">
                   <input type="text" id="last-name" name="Name" required="required" class="form-control"
-                         [(ngModel)]="gvSearch.maGiaoVien">
+                         [(ngModel)]="gvSearch.maGiaoVien" (focus)="gvSearch.maGiaoVien = ''; doSearch()">
                 </div>
               </div>
             </div>
@@ -133,7 +133,7 @@
             </tbody>
           </table>
         </div>
-        <app-paginator [searchObject]="gvSearch" (searchFunction)="doSearch()" ></app-paginator>
+        <app-paginator [searchObject]="gvSearch" (searchFunction)="fetch()" ></app-paginator>
       </div>
     </div>
   </div>
