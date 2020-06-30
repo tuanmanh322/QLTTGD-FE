@@ -40,7 +40,6 @@
                 <div class="col-md-6 col-sm-6 ">
                   <select [formControl]="idLopForm">
                     <option value="" selected disabled>--Lớp học--</option>
-                    <option value="">All</option>
                     <option *ngFor="let lo of lopHoc" [value]="lo.id">{{lo.tenlop}}</option>
                   </select>
                 </div>

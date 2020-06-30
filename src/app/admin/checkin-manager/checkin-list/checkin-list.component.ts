@@ -71,13 +71,19 @@ export class CheckinListComponent implements OnInit {
         idLop: this.idLopForm.value,
       };
       this.api.post('/api/user/users-checkin', checkin).subscribe(res => {
-        this.checkIn = true;
-        this.userCheckIn = res.data;
-        this.lopCount = this.userCheckIn.lopList.length;
-        this.checkCount = this.userCheckIn.nhatcheckins.length;
-        this.mtForm.setValue('');
-        this.idLopForm.setValue('');
-        this.loadAllCheckin();
+        if (res.code === 500){
+          this.toastr.error(res.message);
+          this.checkIn = false;
+          return;
+        } else{
+          this.checkIn = true;
+          this.userCheckIn = res.data;
+          this.lopCount = this.userCheckIn.lopList.length;
+          this.checkCount = this.userCheckIn.nhatcheckins.length;
+          this.mtForm.setValue('');
+          this.idLopForm.setValue('');
+          this.loadAllCheckin();
+        }
       }, error => {
         this.toastr.error(error);
       });
