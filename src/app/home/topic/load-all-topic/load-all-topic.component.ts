@@ -91,9 +91,6 @@ export class LoadAllTopicComponent implements OnInit {
       tap(() => this.isLoading = true),
       switchMap(title => this.baiVietService.loadAutoCompleteBV(title)),
       tap(() => this.isLoading = false));
-
-    $('#titlebv').reset();
-    $('form').children('input:not(#submit)').val('');
   }
 
   getProfile() {

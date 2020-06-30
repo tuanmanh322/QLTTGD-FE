@@ -36,7 +36,15 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () => import('./user-manager/user-manager.module').then(m => m.UserManagerModule)
-      }
+      },
+      {
+        path: 'checkin',
+        loadChildren: () => import('./checkin-manager/checkin-manager.module').then(m => m.CheckinManagerModule)
+      },
+      {
+        path: 'report',
+        loadChildren: () => import('./baocao-thongke/baocao-thongke.module').then(m => m.BaocaoThongkeModule)
+      },
     ]
   }
 ];

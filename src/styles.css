@@ -58,3 +58,8 @@ figure.image>img{
 .item-noti{
   background-color: white!important;
 }
+.img-avt-checkin{
+  border-radius: 50%;
+  width: 146px;
+  height: 146px;
+}
