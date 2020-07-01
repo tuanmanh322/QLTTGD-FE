@@ -18,6 +18,7 @@ export class ReportManagerComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
   };
+  //Polararea , Doughnut, line
   barChartLabels: Label[] = ['Học sinh Hoạt động', 'Tổng số học sinh'];
   barChartType: ChartType = 'bar';
   barChartLegend = true;
