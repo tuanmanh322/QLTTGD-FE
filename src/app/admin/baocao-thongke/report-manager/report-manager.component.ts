@@ -40,6 +40,9 @@ export class ReportManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Báo cáo thống kê!');
+    this.barChartData.forEach(ite => {
+      ite.data = [];
+    });
     this.api.get('/api/hoc-sinh/count-hs-active').subscribe(res => {
       this.hsActive = res;
       this.data.push(this.hsActive);
@@ -47,13 +50,13 @@ export class ReportManagerComponent implements OnInit {
         ite.data.push(this.hsActive);
         this.points.push(this.hsActive);
       });
-    });
-    this.api.get('/api/hoc-sinh/count-all-hs').subscribe(res => {
-      this.allHS = res;
-      this.data.push(this.allHS);
-      this.barChartData.forEach(ite => {
-        ite.data.push(this.allHS);
-        this.points.push(this.allHS);
+      this.api.get('/api/hoc-sinh/count-all-hs').subscribe(res => {
+        this.allHS = res;
+        this.data.push(this.allHS);
+        this.barChartData.forEach(ite => {
+          ite.data.push(this.allHS);
+          this.points.push(this.allHS);
+        });
       });
     });
   }
