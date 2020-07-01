@@ -3,6 +3,7 @@ import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 import {ApiService} from '../../../shared/service/api.service';
 import {Title} from '@angular/platform-browser';
+import {Chart} from 'chart.js';
 
 @Component({
   selector: 'app-report-manager',
@@ -22,7 +23,13 @@ export class ReportManagerComponent implements OnInit {
   barChartLegend = true;
   barChartPlugins = [];
 
-  barChartData: ChartDataSets[] = [{data: [0, 0], label: 'Học sinh'}];
+  barChartData: ChartDataSets[] = [{data: [], label: 'Học sinh'}];
+  barchart = [];
+
+  points = [];
+  data = [6, 6];
+
+  Linechart: any[] = [];
 
   constructor(
     private api: ApiService,
@@ -35,19 +42,29 @@ export class ReportManagerComponent implements OnInit {
     this.title.setTitle('Báo cáo thống kê!');
     this.countActive();
     this.countAll();
+    console.log(this.points);
+    console.log(this.data.sort());
+
   }
+
 
   countActive() {
     this.api.get('/api/hoc-sinh/count-hs-active').subscribe(res => {
       this.hsActive = res;
-      this.barChartData.splice(0, res);
+      this.data.push(this.hsActive);
+      this.barChartData.forEach(ite => {
+        ite.data.push(this.hsActive);
+      });
     });
   }
 
   countAll() {
     this.api.get('/api/hoc-sinh/count-all-hs').subscribe(res => {
       this.allHS = res;
-      this.barChartData.splice(1, res);
+      this.data.push(this.allHS);
+      this.barChartData.forEach(ite => {
+        ite.data.push(this.allHS);
+      });
     });
   }
 }
