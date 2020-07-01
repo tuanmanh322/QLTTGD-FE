@@ -6,7 +6,8 @@
     <ul class=" navbar-right">
       <li class="nav-item dropdown open" style="padding-left: 15px;">
         <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-            <img src="../../../../assets/img/avatar.jpg" alt="" /> <b class="caret"></b>
+            <img *ngIf="userProfile.imagePath === null || userProfile.imagePath === ''" src="../../../../assets/img/default.png" alt="" /> <b class="caret"></b>
+          <img *ngIf="userProfile.imagePath !== null || userProfile.imagePath !== ''" src="{{userProfile.imagePath}}" alt="" /> <b class="caret"></b>
         </a>
         <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
           <p class="dropdown-item">{{userProfile.name}}</p>
