@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/shared/service/api.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {LopEnti} from '../../../shared/model/lop-enti';
 
 @Component({
   selector: 'app-student-edit',
@@ -16,6 +17,7 @@ export class StudentEditComponent implements OnInit {
   hocSinhForm: FormGroup;
   hocSinhModel: HocSinhModel;
   tenMonHoc: string;
+  lopList: LopEnti[];
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
@@ -25,16 +27,21 @@ export class StudentEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.apiService.get('/api/lop-hoc/all').subscribe(res =>{
+      this.lopList = res;
+    })
     this.hocSinhModel = this.hocsinh;
     this.hocSinhForm = this.fb.group({
-      maHocSinh: new FormControl({value: this.hocSinhModel.id, disable:true}),
+      maHocSinh: new FormControl(this.hocSinhModel.id),
       tenhocsinh: new FormControl(this.hocSinhModel.Name, [Validators.required]),
       ngaysinh: new FormControl(this.hocSinhModel.NgaySinh, [Validators.required]),
       sodt: new FormControl(this.hocSinhModel.sodt, [Validators.required]),
       email: new FormControl(this.hocSinhModel.email, [Validators.required]),
       diachi: new FormControl(this.hocSinhModel.diachi, [Validators.required]),
       lopHoc: new FormControl(this.hocSinhModel.maLop, [Validators.required]),
-      maMonhoc: new FormControl('', [Validators.required])
+      maMonhoc: new FormControl('', [Validators.required]),
+      GioiTinh: new FormControl(this.hocSinhModel.GioiTinh,[Validators.required])
     });
     this.tenMonHoc = this.hocSinhModel.tenMonHoc;
   }

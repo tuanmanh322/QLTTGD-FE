@@ -98,9 +98,9 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-  moveEdit(lophoc: any) {
+  moveEdit(hocsinh) {
     const modalRef = this.modalService.open(StudentEditComponent);
-    modalRef.componentInstance.lophoc = lophoc;
+    modalRef.componentInstance.hocsinh = hocsinh;
   }
 
 }

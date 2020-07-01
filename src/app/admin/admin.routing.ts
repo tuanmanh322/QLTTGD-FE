@@ -49,6 +49,10 @@ const routes: Routes = [
         path: 'register-online',
         loadChildren: () => import('./register-online-manager/register-online-manager.module').then(m => m.RegisterOnlineManagerModule)
       },
+      {
+        path: 'contact',
+        loadChildren: () => import('./contact-manager/contact-manager.module').then(m => m.ContactManagerModule)
+      },
     ]
   }
 ];

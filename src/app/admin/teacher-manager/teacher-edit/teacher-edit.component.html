@@ -1,1 +1,99 @@
-<p>teacher-edit works!</p>
+<div class="modal-header">
+  <h4 class="modal-title">Chỉnh sửa giáo viên</h4>
+  <button type="button" class="close" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<form [formGroup]="gvForm" (ngSubmit)="edit()">
+  <div class="modal-boy">
+    <div class="container">
+      <!--      <div class="form-group">-->
+      <!--        <label for="maGiaoVien">Mã giáo viên :</label>-->
+      <!--        <input type="text"-->
+      <!--               class="form-control"-->
+      <!--               formControlName="maGiaoVien" id="maGiaoVien"/>-->
+      <!--        <div *ngIf="f.maGiaoVien.errors && (f.maGiaoVien.dirty || f.maGiaoVien.touched)" class="text-danger">-->
+      <!--          <div *ngIf="f.maGiaoVien.errors.required">Mã giáo viên không được để trống</div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <div class="form-group">
+        <label for="Name">Tên :</label>
+        <input type="text" class="form-control" formControlName="Name" id="Name">
+        <div *ngIf="f.Name.errors && (f.Name.dirty || f.Name.touched)" class="text-danger">
+          <div *ngIf="f.Name.errors.required">Tên không được để trống</div>
+        </div>
+      </div>
+      <div class="form-group">
+        Giới tính: <select formControlName="sex" id="sex">
+        <option value="" selected disabled>--Chọn giới tính--</option>
+        <option [value]="Nam">Nam</option>
+        <option [value]="Nu">Nữ</option>
+      </select>
+        <div *ngIf="f.sex.errors && (f.sex.dirty || f.sex.touched)" class="text-danger">
+          <div *ngIf="f.sex.errors.required">Giới tính không được để trống</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="NgaySinh">Ngày sinh</label>
+        <input type="date" class="form-control" formControlName="NgaySinh" id="NgaySinh">
+        <div *ngIf="f.NgaySinh.errors && (f.NgaySinh.dirty || f.NgaySinh.touched)" class="text-danger">
+          <div *ngIf="f.NgaySinh.errors.required">Ngày sinh không được để trống</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cmt">Số chứng minh thư: </label>
+        <input type="text" class="form-control" formControlName="cmt" id="cmt">
+        <div *ngIf="f.cmt.errors && (f.cmt.dirty || f.cmt.touched)" class="text-danger">
+          <div *ngIf="f.cmt.errors.required">Số chứng minh thư không được để trống</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sodt">Số điện thoại: </label>
+        <input type="text" class="form-control" formControlName="sodt" id="sodt">
+        <div *ngIf="f.sodt.errors && (f.sodt.dirty || f.sodt.touched)" class="text-danger">
+          <div *ngIf="f.sodt.errors.required">Số điện thoại không được để trống</div>
+        </div>
+      </div>
+      <!--      <div class="form-group">-->
+      <!--        Kíp dạy: <select formControlName="kipDay" id="kipDay">-->
+      <!--        <option value="" selected disabled>&#45;&#45;Chọn kíp dạy&#45;&#45;</option>-->
+      <!--        <option [value]="kip1">{{kip1}}</option>-->
+      <!--        <option [value]="kip2">{{kip2}}</option>-->
+      <!--        <option [value]="kip3">{{kip3}}</option>-->
+      <!--        <option [value]="kip4">{{kip4}}</option>-->
+      <!--        <option [value]="kip5">{{kip5}}</option>-->
+      <!--      </select>-->
+      <!--        <div *ngIf="f.kipDay.errors && (f.kipDay.dirty || f.kipDay.touched)" class="text-danger">-->
+      <!--          <div *ngIf="f.kipDay.errors.required">Kíp dạy không được để trống</div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <div class="form-group">
+        <label for="luongcoban">Lương cơ bản :</label>
+        <input type="text" class="form-control" formControlName="luongcoban" id="luongcoban">
+        <div *ngIf="f.luongcoban.errors && (f.luongcoban.dirty || f.luongcoban.touched)" class="text-danger">
+          <div *ngIf="f.luongcoban.errors.required">Lương cơ bản không được để trống</div>
+        </div>
+      </div>
+      <div class="form-group">
+        Tên lớp :<select formControlName="idLop" name="idLop">
+        <option value="" disabled selected>--Chọn lớp--</option>
+        <option *ngFor="let tl of lopHocList" [value]="tl.id">{{tl.tenlop}}</option>
+      </select>
+        <div *ngIf="f.idLop.errors && (f.idLop.dirty || f.idLop.touched)" class="text-danger">
+          <div *ngIf="f.idLop.errors.required">Lớp học không được để trống</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success"
+            [disabled]="gvForm.invalid">
+      Cập nhật
+    </button>
+    <button class="btn btn-danger" #submitele
+            (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</form>

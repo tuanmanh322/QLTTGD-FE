@@ -32,6 +32,7 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Quản lý liên hệ');
+    this.fetch();
   }
 
   fetch() {
