@@ -16,10 +16,11 @@ import { ProfileTailieuAddComponent } from './profile-tailieu-add/profile-tailie
 import { ProfileTailieuEditComponent } from './profile-tailieu-edit/profile-tailieu-edit.component';
 import { ProfilePointsAddComponent } from './profile-points-add/profile-points-add.component';
 import { ProfilePointsEditComponent } from './profile-points-edit/profile-points-edit.component';
+import { RegisterLopComponent } from './register-lop/register-lop.component';
 
 
 @NgModule({
-  declarations: [ProfileComponent, ProfileClassComponent, ProfileHocbaComponent, ProfilePointsComponent, ProfileCheckinComponent, ProfileThongkeComponent, ProfileTailieuComponent, ProfileHocbaDetailComponent, ProfileTailieuAddComponent, ProfileTailieuEditComponent, ProfilePointsAddComponent, ProfilePointsEditComponent],
+  declarations: [ProfileComponent, ProfileClassComponent, ProfileHocbaComponent, ProfilePointsComponent, ProfileCheckinComponent, ProfileThongkeComponent, ProfileTailieuComponent, ProfileHocbaDetailComponent, ProfileTailieuAddComponent, ProfileTailieuEditComponent, ProfilePointsAddComponent, ProfilePointsEditComponent, RegisterLopComponent],
   imports: [
     CommonModule,
     ClientLayoutsModule,
@@ -35,6 +36,10 @@ import { ProfilePointsEditComponent } from './profile-points-edit/profile-points
         path: 'profile',
         component: ProfileComponent
       },
+      {
+        path: 'register-lop',
+        component: RegisterLopComponent
+      }
 
     ]),
     PaginatorModule

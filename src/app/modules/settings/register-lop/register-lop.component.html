@@ -1,0 +1,80 @@
+<h3>Danh sách các lớp đang mở</h3>
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+  <table class="table table-bordered table-striped mb-0">
+    <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Mã Lớp</th>
+      <th scope="col">Tên Lớp</th>
+      <th scope="col">Thởi gian bắt đầu</th>
+      <th scope="col">Thởi gian kết thúc</th>
+      <th scope="col">Sĩ Số</th>
+      <th scope="col">Học Phí</th>
+      <th scope="col">Kíp dạy</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let o of lopLIst; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{o.maLop}}</td>
+      <td>{{o.tenlop}}</td>
+      <td>{{o.thoigianbatdau|date: 'dd-MM-yyyy'}}</td>
+      <td>{{o.thoigianketthuc|date: 'dd-MM-yyyy'}}</td>
+      <td>{{o.siso}}</td>
+      <td>{{o.hocphi}}</td>
+      <td *ngIf="o.kipDay == 1">{{kip1}}</td>
+      <td *ngIf="o.kipDay == 2">{{kip2}}</td>
+      <td *ngIf="o.kipDay == 3">{{kip3}}</td>
+      <td *ngIf="o.kipDay == 4">{{kip4}}</td>
+      <td *ngIf="o.kipDay == 5">{{kip5}}</td>
+      <td>
+        <div class="form-group">
+          <input type="checkbox" (change)="getLop($event, o)"   />
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+<hr class="border-bottom p-2">
+<h2>Danh sách các lớp đã đăng ký</h2>
+<table class="table table-bordered table-striped mb-0">
+  <thead>
+  <tr>
+    <th scope="col">STT</th>
+    <th scope="col">Mã Lớp</th>
+    <th scope="col">Tên Lớp</th>
+    <th scope="col">Thởi gian bắt đầu</th>
+    <th scope="col">Thởi gian kết thúc</th>
+    <th scope="col">Sĩ Số</th>
+    <th scope="col">Học Phí</th>
+    <th scope="col">Kíp dạy</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let lo of lopRegister; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{lo.maLop}}</td>
+    <td>{{lo.tenlop}}</td>
+    <td>{{lo.thoigianbatdau|date: 'dd-MM-yyyy'}}</td>
+    <td>{{lo.thoigianketthuc|date: 'dd-MM-yyyy'}}</td>
+    <td>{{lo.siso}}</td>
+    <td>{{lo.hocphi}}</td>
+    <td *ngIf="lo.kipDay == 1">{{kip1}}</td>
+    <td *ngIf="lo.kipDay == 2">{{kip2}}</td>
+    <td *ngIf="lo.kipDay == 3">{{kip3}}</td>
+    <td *ngIf="lo.kipDay == 4">{{kip4}}</td>
+    <td *ngIf="lo.kipDay == 5">{{kip5}}</td>
+    <td>
+      <div class="form-group">
+        <button type="submit" class="btn btn-danger" (click)="removeListRe(lo)" [disabled]="checkSubmit" >Hủy bỏ</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button type="submit" class="btn btn-primary" (click)="onRegister()" [disabled]="lopRegister.length <= 0">Xác nhận đăng ký</button>

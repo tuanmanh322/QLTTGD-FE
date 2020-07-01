@@ -15,6 +15,7 @@ import {PostBaivietComponent} from '../../../modules/hoi-dap/post-baiviet/post-b
 import {NotificationService} from '../../service/notification.service';
 import {NotificationModel} from '../../model/notification-model';
 import {PasswordChangeComponent} from '../../../auth/password-change/password-change.component';
+import {ContactFormComponent} from '../../../modules/contact/contact-form/contact-form.component';
 
 declare var $: any;
 const CURRENT_USER = 'current_user';
@@ -37,6 +38,7 @@ export class NavbarClientComponent implements OnInit {
   isLogin: boolean;
   notiCount = 0;
   notification: NotificationModel[];
+
   constructor(
     private router: Router,
     private eventManagement: EventManagement,
@@ -113,7 +115,7 @@ export class NavbarClientComponent implements OnInit {
   }
 
   checkMoveDetail() {
-    if (this.notiCount === 0){
+    if (this.notiCount === 0) {
       return;
     } else {
       this.notiCount--;
@@ -240,8 +242,10 @@ export class NavbarClientComponent implements OnInit {
   }
 
   changePassword() {
-    if (this.isLogin === true){
-      this.modalService.open(PasswordChangeComponent,{size: 'lg'});
-    }
+    this.modalService.open(PasswordChangeComponent, {size: 'lg'});
+  }
+
+  createContact() {
+    this.modalService.open(ContactFormComponent, {size: 'lg'});
   }
 }

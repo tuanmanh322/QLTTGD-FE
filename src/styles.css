@@ -63,3 +63,7 @@ figure.image>img{
   width: 146px;
   height: 146px;
 }
+.link-hover:hover{
+  color: red;
+  cursor: pointer;
+}

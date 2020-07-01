@@ -1,0 +1,70 @@
+<div class="modal-header">
+  <h4 class="modal-title">Tạo liên hệ</h4>
+  <button type="button" class="close" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-10 mx-auto">
+          <form [formGroup]="contactForm">
+            <div class="form-group">
+              <label for="username">Họ và tên *: </label>
+              <input type="text" class="form-control" id="username" aria-describedby="emailHelp"
+                     [ngClass]="{'is-invalid' : f.username.errors}"
+                     placeholder="Nhập họ và tên" formControlName="username" >
+              <div *ngIf="f.username.errors && (f.username.dirty || f.username.touched)" class="text-danger">
+                <div *ngIf="f.username.errors.required">Bạn cần nhập vào họ và tên!</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email: </label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                     placeholder="Enter email" formControlName="email" >
+            </div>
+            <div class="form-group">
+              <label for="sdt">Số điện thoại *:</label>
+              <input type="text" class="form-control" id="sdt" placeholder="Số điện thoại"
+                     [ngClass]="{'is-invalid' : f.sdt.errors}"
+                     formControlName="sdt">
+              <div *ngIf="f.sdt.errors && (f.sdt.dirty || f.sdt.touched)" class="text-danger">
+                <div *ngIf="f.sdt.errors.required">Bạn cần nhập vào số điện thoại!</div>
+                <div *ngIf="f.sdt.errors.minLength">Mật khẩu phải có tối thiểu 10 kí tự!</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="status">Nội dung :</label>
+              <textarea type="text" class="form-control" id="status" placeholder="Nhập nội dung" cols="5" rows="15"
+                        formControlName="status" ></textarea>
+            </div>
+            <!--            <div class="form-group">-->
+            <!--              <label>Bạn là: </label>-->
+            <!--              <div class="row">-->
+            <!--                <label class="md-check">-->
+            <!--                  <input type="radio" [value]="2" name="idRole" formControlName="idRole" [ngClass]="{'is-invalid' : f.idRole.errors}">-->
+            <!--                  Giáo viên-->
+            <!--                </label>-->
+            <!--                <label class="md-check">-->
+            <!--                  <input type="radio" [value]="3" name="idRole" formControlName="idRole" [ngClass]="{'is-invalid' : f.idRole.errors}">-->
+            <!--                 Học sinh-->
+            <!--                </label>-->
+            <!--                <div *ngIf="f.idRole.errors && (f.idRole.dirty || f.idRole.touched)" class="text-danger">-->
+            <!--                  <div *ngIf="f.idRole.errors.required">Hãy chọn nghề nghiệp của bạn!</div>-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--            </div>-->
+          </form>
+          <button type="submit" class="btn btn-primary"  (click)="doPost()">Tạo</button>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onCancle()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -45,6 +45,10 @@ const routes: Routes = [
         path: 'report',
         loadChildren: () => import('./baocao-thongke/baocao-thongke.module').then(m => m.BaocaoThongkeModule)
       },
+      {
+        path: 'register-online',
+        loadChildren: () => import('./register-online-manager/register-online-manager.module').then(m => m.RegisterOnlineManagerModule)
+      },
     ]
   }
 ];

@@ -24,4 +24,6 @@ export interface LopEnti {
   gioBatDau?: Date;
 
   gioKetThuc?: Date;
+
+  idULM?: number;
 }

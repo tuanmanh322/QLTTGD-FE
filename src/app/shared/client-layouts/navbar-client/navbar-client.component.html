@@ -31,7 +31,7 @@
           <!--          </ul>-->
         </div>
       </div>
-      <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
+      <div class="col-lg-3 search hidden-xs hidden-sm col-md-1">
 <!--        <div class="wrap">-->
 <!--          <form action="#" method="post" class="form" (ngSubmit)="getDataTitle()">-->
 <!--            <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"-->
@@ -43,9 +43,12 @@
 <!--          </form>-->
 <!--        </div>-->
       </div>
-      <div class="col-lg-4 col-xs-12 col-sm-5 col-md-4 avt">
+      <div class="col-lg-5 col-xs-12 col-sm-5 col-md-5 avt">
         <div class="stnt pull-left">
           <button class="btn btn-primary" (click)="clickPost()">Đăng bài</button>
+        </div>
+        <div class="stnt pull-left">
+          <button class="btn btn-info" (click)="createContact()">Tạo liên hệ</button>
         </div>
         <div class="env pull-left"><a (click)="showNoti()"><img class="notifications-inbox" src="../../../../assets/img/no-notification.png"
                                            alt="Notification" id="notification-icon" (click)="isReadAll()"/><span
@@ -87,8 +90,9 @@
             <li role="presentation"><a role="menuitem" routerLink="/admin/qlttgd" *appHasAnyAuthority="['ROLE_ADMIN']">Trang
               điều khiển</a>
             </li>
-<!--            <li role="presentation"><a role="menuitem" routerLink="">Inbox</a></li>-->
-            <li role="presentation"><a role="menuitem"   (click)="changePassword()">Thay đổi mật khẩu</a></li>
+            <li role="presentation"><a role="menuitem"   routerLink="/settings/register-lop" *appHasAnyAuthority="['ROLE_STUDENT']">Đăng ký lớp học</a></li>
+            <!--            <li role="presentation"><a role="menuitem" routerLink="">Inbox</a></li>-->
+            <li role="presentation"><a role="menuitem"  class="link-hover" (click)="changePassword()">Thay đổi mật khẩu</a></li>
             <li role="presentation"><a role="menuitem" routerLink="" (click)="logOut()">Log Out</a></li>
           </ul>
         </div>
