@@ -1,1 +1,49 @@
-<p>topic-edit works!</p>
+<div class="modal-header">
+  <h4 class="modal-title">Sửa hạng mục </h4>
+  <button type="button" class="close" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<form [formGroup]="hmForm" (ngSubmit)="onEdit()">
+  <div class="modal-boy">
+    <div class="container">
+      <div class="form-group">
+        <label for="maHangmucbaiviet">Mã hạng mục bài viết *:</label>
+        <input type="text" class="form-control" formControlName="maHangmucbaiviet" id="maHangmucbaiviet">
+        <div *ngIf="f.maHangmucbaiviet.errors && (f.maHangmucbaiviet.touched || f.maHangmucbaiviet.dirty)">
+          <div class="text text-danger" *ngIf="f.maHangmucbaiviet.errors.required">Bạn cần nhập vào mã hạng mục bài viết</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tenhangmuc">Tên hạng mục *:</label>
+        <input type="text" class="form-control" formControlName="tenhangmuc" id="tenhangmuc">
+        <div *ngIf="f.tenhangmuc.errors && (f.tenhangmuc.touched || f.tenhangmuc.dirty)">
+          <div class="text text-danger" *ngIf="f.tenhangmuc.errors.required">Bạn cần nhập vào tên hạng mục</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mota">Mô tả</label>
+        <input type="text" class="form-control" formControlName="mota" id="mota">
+        <div *ngIf="f.mota.errors && (f.mota.touched || f.mota.dirty)">
+          <div class="text text-danger" *ngIf="f.mota.errors.required">Bạn cần nhập vào mô tả</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="maMonhoc">Môn học học</label>
+        <select formControlName="maMonhoc" id="maMonhoc">
+          <option *ngFor="let m of mh" [value]="m.id">{{m.tenmonhoc}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success"
+            [disabled]="hmForm.invalid">
+      Sửa
+    </button>
+    <button class="btn btn-danger"
+            (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</form>

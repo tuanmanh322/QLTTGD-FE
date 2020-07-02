@@ -4,5 +4,5 @@ export interface HangMucModel {
   tenhangmuc?: string;
   mota?: string;
   maMonhoc?: string;
-
+  tenMonHoc?: string;
 }
