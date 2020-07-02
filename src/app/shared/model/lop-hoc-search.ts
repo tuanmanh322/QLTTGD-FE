@@ -5,4 +5,5 @@ export interface LopHocSearch extends BaseSearch {
   endDate?: Date;
   startDate?: Date;
   username?: string;
+  active?: number;
 }

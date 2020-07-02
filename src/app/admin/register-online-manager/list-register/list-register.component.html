@@ -29,8 +29,8 @@
                 </label>
                 <div class="col-md-6 col-sm-6 ">
                    <select [formControl]="tl" id="tenLop">
-                     <option value="" disabled selected>--Chọn lớp--</option>
-                     <option value="" >--All--</option>
+                     <option  disabled selected>--Chọn lớp--</option>
+                     <option value="" >All</option>
                      <option *ngFor="let lo of lopList" [value]="lo.tenlop">{{lo.tenlop}}</option>
                    </select>
                 </div>
@@ -42,6 +42,19 @@
                 <div class="col-md-6 col-sm-6 ">
                   <input type="text" id="username" name="username" required="required" class="form-control"
                          [(ngModel)]="lopSearch.username" (focus)="lopSearch.username= '' ; doSearch()">
+                </div>
+              </div>
+              <div class="col-md-6 item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="ac">Trạng thái <span
+                  class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                  <select [formControl]="ac" id="ac">
+                    <option  disabled selected>--Chọn trạng thái--</option>
+                    <option value="" >All</option>
+                    <option [value]="0">Chưa kích hoạt</option>
+                    <option [value]="1">Đã kích hoạt</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -135,7 +148,11 @@
                     <td>{{lo.startDate| date: 'yyyy-MM-dd'}}</td>
                     <td>{{lo.endDate| date: 'yyyy-MM-dd'}}</td>
                     <td>{{lo.siSo}}</td>
-                    <td>{{lo.kipDay}}</td>
+                    <td *ngIf="lo.kipDay == 1">{{kip1}}</td>
+                    <td *ngIf="lo.kipDay == 2">{{kip2}}</td>
+                    <td *ngIf="lo.kipDay == 3">{{kip3}}</td>
+                    <td *ngIf="lo.kipDay == 4">{{kip4}}</td>
+                    <td *ngIf="lo.kipDay == 5">{{kip5}}</td>
                     <td>{{lo.hocPhi}}</td>
                     <td>
                       <div class="form-group">

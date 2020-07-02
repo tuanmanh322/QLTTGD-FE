@@ -23,12 +23,17 @@ export class ListRegisterComponent implements OnInit {
     orders: [],
     totalPages: 0,
     tenLop: '',
-    username: ''
+    username: '',
+    active: null
   };
   tl = new FormControl();
-
+  ac = new FormControl();
   lopList: LopEnti[];
-
+  kip1 = 'Kíp 1(7h - 9h)';
+  kip2 = 'Kíp 2(9h30- 12h)';
+  kip3 = 'Kíp 3(13h-15h)';
+  kip4 = 'Kíp 4(15h-18h)';
+  kip5 = 'Kíp 5(18h30-21h30)';
   constructor(
     private title: Title,
     private api: ApiService,
@@ -54,6 +59,7 @@ export class ListRegisterComponent implements OnInit {
 
   doSearch() {
     this.lopSearch.tenLop = this.tl.value;
+    this.lopSearch.active = this.ac.value;
     this.lopSearch.page = 0;
     this.fetch();
   }
