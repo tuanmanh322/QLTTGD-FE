@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private title: Title
+  ) { }
 
   ngOnInit() {
+    this.title.setTitle('Quản lý bài viết');
   }
 
 }
