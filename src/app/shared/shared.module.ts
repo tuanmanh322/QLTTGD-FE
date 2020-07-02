@@ -12,6 +12,8 @@ import {DataService} from './service/data.service';
 import {NotificationService} from './service/notification.service';
 import {ChuDeService} from './service/chu-de.service';
 import {BaiVietService} from './service/bai-viet.service';
+import {CalendarModule, DateAdapter} from 'angular-calendar';
+import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 
 
 @NgModule({
@@ -20,7 +22,11 @@ import {BaiVietService} from './service/bai-viet.service';
     FormsModule,
     CommonModule,
     PaginatorModule,
-    NgbAccordionModule
+    NgbAccordionModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   exports: [LayoutsModule],
   providers: [

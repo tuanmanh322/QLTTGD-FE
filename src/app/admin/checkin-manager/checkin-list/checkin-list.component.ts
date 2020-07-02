@@ -117,9 +117,7 @@ export class CheckinListComponent implements OnInit {
     this.nhatKySearch.tuNgay = null;
   }
 
-  detailCheckin() {
 
-  }
 
   resetFilter() {
     this.nhatKySearch.denNgay = null;

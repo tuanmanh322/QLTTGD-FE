@@ -36,12 +36,8 @@ import {ChartsModule} from 'ng2-charts';
     AppBootstrapModule,
     NgbModule,
     SharedModule.forRoot(),
-    AppRoutingModule,
-    // FlatpickrModule.forRoot(),
-    // CalendarModule.forRoot({
-    //   provide: DateAdapter,
-    //   useFactory: adapterFactory,
-    // }),
+    AppRoutingModule
+
 
   ],
   providers: [

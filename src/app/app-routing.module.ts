@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './shared/layouts/main/main.component';
 import {MainClientComponent} from './shared/client-layouts/main-client/main-client.component';
 import {AuthGuard} from './shared/guard/auth.guard';
