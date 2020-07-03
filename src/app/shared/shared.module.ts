@@ -14,6 +14,7 @@ import {ChuDeService} from './service/chu-de.service';
 import {BaiVietService} from './service/bai-viet.service';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import {FlatpickrDefaults} from 'angularx-flatpickr';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
     DataService,
     NotificationService,
     ChuDeService,
-    BaiVietService
+    BaiVietService,
+    FlatpickrDefaults
   ]
 })
 export class SharedModule {

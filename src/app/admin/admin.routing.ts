@@ -53,6 +53,10 @@ const routes: Routes = [
         path: 'contact',
         loadChildren: () => import('./contact-manager/contact-manager.module').then(m => m.ContactManagerModule)
       },
+      {
+        path: 'subject',
+        loadChildren: () => import('./subject-manager/subject.module').then(m => m.SubjectModule)
+      }
     ]
   }
 ];

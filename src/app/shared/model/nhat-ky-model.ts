@@ -8,4 +8,6 @@ export interface NhatKyModel {
    maThe?: string;
 
    ngayCheckIn?: Date;
+
+  idRole?: number;
 }

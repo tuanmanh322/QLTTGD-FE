@@ -35,7 +35,8 @@ export class CheckinListComponent implements OnInit {
     totalRecords: 0,
     denNgay: null,
     tuNgay: null,
-    tenLop: null
+    tenLop: null,
+    idRole: null
   };
   lopHoc: LopEnti[];
   nhatKyList: NhatKyModel[];
@@ -43,7 +44,7 @@ export class CheckinListComponent implements OnInit {
   tlForm = new FormControl();
   idLopForm = new FormControl();
   checkIn: boolean;
-
+  roleF = new FormControl();
   constructor(
     private api: ApiService,
     private title: Title,
@@ -111,6 +112,7 @@ export class CheckinListComponent implements OnInit {
 
   doSearch() {
     this.nhatKySearch.tenLop = this.tlForm.value;
+    this.nhatKySearch.idRole = this.roleF.value;
     this.nhatKySearch.page = 0;
     this.loadAllCheckin();
     this.nhatKySearch.denNgay = null;
@@ -123,6 +125,7 @@ export class CheckinListComponent implements OnInit {
     this.nhatKySearch.denNgay = null;
     this.nhatKySearch.tuNgay = null;
     this.nhatKySearch.tenLop = '';
+    this.nhatKySearch.idRole = null;
     this.loadAllCheckin();
   }
 }

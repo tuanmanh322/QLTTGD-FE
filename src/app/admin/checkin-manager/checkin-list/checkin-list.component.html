@@ -166,6 +166,21 @@
                          placeholder="Đến ngày" [(ngModel)]="nhatKySearch.denNgay">
                 </div>
               </div>
+              <div class="col-md-6 item form-group">
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Loại người dùng <span
+                  class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 ">
+                  <select [formControl]="roleF">
+                    <option value="" selected disabled>--Role--</option>
+                    <option value="">All</option>
+                    <option [value]="1" >ADMIN</option>
+                    <option [value]="2" >Giáo viên</option>
+                    <option [value]="3" >Học sinh</option>
+<!--                    <option [value]="4" >Khách</option>-->
+                  </select>
+                </div>
+              </div>
             </div>
 
             <div class="item form-group">
@@ -212,6 +227,12 @@
                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                         aria-label="Mã lớp: activate to sort column ascending" style="width: 185px;">Thời gian vào
                     </th>
+                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                        aria-label="Mã lớp: activate to sort column ascending" style="width: 185px;">Chức vụ
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                        aria-label="Mã lớp: activate to sort column ascending" style="width: 185px;">Action
+                    </th>
                   </tr>
                   </thead>
                   <tbody>
@@ -221,6 +242,10 @@
                     <td>{{nk.userName}}</td>
                     <td>{{nk.tenLop}}</td>
                     <td>{{nk.ngayCheckIn}}</td>
+                    <td *ngIf="nk.idRole === 1">Admin</td>
+                    <td *ngIf="nk.idRole === 2">Giáo viên</td>
+                    <td *ngIf="nk.idRole === 3">Học sinh</td>
+                    <td *ngIf="nk.idRole === 4">Khách</td>
                     <td>
                       <div class="form-group">
                         <button class="btn btn-info" routerLink="/admin/qlttgd/checkin/detail/{{nk.idThe}}">Detail</button>
