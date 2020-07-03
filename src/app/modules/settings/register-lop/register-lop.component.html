@@ -10,6 +10,7 @@
       <th scope="col">Thởi gian bắt đầu</th>
       <th scope="col">Thởi gian kết thúc</th>
       <th scope="col">Sĩ Số</th>
+      <th scope="col">Số học sinh đã đăng ký</th>
       <th scope="col">Học Phí</th>
       <th scope="col">Kíp dạy</th>
       <th scope="col">Action</th>
@@ -23,6 +24,7 @@
       <td>{{o.thoigianbatdau|date: 'dd-MM-yyyy'}}</td>
       <td>{{o.thoigianketthuc|date: 'dd-MM-yyyy'}}</td>
       <td>{{o.siso}}</td>
+      <td>{{o.countSiSo}}</td>
       <td>{{o.hocphi}}</td>
       <td *ngIf="o.kipDay == 1">{{kip1}}</td>
       <td *ngIf="o.kipDay == 2">{{kip2}}</td>
@@ -31,7 +33,7 @@
       <td *ngIf="o.kipDay == 5">{{kip5}}</td>
       <td>
         <div class="form-group">
-          <input type="checkbox" (change)="getLop($event, o)"   />
+          <input [disabled]="o.siso === o.countSiSo" type="checkbox" (change)="getLop($event, o)"   />
         </div>
       </td>
     </tr>

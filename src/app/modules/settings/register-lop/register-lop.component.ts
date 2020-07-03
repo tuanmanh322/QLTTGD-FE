@@ -36,7 +36,7 @@ export class RegisterLopComponent implements OnInit {
   }
 
   fetchAllLop() {
-    this.api.get('/api/lop-hoc/all-unexpired').subscribe(res => {
+    this.api.get('/api/lop-hoc/get-lop-unexpired').subscribe(res => {
       this.lopLIst = res;
     });
   }

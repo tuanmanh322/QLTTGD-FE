@@ -26,4 +26,6 @@ export interface LopEnti {
   gioKetThuc?: Date;
 
   idULM?: number;
+
+  countSiSo?: number;
 }

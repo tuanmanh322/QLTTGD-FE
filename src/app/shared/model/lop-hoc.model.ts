@@ -19,4 +19,5 @@ export interface LopHocModel {
   diem15p?: number;
   diem90p?: number;
   diemTB?: number;
+  countSiSo?: number;
 }

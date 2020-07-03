@@ -30,6 +30,10 @@ export class ReportManagerComponent implements OnInit {
   points = [];
   data = [6, 6];
 
+  barChar = {
+    data: [],
+    label: ''
+  }
   Linechart: any[] = [];
 
   constructor(
