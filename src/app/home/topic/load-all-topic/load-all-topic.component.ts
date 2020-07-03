@@ -156,11 +156,8 @@ export class LoadAllTopicComponent implements OnInit {
     this.checkLogin();
     this.checkAlreadyLike(bv.idBV);
     this.clickCount = index;
-<<<<<<< HEAD
-    if (this.isLike === true ) {
-=======
+
     if (this.isLike === true) {
->>>>>>> master
       const bvp = {
         luotthich: bv.luotthich - 1
       };
@@ -168,11 +165,7 @@ export class LoadAllTopicComponent implements OnInit {
         this.getAllTopic();
         this.disableDislike = true;
       });
-<<<<<<< HEAD
-    } else if (this.isLike === false){
-=======
     } else if (this.isLike === false) {
->>>>>>> master
       const bvp = {
         luotthich: bv.luotthich + 1
       };
@@ -187,30 +180,17 @@ export class LoadAllTopicComponent implements OnInit {
   clickDislike(bv: BaiVietTotal, index: number) {
     this.checkLogin();
     this.checkAlreadyDisLike(bv.idBV);
-<<<<<<< HEAD
-    this.clickCount++;
-    if (this.isDislike === true ) {
-      const bvp = {
-        luotkhongthich: bv.luotkhongthich - 1
-      };
-      this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bv).subscribe(res => {
-=======
     this.clickCount = index;
     if (this.isDislike === true) {
       const bvp = {
         luotkhongthich: bv.luotkhongthich - 1
       };
       this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
->>>>>>> master
         this.getAllTopic();
         this.disableLike = true;
         this.clickCount = 0;
       });
-<<<<<<< HEAD
-    } else if (this.isDislike === false  ){
-=======
     } else if (this.isDislike === false) {
->>>>>>> master
       const bvp = {
         luotkhongthich: bv.luotkhongthich + 1
       };

@@ -8,10 +8,6 @@ import {CommonModule} from '@angular/common';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {PaginatorModule} from '../../shared/paginator/paginator.module';
 import {RouterModule} from '@angular/router';
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 
 @NgModule({
   declarations: [ClassCreateComponent, ClassListComponent, ClassDetailComponent, ClassEditComponent],
