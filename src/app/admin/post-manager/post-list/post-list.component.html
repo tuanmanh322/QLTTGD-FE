@@ -23,53 +23,49 @@
           <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left">
             <div class="row">
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Chủ đề<span class="required">*</span>
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="tenChuDe">Chủ đề<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input type="text" id="last-name" name="last-name" required="required" class="form-control">
+                  <select id="tenChuDe" [formControl]="cdF">
+                    <option selected disabled>--Chủ đề--</option>
+                    <option value="">All</option>
+                    <option *ngFor="let cd of cdList" [value]="cd.tenChude">{{cd.tenChude}}</option>
+                  </select>
                 </div>
               </div>
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align">Hạng mục <span class="required">*</span>
+                <label class="col-form-label col-md-3 col-sm-3 label-align">Trạng thái <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <select class="form-control form-control-sm" id="HangMuc">
-                    <option selected="">-- Hạng mục --</option>
-                    <option value="DAI_6">Đại số 6</option>
-                    <option value="HINHHOC_6">Hình học 6</option>
-                    <option value="DAI_7">Đại số 7</option>
-                    <option value="HINHHOC_7">Hình học 7</option>
-                    <option value="DAI_8">Đại số 8</option>
-                    <option value="HINHHOC_8">Hình học 8</option>
-                    <option value="DAI_9">Đại số 9</option>
-                    <option value="HINHHOC_9">Hình học 9</option>
+                  <select class="form-control form-control-sm" id="active" [formControl]="acF">
+                    <option disabled selected="">--Trạng thái --</option>
+                    <option value="">All</option>
+                    <option [value]="0">Khóa</option>
+                    <option [value]="1">Mở</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Ngày đăng bài viết<span class="required">*</span>
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="titleBV">Tên bài viết<span class="required">*</span>
                 </label>
-                <div class="col-md-3 col-sm-3 ">
-                  <input type="text" id="last-name" name="last-name" required="required" class="form-control" placeholder="Từ ngày">
-                </div>
-                <div class="col-md-3 col-sm-3 ">
-                  <input type="text" id="last-name" name="last-name" required="required" class="form-control" placeholder="Đến ngày">
+                <div class="col-md-6 col-sm-6 ">
+                  <input type="text" id="titleBV" name="titleBV" required="required" class="form-control" [(ngModel)]="bvS.titleBV" (focus)="bvS.titleBV =''; search()">
                 </div>
               </div>
               <div class="col-md-6 item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Tên bài viết<span class="required">*</span>
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="noidung">Nội dung bài viết:<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input type="text" id="last-name" name="last-name" required="required" class="form-control">
+                  <input type="text" id="noidung" name="noidung" required="required" class="form-control" [(ngModel)]="bvS.noidung" (focus)="bvS.noidung =''; search()">
                 </div>
 
               </div>
             </div>
             <div class="item form-group">
               <div class="col-md-8 col-sm-6 offset-md-5">
-                <button type="submit" class="btn btn-success">Search</button>
+                <button type="submit" class="btn btn-success" (click)="search()">Search</button>
               </div>
             </div>
           </form>
@@ -81,87 +77,46 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card-box table-responsive">
-
+          <h5 class="float-right">Tổng số bản ghi : {{bvS.totalRecords}}</h5>
           <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width:100%">
             <thead>
             <tr>
               <th>STT</th>
               <th>Chủ đề</th>
-              <th>Mã bài viết</th>
+              <th>Tiêu đề</th>
               <th>Nội dung</th>
               <th>Like</th>
+              <td>Dislike</td>
               <th>Ngày đăng</th>
-              <th>Chi Tiết</th>
+              <th>Người đăng</th>
+              <th>Trạng thái</th>
+              <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>1</td>
-              <td>NHOM1_TOAN6</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>45</td>
-              <td>0</td>
+            <tr *ngFor="let bv of bvL; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{bv.tenChuDe}}</td>
+              <td>{{bv.titleBV}}</td>
+              <td [innerHTML]="bv.noidung"></td>
+              <td>{{bv.luotthich}}</td>
+              <td>{{bv.luotkhongthich}}</td>
+              <td>{{bv.createDate|date: 'dd-MM-yyyy'}}</td>
+              <td>{{bv.username}}</td>
+              <td>{{bv.active}}</td>
+              <td>
+                <div class="form-group">
+                  <button *ngIf="bv.active === 0" class="btn btn-danger" title="Mở" (click)="activeBV(bv.id)">Mở</button>
+                  <button   *ngIf="bv.active === 1" class="btn btn-danger" title="Khóa" (click)="unActiveBV(bv.id)">Khóa</button>
+                  <button class="btn btn-danger" title="Xóa" (click)="deleteBV(bv.id)">Xóa</button>
+                </div>
+              </td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>NHOM2_TOAN6</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>NHOM1_TOAN7</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>NHOM2_TOAN7</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>NHOM1_TOAN8</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>NHOM2_TOAN8</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>NHOM1_TOAN9</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>NHOM2_TOAN9</td>
-              <td>01-03-2020</td>
-              <td>01-04-2020</td>
-              <td>40</td>
-              <td>0</td>
-            </tr>
+
             </tbody>
           </table>
         </div>
+        <app-paginator [searchObject]="bvS" (searchFunction)="fetch()"></app-paginator>
       </div>
     </div>
   </div>
