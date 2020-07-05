@@ -2,7 +2,7 @@
   <div class="wrap">
     <form action="#" method="post" type="submit" class="form" id="titlebv" >
       <div class="pull-left txt" style="width: 708px"><input type="text" class="form-control" placeholder="Search Topics"
-                                                  (focus)="bvTitle.setValue('') ; Search('')"           name="titleTopic" [formControl]="bvTitle"></div>
+                                                  (focus)="bvTitle.setValue('') ; Search('','')"           name="titleTopic" [formControl]="bvTitle"></div>
             <div class="pull-right">
               <button class="btn btn-default table-hover" type="submit" (click)="onSend()"><i class="fa fa-search"></i></button>
             </div>
@@ -10,9 +10,10 @@
     </form>
   </div>
 </div>
-<div   class="searchList">
+<div   class="searchList" id="search-list">
   <!--  <span *ngIf="isLoading" 1i8n>Loading</span>-->
-  <span class="dropdown-item"   *ngFor="let tit of baivietAuto | async"  (click)="Search(tit.titleBV)">{{tit.titleBV}}</span>
+  <span class="dropdown-item"   *ngFor="let tit of baivietAuto | async"  (click)="Search(tit.titleBV, null)">{{tit.titleBV}}</span>
+  <span class="dropdown-item"   *ngFor="let tit of bvContentAuto | async"  (click)="Search(null, tit.contentBV)">{{tit.contentBV}}</span>
 </div>
 <h1>Chủ đề : {{cdName}} </h1>
 <div *ngIf="isRenderDATA === true">
@@ -36,8 +37,10 @@
         </div>
       </div>
       <div class="posttext pull-left">
-        <h2><a routerLink="/all-topic/topic/{{bv.idBV}}">{{bv.titleBV}}</a></h2>
-        <div [innerHTML]="bv.noidungBV"></div>
+        <a class="click-detail" routerLink="/all-topic/topic/{{bv.idBV}}"><h2>{{bv.titleBV}}</h2>
+          <div [innerHTML]="bv.noidungBV" class="content-bv">
+          </div>
+        </a>
       </div>
       <div class="clearfix"></div>
     </div>
@@ -59,4 +62,4 @@
 <div class="text-danger" *ngIf="isRenderDATA === false">
   {{message}}
 </div>
-<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="Search(titleNew)"></app-paginator>
+<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="Search(titleNew,null)"></app-paginator>

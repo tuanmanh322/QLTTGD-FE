@@ -31,7 +31,8 @@ export class LoadAllTopicComponent implements OnInit {
     titleBV: '',
     idChuDe: null,
     orders: [],
-    totalRecords: 0
+    totalRecords: 0,
+    noidungBV: ''
   };
   date: any;
   timeFormatter: number = 0;
@@ -53,7 +54,8 @@ export class LoadAllTopicComponent implements OnInit {
   titleBV = new FormControl();
 
   bvauto: Observable<Baiviet[] | Observable<Baiviet[]>>;
-
+  bvAutoContent: Observable<Baiviet[] | Observable<Baiviet[]>>;
+  clickSearch: boolean;
   constructor(
     private apiService: ApiService,
     private title: Title,
@@ -91,6 +93,13 @@ export class LoadAllTopicComponent implements OnInit {
       tap(() => this.isLoading = true),
       switchMap(title => this.baiVietService.loadAutoCompleteBV(title)),
       tap(() => this.isLoading = false));
+
+    this.bvAutoContent = this.titleBV.valueChanges.pipe(
+      debounceTime(400),
+      distinctUntilChanged(),
+      tap(() => this.isLoading = true),
+      switchMap(title => this.baiVietService.loadAutoCompleteContentBV(title)),
+      tap(() => this.isLoading = false));
   }
 
   getProfile() {
@@ -107,14 +116,11 @@ export class LoadAllTopicComponent implements OnInit {
 
   }
 
-  doSearch(title: string) {
+  doSearch(title: string, content: string) {
     this.baiVietSearchTotal.titleBV = title;
+    this.baiVietSearchTotal.noidungBV = content;
     this.getAllTopic();
     this.titleTopic = title;
-    // $('input, textarea').each(function() {
-    //   $(this).attr('placeholder', $(this).val());
-    //   $(this).val('');
-    // });
   }
 
   getQuery() {

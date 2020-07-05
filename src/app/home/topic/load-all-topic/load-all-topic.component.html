@@ -1,19 +1,25 @@
 <!--<div class="post" *ngFor="let bv of baiVietTotal | paginate: {itemsPerPage: baiVietSearchTotal.pageSize, currentPage: baiVietSearchTotal.page, totalItems: baiVietSearchTotal.totalRecords} ">-->
 <div class="">
   <div class="wrap">
-    <form action="#" method="post" type="submit" class="form" id="titlebv" >
-      <div class="pull-left txt" style="width: 708px"><input type="text" class="form-control" placeholder="Search Topics"
-                                                        (focus)="titleBV.setValue('') ; doSearch('')"     name="titleTopic" [formControl]="titleBV"></div>
+    <form action="#" method="post" type="submit" class="form" id="titlebv">
+      <div class="pull-left txt" style="width: 708px"><input type="text" class="form-control"
+                                                             placeholder="Search Topics"
+                                                             (focus)="titleBV.setValue('') ; doSearch('', '')"
+                                                             name="titleTopic" [formControl]="titleBV"></div>
       <div class="pull-right">
-        <button class="btn btn-default table-hover" type="submit" (click)="onSend()"><i class="fa fa-search"></i></button>
+        <button class="btn btn-default table-hover" type="submit" (click)="onSend()"><i class="fa fa-search"></i>
+        </button>
       </div>
       <div class="clearfix"></div>
     </form>
   </div>
 </div>
-<div   class="searchList">
-<!--  <span *ngIf="isLoading" 1i8n>Loading</span>-->
-  <span class="dropdown-item"   *ngFor="let tit of bvauto | async"  (click)="doSearch(tit.titleBV)">{{tit.titleBV}}</span>
+<div class="searchList" id="search-list">
+  <!--  <span *ngIf="isLoading" 1i8n>Loading</span>-->
+  <span class="dropdown-item" *ngFor="let tit of bvauto | async"
+        (click)="doSearch(tit.titleBV, null)">{{tit.titleBV}}</span>
+  <span class="dropdown-item" *ngFor="let tit of bvAutoContent | async"
+        (click)="doSearch(null,tit.contentBV)">{{tit.contentBV}}</span>
 </div>
 <div class="post"
      *ngFor="let bv of baiVietTotal; let i = index">
@@ -31,16 +37,19 @@
         <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
       </div>
       <div class="icons" style="display: contents!important;">
-        <button class="button-icons" (click)="clickLike(bv, i)"  ><i
-          class="fa fa-thumbs-up" [ngStyle]="{'color': isLike===true && clickCount === i ?'blue' : 'black'} "><span>{{bv.luotthich}}</span></i></button>
-        <button class="button-icons" (click)="clickDislike(bv, i)"   ><i
+        <button class="button-icons" (click)="clickLike(bv, i)"><i
+          class="fa fa-thumbs-up"
+          [ngStyle]="{'color': isLike===true && clickCount === i ?'blue' : 'black'} "><span>{{bv.luotthich}}</span></i>
+        </button>
+        <button class="button-icons" (click)="clickDislike(bv, i)"><i
           class="fa fa-thumbs-down"><span>{{bv.luotkhongthich}}</span></i></button>
       </div>
     </div>
     <div class="posttext pull-left">
-      <h2><a routerLink="/all-topic/topic/{{bv.idBV}}">{{bv.titleBV}}</a></h2>
-      <div [innerHTML]="bv.noidungBV" class="content-bv">
-      </div>
+      <a class="click-detail" routerLink="/all-topic/topic/{{bv.idBV}}"><h2>{{bv.titleBV}}</h2>
+        <div [innerHTML]="bv.noidungBV" class="content-bv">
+        </div>
+      </a>
     </div>
     <div class="clearfix"></div>
   </div>
@@ -53,10 +62,10 @@
 
     </div>
     <div class="views" *ngIf="bv.viewCounts === null && !bv.viewCounts"><i class="fa fa-eye"></i>0</div>
-    <div class="views"  *ngIf="bv.viewCounts !== null && bv.viewCounts"><i class="fa fa-eye"></i>{{bv.viewCounts}}</div>
+    <div class="views" *ngIf="bv.viewCounts !== null && bv.viewCounts"><i class="fa fa-eye"></i>{{bv.viewCounts}}</div>
     <div class="time"><i class="fa fa-clock-o"></i>{{bv.createDate| date: 'dd-MM-yyyy'}}</div>
   </div>
   <div class="clearfix"></div>
 </div><!-- POST -->
-<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="doSearch(titleTopic)"></app-paginator>
+<app-paginator [searchObject]="baiVietSearchTotal" (searchFunction)="doSearch(titleTopic, null)"></app-paginator>
 <!--<pagination-controls (pageChange)="baiVietSearchTotal.page = $event"></pagination-controls>-->

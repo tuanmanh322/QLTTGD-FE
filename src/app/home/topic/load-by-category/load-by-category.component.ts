@@ -42,6 +42,7 @@ export class LoadByCategoryComponent implements OnInit {
   bvTitle = new FormControl();
   idCD = 0;
 
+  bvContentAuto: Observable<Baiviet[] | Observable<Baiviet[]>>;
   constructor(
     private apiService: ApiService,
     private title: Title,
@@ -62,6 +63,13 @@ export class LoadByCategoryComponent implements OnInit {
       switchMap((title) => this.baivietService.loadAutoCompleteCD(title, this.idCD)),
       tap(() => this.isloading = false)
     );
+    this.bvContentAuto = this.bvTitle.valueChanges.pipe(
+      debounceTime(400),
+      distinctUntilChanged(),
+      tap(() => this.isloading = true),
+      switchMap((title) => this.baivietService.loadAutoCompleteContentCD(title, this.idCD)),
+      tap(() => this.isloading = false)
+    );
     this.getQuery();
   }
 
@@ -77,8 +85,9 @@ export class LoadByCategoryComponent implements OnInit {
     );
   }
 
-  Search(title: string) {
+  Search(title: string, content: string) {
     this.baiVietSearchTotal.titleBV = title;
+    this.baiVietSearchTotal.noidungBV = content;
     this.getAllByCDid();
     this.titleTopic = '';
     this.titleNew = title;

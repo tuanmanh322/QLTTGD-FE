@@ -22,4 +22,5 @@ export interface Baiviet {
   idThe?: number;
   viewCounts?: number;
   titleBV?: string;
+  contentBV?: string;
 }

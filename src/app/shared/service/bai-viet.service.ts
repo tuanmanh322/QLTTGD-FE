@@ -28,6 +28,7 @@ export class BaiVietService {
       })
     );
   }
+
   public loadAutoCompleteCD(title: string, idCd: number): Observable<Baiviet[]> {
     if (!title) {
       return of([]);
@@ -38,6 +39,37 @@ export class BaiVietService {
       idCD: idCd
     };
     return this.http.post<Baiviet[]>(`${environment.api_rest}/api/auto-complete/cd`, auto).pipe(
+      catchError(err => {
+        return Observable.throw(err);
+      })
+    );
+  }
+
+  public loadAutoCompleteContentBV(title: string): Observable<Baiviet[]> {
+    if (!title) {
+      return of([]);
+    }
+    const auto = {
+      keyword: title,
+      excludeKeywords: []
+    };
+    return this.http.post<Baiviet[]>(`${environment.api_rest}/api/auto-complete/bv-content`, auto).pipe(
+      catchError(err => {
+        return Observable.throw(err);
+      })
+    );
+  }
+
+  public loadAutoCompleteContentCD(title: string, idCd: number): Observable<Baiviet[]> {
+    if (!title) {
+      return of([]);
+    }
+    const auto = {
+      keyword: title,
+      excludeKeywords: [],
+      idCD: idCd
+    };
+    return this.http.post<Baiviet[]>(`${environment.api_rest}/api/auto-complete/cd-content`, auto).pipe(
       catchError(err => {
         return Observable.throw(err);
       })

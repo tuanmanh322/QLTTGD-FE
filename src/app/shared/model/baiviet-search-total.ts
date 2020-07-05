@@ -5,4 +5,5 @@ export interface BaivietSearchTotal extends BaseSearch {
   idChuDe?: number;
   startDate?: Date;
   endDate?: Date;
+  noidungBV?: string;
 }

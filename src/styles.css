@@ -1,54 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~ngx-toastr/toastr.css';
 @import '../node_modules/angular-calendar/css/angular-calendar.css';
+
 #toast-container > div {
-  opacity:1;
+  opacity: 1;
 }
-.avatar-preview{
+
+.avatar-preview {
   border-radius: 50%;
   width: 166px;
   height: 166px;
   margin-left: 87px;
 }
-.avatar-logo{
+
+.avatar-logo {
   width: 52px;
   height: 52px;
 }
-a{
-  text-decoration: none!important;
+
+a {
+  text-decoration: none !important;
 }
 
-a:hover{
+a:hover {
   cursor: pointer;
   color: red;
 }
-.notifications-inbox1{
+
+.notifications-inbox1 {
   height: 46px;
 }
-.notifications-inbox{
+
+.notifications-inbox {
   height: 46px;
 }
-.img-avt-comment{
+
+.img-avt-comment {
   border-radius: 50%;
   width: 43px;
   height: 37px;
 }
-.img-avt-recomment{
+
+.img-avt-recomment {
   border-radius: 50%;
   width: 33px;
   height: 25px;
 }
-.content-bv{
-  width: 542px!important;
+
+.content-bv {
+  width: 542px !important;
 }
-figure.image>img{
-  width: 542px!important;
+
+figure.image > img {
+  width: 542px !important;
 }
-.toggler{
+
+.toggler {
   display: none;
 }
 
-.noti-count{
+.noti-count {
   position: absolute;
   margin-left: -7px;
   padding-bottom: -63px;
@@ -56,15 +67,23 @@ figure.image>img{
   color: red;
   font-size: 30px;
 }
-.item-noti{
-  background-color: white!important;
+
+.item-noti {
+  background-color: white !important;
 }
-.img-avt-checkin{
+
+.img-avt-checkin {
   border-radius: 50%;
   width: 146px;
   height: 146px;
 }
-.link-hover:hover{
+
+.link-hover:hover {
   color: red;
   cursor: pointer;
+}
+
+.click-detail:hover {
+  cursor: pointer;
+  box-shadow: 10px 10px 5px #aaaaaa;
 }

@@ -15,17 +15,27 @@ export class ReportManagerComponent implements OnInit {
 
   allHS = 0;
 
+  allGV = 0;
+
+  gvActive = 0;
   barChartOptions: ChartOptions = {
     responsive: true,
   };
   //Polararea , Doughnut, line
-  barChartLabels: Label[] = ['Học sinh Hoạt động', 'Tổng số học sinh'];
+  barChartLabels: Label[] = ['Hoạt động', 'Tổng số '];
   barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartPlugins = [];
 
-  barChartData: ChartDataSets[] = [{data: [], label: 'Học sinh'}];
+  barChartData: ChartDataSets[] = [
+    {data: [], label: 'Học sinh'}
+  ];
   barchart = [];
+
+  gvChar = {
+    data: [],
+    label: 'Giáo viên'
+  };
 
   points = [];
   data = [6, 6];
@@ -33,7 +43,7 @@ export class ReportManagerComponent implements OnInit {
   barChar = {
     data: [],
     label: ''
-  }
+  };
   Linechart: any[] = [];
 
   constructor(
@@ -62,6 +72,19 @@ export class ReportManagerComponent implements OnInit {
           ite.data.push(this.allHS);
           this.points.push(this.allHS);
         });
+      });
+    });
+    this.api.get('/api/giao-vien/count-all-gv-ac').subscribe(res => {
+      this.gvActive = res;
+      this.gvChar.data.push(this.gvActive);
+      this.api.get('/api/giao-vien/count-all-gv').subscribe(res => {
+        this.allGV = res;
+        this.gvChar.data.push(this.allGV);
+        this.barChartData.push(this.gvChar);
+        this.gvChar = {
+          data: [],
+          label: 'Giáo viên'
+        };
       });
     });
   }

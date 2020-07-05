@@ -56,6 +56,10 @@ const routes: Routes = [
       {
         path: 'subject',
         loadChildren: () => import('./subject-manager/subject.module').then(m => m.SubjectModule)
+      },
+      {
+        path: 'points',
+        loadChildren: () => import('./points-manager/points-manager.module').then(m => m.PointsManagerModule)
       }
     ]
   }
