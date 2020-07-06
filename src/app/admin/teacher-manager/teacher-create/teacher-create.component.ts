@@ -26,6 +26,10 @@ export class TeacherCreateComponent implements OnInit {
   kip4 = 'Kíp 4(15h-18h)';
   kip5 = 'Kíp 5(18h30-21h30)';
 
+  preview = '';
+
+  isSelect: boolean;
+
   constructor(
     public activeModal: NgbActiveModal,
     private api: ApiService,
@@ -50,12 +54,24 @@ export class TeacherCreateComponent implements OnInit {
       // kipDay: new FormControl('', [Validators.required]),
       luongcoban: new FormControl('', [Validators.required]),
       idLop: new FormControl('', [Validators.required]),
+      imageGV: new FormControl('')
     });
   }
 
   onCreate() {
     if (this.gvForm.valid) {
-      this.api.post('/api/giao-vien/add', this.gvForm.value).subscribe(res => {
+      const data = new FormData();
+      data.append('sex',this.gvForm.get('sex').value);
+      data.append('name',this.gvForm.get('name').value);
+      data.append('birthday',this.gvForm.get('birthday').value);
+      data.append('cmt',this.gvForm.get('cmt').value);
+      data.append('sodt',this.gvForm.get('sodt').value);
+      data.append('luongcoban',this.gvForm.get('luongcoban').value);
+      data.append('idLop',this.gvForm.get('idLop').value);
+      if (this.isSelect === true){
+        data.append('imageGV',this.gvForm.get('imageGV').value);
+      }
+      this.api.post('/api/giao-vien/add', data).subscribe(res => {
         this.card = res.data;
         this.activeModal.dismiss();
         this.api.onFilter('create-teacher');
@@ -64,6 +80,24 @@ export class TeacherCreateComponent implements OnInit {
     }
 
   }
+
+  onSelectFile(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      this.preview = reader.result as string;
+      if (file.type === 'image/jpeg' || file.type === 'image/pjpeg' || file.type === 'image/png' || file.type === 'image/jpg') {
+        this.isSelect = true;
+        this.gvForm.get('imageGV').setValue(file);
+      } else {
+        this.isSelect = false;
+        this.toastr.error('Định dạng file không đúng');
+        this.gvForm.get('imageGV').setValue('');
+      }
+    }
+  }
+
 
   get f() {
     return this.gvForm.controls;

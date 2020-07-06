@@ -1,9 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ApiService } from 'src/app/shared/service/api.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {ApiService} from 'src/app/shared/service/api.service';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-student-create',
@@ -13,33 +13,50 @@ import { ToastrService } from 'ngx-toastr';
 export class StudentCreateComponent implements OnInit {
   @ViewChild('submitele') submitele: ElementRef<HTMLElement>;
   hocSinhForm: FormGroup;
+
+  fileSelect: boolean;
+
+  preview = '';
+
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private apiService: ApiService,
     private router: Router,
     private toarst: ToastrService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.hocSinhForm = this.fb.group({
       tenhocsinh: ['', [Validators.required]],
       ngaysinh: ['', [Validators.required]],
       sodt: ['', [Validators.required]],
-      email: ['', [Validators.required]],
       diachi: ['', [Validators.required]],
-      lopHoc: ['', [Validators.required]],
-      maMonhoc: ['', [Validators.required]]
+      sex: ['', [Validators.required]],
+      imageHS: ['']
     });
   }
+
   get f() {
     return this.hocSinhForm.controls;
   }
+
   onSubmit() {
-    if (this.hocSinhForm.invalid){
+    if (this.hocSinhForm.invalid) {
       return;
     }
-    this.apiService.post('/api/hoc-sinh/add', this.hocSinhForm.value).subscribe(res => {
+    const fd = new FormData();
+    fd.append('birthday', this.hocSinhForm.get('ngaysinh').value);
+    fd.append('tenhocsinh', this.hocSinhForm.get('tenhocsinh').value);
+    fd.append('sodt', this.hocSinhForm.get('sodt').value);
+    fd.append('diachi', this.hocSinhForm.get('diachi').value);
+    fd.append('sex', this.hocSinhForm.get('sex').value);
+    if (this.fileSelect === true) {
+      fd.append('imageHS', this.hocSinhForm.get('imageHS').value);
+    }
+
+    this.apiService.post('/api/hoc-sinh/add', fd).subscribe(res => {
       this.toarst.success('Thêm mới học sinh thành công');
       this.apiService.onFilter('create');
       this.activeModal.dismiss();
@@ -47,8 +64,28 @@ export class StudentCreateComponent implements OnInit {
       this.toarst.error('Thêm mới thất bại');
     });
   }
-  cancel(){
+
+  cancel() {
     this.activeModal.dismiss();
+  }
+
+  SelectFile(event) {
+    const reader = new FileReader();
+    if (event.target.files.length && event.target.files) {
+      const [file] = event.target.files;
+      // read file as url
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.preview = reader.result as string;
+        if (file.type === 'image/jpeg' || file.type === 'image/pjpeg' || file.type === 'image/png' || file.type === 'image/jpg') {
+          this.hocSinhForm.get('imageHS').setValue(file);
+          this.fileSelect = true;
+        } else {
+          this.toarst.error('Định dạng ảnh không đúng!');
+          this.hocSinhForm.get('imageHS').setValue('');
+        }
+      };
+    }
   }
 
 }
