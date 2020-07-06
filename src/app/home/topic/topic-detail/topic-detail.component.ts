@@ -7,9 +7,10 @@ import * as EditorClassic from '@ckeditor/ckeditor5-build-classic';
 import {ToastrService} from 'ngx-toastr';
 import {UploadAdapter} from '../../../shared/model/upload-adapter';
 import {UserProfileModel} from '../../../shared/model/user-profile.model';
-import {CURRENT_USER} from '../../../shared/model/qlttgd.constant';
+import {CURRENT_USER, TOKEN} from '../../../shared/model/qlttgd.constant';
 import {UserService} from '../../../shared/service/user.service';
 import {NotificationService} from '../../../shared/service/notification.service';
+import {BaiVietTotal} from '../../../shared/model/bai-viet-total';
 
 declare var $: any;
 
@@ -25,7 +26,12 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
   commentContent = '';
   userProfile: UserProfileModel;
   repcomment = '';
-
+  isDislike: boolean;
+  isLike: boolean;
+  private isAction: boolean;
+  clickCount = 0;
+  private disableDislike: boolean;
+  private disableLike: boolean;
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
@@ -81,7 +87,20 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
   }
 
   postRepComment(idCM: number) {
-
+    if (this.repcomment === '' || this.repcomment.length <= 0) {
+      this.toastr.error('Bạn chưa nhập vào nội dung!');
+      return;
+    }
+    const repcm = {
+      noidung: this.repcomment
+    };
+    const fd = new FormData();
+    fd.append('noidung', this.repcomment);
+    this.apiService.post('/api/rep-comment/rep-comment/' + idCM, fd).subscribe(res => {
+      this.baiVietDetail();
+    }, error => {
+      this.toastr.error('Repcomment failed!');
+    });
   }
 
   postComment(idBv: number) {
@@ -131,11 +150,70 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       eleMain.classList.add('toggler');
     }
   }
+  clickLike(bv: Baiviet, index: number) {
+    this.checkLogin();
+    this.checkAlreadyLike(bv.id);
+    this.clickCount = index;
+    if (this.isLike === true) {
+      const bvp = {
+        luotthich: bv.luotthich - 1
+      };
+      this.apiService.post('/api/baiviet/like/' + bv.id, bvp).subscribe(res => {
+        this.baiVietDetail();
+        this.disableDislike = true;
+      });
+    } else if (this.isLike === false) {
+      const bvp = {
+        luotthich: bv.luotthich + 1
+      };
+      this.apiService.post('/api/baiviet/like/' + bv.id, bvp).subscribe(res => {
+        this.baiVietDetail();
+        this.disableDislike = true;
+      });
+    }
+    this.isAction = true;
+  }
 
+  clickDislike(bv: Baiviet, index: number) {
+    this.checkLogin();
+    this.checkAlreadyDisLike(bv.id);
+    this.clickCount = index;
+    if (this.isDislike === true) {
+      const bvp = {
+        luotkhongthich: bv.luotkhongthich - 1
+      };
+      this.apiService.post('/api/baiviet/dislike/' + bv.id, bvp).subscribe(res => {
+        this.baiVietDetail();
+        this.disableLike = true;
+        this.clickCount = 0;
+      });
+    } else if (this.isDislike === false) {
+      const bvp = {
+        luotkhongthich: bv.luotkhongthich + 1
+      };
+      this.apiService.post('/api/baiviet/dislike/' + bv.id, bvp).subscribe(res => {
+        this.baiVietDetail();
+        this.disableLike = true;
+        this.clickCount = 0;
+      });
+    }
+  }
   checkLogin() {
-    if (!this.userProfile){
+    if (localStorage.getItem(TOKEN) === null) {
       this.toastr.error('Bạn cần phải đăng nhập để thực hiện thao tác này!');
       return;
     }
+  }
+
+  checkAlreadyLike(idBV: number) {
+    this.apiService.get('/api/notification/already-like/' + idBV).subscribe(res => {
+      this.isLike = res;
+    });
+  }
+
+  checkAlreadyDisLike(idBV: number) {
+    this.apiService.get('/api/notification/already-dislike/' + idBV).subscribe(res => {
+      this.isDislike = res;
+    });
   }
 }

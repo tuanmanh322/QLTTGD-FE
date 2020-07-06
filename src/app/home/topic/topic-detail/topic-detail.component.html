@@ -14,8 +14,10 @@
         <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
       </div>
       <div class="icons" style="display: contents!important;">
-        <button class="button-icons" (click)="checkLogin()"><i class="fa fa-thumbs-up blue"><span>{{baiViet.luotthich}}</span></i></button>
-        <button class="button-icons"  (click)="checkLogin()"><i class="fa fa-thumbs-down"><span>{{baiViet.luotkhongthich}}</span></i></button>
+        <button class="button-icons" (click)="clickLike( baiViet, 0)"><i
+          class="fa fa-thumbs-up blue"><span>{{baiViet.luotthich}}</span></i></button>
+        <button class="button-icons" (click)="clickDislike(baiViet,0)"><i
+          class="fa fa-thumbs-down"><span>{{baiViet.luotkhongthich}}</span></i></button>
       </div>
     </div>
     <div class="posttext pull-left">
@@ -39,7 +41,9 @@
   </div>
   <div class="clearfix"></div>
   <div class="form-group">
-    <button class="comment-reply reply-popup" (click)="checkLogin()"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>
+    <button class="comment-reply reply-popup" (click)="checkLogin()"><i class="fa fa-reply-all" aria-hidden="true"></i>
+      Reply
+    </button>
     <button class="fa-share"><i class="fa fa-share" aria-hidden="true"></i> Share</button>
   </div>
 
@@ -57,16 +61,45 @@
     <div [innerHTML]="cm.noiDung"></div>
     <div class="icons" style="display: contents!important;">
       <div class="form-group">
-        <button class="button-icons"  (click)="checkLogin()"><i class="fa fa-thumbs-up blue"><span>{{cm.luotThich}}</span></i></button>
-        <button class="button-icons"  (click)="checkLogin()"><i class="fa fa-thumbs-down"><span>{{cm.loutKhongthich}}</span></i></button>
+        <button class="button-icons" (click)="checkLogin()"><i
+          class="fa fa-thumbs-up blue"><span>{{cm.luotThich}}</span></i></button>
+        <button class="button-icons" (click)="checkLogin()"><i
+          class="fa fa-thumbs-down"><span>{{cm.loutKhongthich}}</span></i></button>
         <button class="comment-reply reply-popup{{i}}" (click)="clickToggle(i)"><i class="fa fa-reply-all"
                                                                                    aria-hidden="true"></i> Reply
         </button>
         <span>{{cm.commentDate| date: 'dd-MM-yyyy'}}</span>
       </div>
     </div>
+    <div *ngIf="cm.repCommentDTOS !== null">
+      <div *ngFor="let rep of cm.repCommentDTOS; let j = index" style="margin-left: 70px">
+        <a routerLink="/profile/profile-emp/{{cm.idUser}}">
+     <span class="commenter-pic">
+              <img *ngIf="rep.imageAvatarRCM !== null" src="{{rep.imageAvatarRCM}}"
+                   class="img-fluid img-avt-recomment">
+               <img *ngIf="rep.imageAvatarRCM === null" src="../../../../assets/img/default.png"
+                    class="img-fluid img-avt-recomment">
+            </span>
+          <span>{{rep.userName}}</span>
+        </a>
+        <div [innerHTML]="rep.noidung"></div>
+        <div class="icons" style="display: contents!important;">
+          <div class="form-group">
+            <button class="button-icons" (click)="checkLogin()"><i
+              class="fa fa-thumbs-up blue"><span>{{rep.luotthich}}</span></i></button>
+            <button class="button-icons" (click)="checkLogin()"><i
+              class="fa fa-thumbs-down"><span>{{rep.luotkhongthich}}</span></i></button>
+            <button class="comment-reply reply-popup{{i}}" (click)="clickToggle(j)"><i class="fa fa-reply-all"
+                                                                                       aria-hidden="true"></i> Reply
+            </button>
+            <span>{{rep.repDate| date: 'dd-MM-yyyy'}}</span>
+          </div>
+        </div>
+        <!--      comment rep comment-->
+      </div>
+    </div>
     <div class="container" *ngIf="userProfile">
-      <div class="comment-box add-comment reply-box{{i}} toggler" id="toggletest{{i}}">
+      <div class="comment-box add-comment reply-box{{i}} toggler" id="toggletest{{i}}" style="margin-left: 70px">
            <span class="commenter-pic">
               <img *ngIf="userProfile.imagePath !== null" src="{{userProfile.imagePath}}"
                    class="img-fluid img-avt-comment">
@@ -81,7 +114,6 @@
             </span>
       </div>
     </div>
-
   </div>
   <hr class="border-bottom p-2"/>
 
