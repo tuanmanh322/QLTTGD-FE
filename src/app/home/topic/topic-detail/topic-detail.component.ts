@@ -86,7 +86,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
 
   }
 
-  postRepComment(idCM: number) {
+  postRepComment(idCM: number, idBV: number) {
     if (this.repcomment === '' || this.repcomment.length <= 0) {
       this.toastr.error('Bạn chưa nhập vào nội dung!');
       return;
@@ -96,7 +96,7 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
     };
     const fd = new FormData();
     fd.append('noidung', this.repcomment);
-    this.apiService.post('/api/rep-comment/rep-comment/' + idCM, fd).subscribe(res => {
+    this.apiService.post('/api/rep-comment/rep-comment/' + idCM +'/' + idBV, fd).subscribe(res => {
       this.baiVietDetail();
     }, error => {
       this.toastr.error('Repcomment failed!');

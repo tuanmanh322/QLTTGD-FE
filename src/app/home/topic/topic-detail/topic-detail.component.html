@@ -109,7 +109,7 @@
         <span class="commenter-name">
               <ckeditor [editor]="editor" [(ngModel)]="repcomment" (ready)="onReady($event)"
                         placeholder="Add a public reply" name="Add Comment"></ckeditor>
-              <button type="submit" class="btn btn-default" (click)="postRepComment(cm.id)">Reply</button>
+              <button type="submit" class="btn btn-default" (click)="postRepComment(cm.id, baiViet.id)">Reply</button>
               <button type="cancel" class="btn btn-default reply-popup" (click)="removeDisplay(i)">Cancel</button>
             </span>
       </div>
