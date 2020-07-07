@@ -87,3 +87,8 @@ figure.image > img {
   cursor: pointer;
   box-shadow: 10px 10px 5px #aaaaaa;
 }
+.get-link:hover{
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}

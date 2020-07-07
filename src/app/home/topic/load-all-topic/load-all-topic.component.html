@@ -4,10 +4,10 @@
     <form action="#" method="post" type="submit" class="form" id="titlebv">
       <div class="pull-left txt" style="width: 708px"><input type="text" class="form-control"
                                                              placeholder="Search Topics"
-                                                             (focus)="titleBV.setValue('') ; doSearch('', '')"
+                                                             (focus)="titleBV.setValue('');setStyle()"
                                                              name="titleTopic" [formControl]="titleBV"></div>
       <div class="pull-right">
-        <button class="btn btn-default table-hover" type="submit" (click)="onSend()"><i class="fa fa-search"></i>
+        <button class="btn btn-default table-hover" type="submit" (click)="doSearch('','')"><i class="fa fa-search"></i>
         </button>
       </div>
       <div class="clearfix"></div>

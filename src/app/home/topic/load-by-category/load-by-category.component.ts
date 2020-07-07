@@ -91,6 +91,13 @@ export class LoadByCategoryComponent implements OnInit {
     this.getAllByCDid();
     this.titleTopic = '';
     this.titleNew = title;
+    let ele  = document.getElementById('search-list');
+    ele.style.display = 'none';
+  }
+
+  setStyle() {
+    let ele  = document.getElementById('search-list');
+    ele.style.display = 'block';
   }
 
   getAllByCDid() {

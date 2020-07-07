@@ -38,27 +38,33 @@
 
         <!-- -->
         <div class="sidebarblock">
-          <h3>Chủ đề</h3>
+          <span style="font-size: 24px; font-weight: bold">Hạng mục</span>
+          <span class="float-right" style="margin-top: 6px;
+    margin-right: 21px;">Tổng số bài viết : <span  style="background-color: #bdc3c7;
+    font-size: 16px;
+    color: #ffffff;
+    font-family: 'Open Sans Bold', sans-serif;
+    margin-top: 7px;">{{totalCount}}</span></span>
           <div class="divline"></div>
           <div class="blocktxt">
-<!--            <div id="chuyende" class="panel-collapse collapse show">-->
-<!--              <ul class="list-group">-->
-<!--                <li class="list-item" *ngFor="let gra of gradList; let i = index">-->
-<!--                  <a data-toggle="collapse" href="{{'#grad'+i}}" (click)="toggleDate(i)">{{gra.gradeName}}<i class="fa fa-chevron fa-fw" ></i></a>-->
-<!--                  <div id="{{'#grad'+i}}" class="panel-collapse collapse" >-->
-<!--                    <ul class="list-group">-->
-<!--                      <li class="list-item" *ngFor="let the of gra.thematicDTOS;let i = index"><a data-toggle="collapse" routerLink="/thematic/{{subjectId}}/detail/{{the.id}}" >{{the.title}}</a></li>-->
-<!--                    </ul>-->
-<!--                  </div>-->
-<!--                </li>-->
-<!--              </ul>-->
-<!--            </div>-->
-            <ul class="cats">
-              <li><a routerLink="/all-topic" #getAllVL>All<span
-                class="badge pull-right">{{totalCount}}</span></a></li>
-              <li *ngFor="let topic of chuDeCount"><a routerLink="/all-topic/by-c/{{topic.id}}">{{topic.tenChude}}<span
-                class="badge pull-right">{{topic.baiVietCount}}</span></a></li>
-            </ul>
+            <div id="chuyende" class="panel-collapse collapse show">
+              <ul class="list-group cats">
+                <li class="list-item" *ngFor="let hm of subMenu; let i = index">
+                  <a data-toggle="collapse" href="{{'#hm'+i}}" (click)="toggleDate(i)">{{hm.tenHM}} <span class="float-right">{{hm.chudes.length}} chủ đề</span> <i class="fa fa-chevron fa-fw" ></i></a>
+                  <div id="{{'#hm'+i}}" class="panel-collapse collapse" >
+                    <ul class="list-group" style="margin-left: 10px">
+                      <li class="list-item" *ngFor="let cd of hm.chudes;let i = index"><a class="get-link" data-toggle="collapse" routerLink="/all-topic/by-c/{{cd.id}}" >{{cd.tenChude}}<span class="badge pull-right">{{cd.baiVietCount}}</span></a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+<!--            <ul class="cats">-->
+<!--              <li><a routerLink="/all-topic" #getAllVL>All<span-->
+<!--                class="badge pull-right">{{totalCount}}</span></a></li>-->
+<!--              <li *ngFor="let topic of chuDeCount"><a routerLink="/all-topic/by-c/{{topic.id}}">{{topic.tenChude}}<span-->
+<!--                class="badge pull-right">{{topic.baiVietCount}}</span></a></li>-->
+<!--            </ul>-->
           </div>
         </div>
 

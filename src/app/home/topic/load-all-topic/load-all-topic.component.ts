@@ -90,9 +90,9 @@ export class LoadAllTopicComponent implements OnInit {
     this.bvauto = this.titleBV.valueChanges.pipe(
       debounceTime(400),
       distinctUntilChanged(),
-      tap(() => this.isLoading = true),
+      tap(() => this.clickSearch = true),
       switchMap(title => this.baiVietService.loadAutoCompleteBV(title)),
-      tap(() => this.isLoading = false));
+      tap(() => this.clickSearch = false));
 
     this.bvAutoContent = this.titleBV.valueChanges.pipe(
       debounceTime(400),
@@ -121,8 +121,13 @@ export class LoadAllTopicComponent implements OnInit {
     this.baiVietSearchTotal.noidungBV = content;
     this.getAllTopic();
     this.titleTopic = title;
+    let ele = document.getElementById('search-list');
+    ele.style.display = 'none';
   }
-
+  setStyle() {
+    let ele = document.getElementById('search-list');
+    ele.style.display = 'block';
+  }
   getQuery() {
     this.apiService.sub.subscribe(
       item => {

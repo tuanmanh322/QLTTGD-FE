@@ -8,4 +8,10 @@ export interface ChudeModel {
    noidung?: string;
 
    tenHangmuc?: string;
+
+  tenChude?: string;
+
+  maChude?: string;
+
+  noiDung?: string;
 }
