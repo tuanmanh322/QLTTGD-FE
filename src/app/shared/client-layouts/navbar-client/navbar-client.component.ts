@@ -230,14 +230,16 @@ export class NavbarClientComponent implements OnInit {
   }
 
   showNoti() {
-    let eleNoti = document.getElementById('shownoti');
-    switch (eleNoti.classList.length) {
-      case 1:
-        eleNoti.classList.add('toggler');
-        break;
-      case 2:
-        eleNoti.classList.remove('toggler');
-        break;
+    if (this.userService.isLogin()){
+      let eleNoti = document.getElementById('shownoti');
+      switch (eleNoti.classList.length) {
+        case 1:
+          eleNoti.classList.add('toggler');
+          break;
+        case 2:
+          eleNoti.classList.remove('toggler');
+          break;
+      }
     }
   }
 

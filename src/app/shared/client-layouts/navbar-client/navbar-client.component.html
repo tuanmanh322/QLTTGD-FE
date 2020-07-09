@@ -7,8 +7,8 @@
         <!-- MAIN IMAGE -->
         <img style="width: -webkit-fill-available!important;" src="../../../../assets/img/slide.jpg" alt="slidebg1"
              data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
-<!--        <img style="width: -webkit-fill-available!important;" src="../../../../assets/img/maths-ftr.jpg" alt="slidebg1"-->
-<!--             data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">-->
+        <!--        <img style="width: -webkit-fill-available!important;" src="../../../../assets/img/maths-ftr.jpg" alt="slidebg1"-->
+        <!--             data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">-->
         <!-- LAYERS -->
       </li>
     </ul>
@@ -34,16 +34,16 @@
         </div>
       </div>
       <div class="col-lg-3 search hidden-xs hidden-sm col-md-1">
-<!--        <div class="wrap">-->
-<!--          <form action="#" method="post" class="form" (ngSubmit)="getDataTitle()">-->
-<!--            <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"-->
-<!--                                              [(ngModel)]="titles" name="titles"></div>-->
-<!--            <div class="pull-right">-->
-<!--              <button class="btn btn-default table-hover" type="submit"><i class="fa fa-search"></i></button>-->
-<!--            </div>-->
-<!--            <div class="clearfix"></div>-->
-<!--          </form>-->
-<!--        </div>-->
+        <!--        <div class="wrap">-->
+        <!--          <form action="#" method="post" class="form" (ngSubmit)="getDataTitle()">-->
+        <!--            <div class="pull-left txt"><input type="text" class="form-control" placeholder="Search Topics"-->
+        <!--                                              [(ngModel)]="titles" name="titles"></div>-->
+        <!--            <div class="pull-right">-->
+        <!--              <button class="btn btn-default table-hover" type="submit"><i class="fa fa-search"></i></button>-->
+        <!--            </div>-->
+        <!--            <div class="clearfix"></div>-->
+        <!--          </form>-->
+        <!--        </div>-->
       </div>
       <div class="col-lg-5 col-xs-12 col-sm-5 col-md-5 avt">
         <div class="stnt pull-left">
@@ -52,18 +52,22 @@
         <div class="stnt pull-left">
           <button class="btn btn-info" (click)="createContact()">Tạo liên hệ</button>
         </div>
-        <div class="env pull-left"><a (click)="showNoti()"><img class="notifications-inbox" src="../../../../assets/img/no-notification.png"
-                                           alt="Notification" id="notification-icon" (click)="isReadAll()"/><span
+        <div class="env pull-left"><a (click)="showNoti()"><img class="notifications-inbox"
+                                                                src="../../../../assets/img/no-notification.png"
+                                                                alt="Notification" id="notification-icon"
+                                                                (click)="isReadAll()"/><span
           class="noti-count" *ngIf="isAuthenticate">{{notiCount}}</span></a></div>
         <div class="notifications-show toggler" *ngIf="isAuthenticate" id="shownoti">
           <ul class="notification-item">
-            <li *ngFor="let noti of notification"><a (click)="checkMoveDetail()" [routerLink]="['/all-topic/topic/',noti.idBaiViet]">
-              <div   id="itemnoti" [ngStyle]="{
+            <li *ngFor="let noti of notification"><a (click)="checkMoveDetail()"
+                                                     [routerLink]="['/all-topic/topic/',noti.idBaiViet]">
+              <div id="itemnoti" [ngStyle]="{
               'background-color': noti.isRead == 0 ? 'darkturquoise': 'white'
               }">
                 {{noti.userName}} đã {{noti.message}} về bài viết {{noti.titleBV}} của bạn!
               </div>
-            </a></li> <br>
+            </a></li>
+            <br>
           </ul>
         </div>
         <!--        <div class="dropdown env pull-left">-->
@@ -92,9 +96,11 @@
             <li role="presentation"><a role="menuitem" routerLink="/admin/qlttgd" *appHasAnyAuthority="['ROLE_ADMIN']">Trang
               điều khiển</a>
             </li>
-            <li role="presentation"><a role="menuitem"   routerLink="/settings/register-lop" *appHasAnyAuthority="['ROLE_STUDENT']">Đăng ký lớp học</a></li>
+            <li role="presentation"><a role="menuitem" routerLink="/settings/register-lop"
+                                       *appHasAnyAuthority="['ROLE_STUDENT']">Đăng ký lớp học</a></li>
             <!--            <li role="presentation"><a role="menuitem" routerLink="">Inbox</a></li>-->
-            <li role="presentation"><a role="menuitem"  class="link-hover" (click)="changePassword()">Thay đổi mật khẩu</a></li>
+            <li role="presentation"><a role="menuitem" class="link-hover" (click)="changePassword()">Thay đổi mật
+              khẩu</a></li>
             <li role="presentation"><a role="menuitem" routerLink="" (click)="logOut()">Log Out</a></li>
           </ul>
         </div>

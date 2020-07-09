@@ -5,7 +5,6 @@
     <th scope="col">STT</th>
     <th scope="col">HỌ VÀ TÊN</th>
     <th scope="col">NGÀY VÀO</th>
-    <th scope="col">NGÀY RA</th>
     <th scope="col">TRẠNG THÁI</th>
   </tr>
   </thead>
@@ -13,8 +12,7 @@
   <tr *ngFor="let ck of checkInModel; let i = index">
     <th scope="row">{{i + 1}}</th>
     <td>{{ck.name}}</td>
-    <td>{{ck.ngayVao | date: 'dd-MM-yyyy'}}</td>
-    <td>{{ck.thoiGianRa | date: 'dd-MM-yyyy'}}</td>
+    <td>{{ck.ngayVao}}</td>
     <td *ngIf="ck.trangthai == 1">Hoạt động</td>
     <td *ngIf="ck.trangthai == 0">Không hoạt động</td>
   </tr>

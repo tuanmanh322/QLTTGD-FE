@@ -17,6 +17,7 @@ import { ProfileTailieuEditComponent } from './profile-tailieu-edit/profile-tail
 import { ProfilePointsAddComponent } from './profile-points-add/profile-points-add.component';
 import { ProfilePointsEditComponent } from './profile-points-edit/profile-points-edit.component';
 import { RegisterLopComponent } from './register-lop/register-lop.component';
+import {PipeModule} from '../../shared/pipe/pipe.module';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { RegisterLopComponent } from './register-lop/register-lop.component';
       }
 
     ]),
-    PaginatorModule
+    PaginatorModule,
+    PipeModule
   ]
 })
 export class SettingsModule {

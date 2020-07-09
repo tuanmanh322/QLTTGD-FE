@@ -17,8 +17,6 @@ export interface CheckinModel {
 
   ngayVao?: Date;
 
-  thoiGianRa?: Date;
-
   idUser?: number;
 
    name?: string;
