@@ -1,4 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {NotificationService} from '../../service/notification.service';
 
 @Component({
   selector: 'app-main-client',
@@ -6,11 +7,17 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   styleUrls: ['./main-client.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class MainClientComponent implements OnInit {
+export class MainClientComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(
+    private notifiService: NotificationService
+  ) { }
 
   ngOnInit(): void {
+    this.notifiService.startListening();
   }
 
+  ngOnDestroy(): void {
+    this.notifiService.stopListenning();
+  }
 }

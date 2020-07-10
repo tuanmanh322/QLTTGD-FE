@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {LoginModel} from '../model/login.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {CURRENT_USER, MA_THE, ROLE, TOKEN} from '../model/qlttgd.constant';
+import {CURRENT_USER, MA_THE, TOKEN} from '../model/qlttgd.constant';
 import {ToastrService} from 'ngx-toastr';
 import {UserProfileModel} from '../model/user-profile.model';
 import {Router} from '@angular/router';
@@ -41,6 +41,7 @@ export class UserService {
 
   logOut() {
     localStorage.clear();
+    sessionStorage.clear();
   }
 
   getProfile() {

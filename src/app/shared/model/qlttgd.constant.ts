@@ -24,3 +24,4 @@ export const TOKEN = 'TOKEN';
 export const MA_THE = 'MA_THE';
 export const AUTHORITIES_KEY = 'Authorities';
 export const TITLE = 'TITLE';
+export const SESSIONID = 'SESSIONID';

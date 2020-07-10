@@ -15,6 +15,7 @@ import {BaiVietService} from './service/bai-viet.service';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {FlatpickrDefaults} from 'angularx-flatpickr';
+import {CookieeService} from './service/Cookiee.service';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {FlatpickrDefaults} from 'angularx-flatpickr';
     NotificationService,
     ChuDeService,
     BaiVietService,
-    FlatpickrDefaults
+    FlatpickrDefaults,
+    CookieeService
   ]
 })
 export class SharedModule {

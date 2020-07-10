@@ -37,11 +37,10 @@
         <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
       </div>
       <div class="icons" style="display: contents!important;">
-        <button class="button-icons" (click)="clickLike(bv, i)"><i
-          class="fa fa-thumbs-up"
-          [ngStyle]="{'color': isLike===true && clickCount === i ?'blue' : 'black'} "><span>{{bv.luotthich}}</span></i>
+        <button class="button-icons" (click)="clickLike(bv, i)" id="disableLike{{i}}"><i
+          class="fa fa-thumbs-up" ><span>{{bv.luotthich}}</span></i>
         </button>
-        <button class="button-icons" (click)="clickDislike(bv, i)"><i
+        <button class="button-icons" (click)="clickDislike(bv, i)" id="disableDisLike{{i}}"><i
           class="fa fa-thumbs-down"><span>{{bv.luotkhongthich}}</span></i></button>
       </div>
     </div>

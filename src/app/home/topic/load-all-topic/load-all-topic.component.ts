@@ -56,6 +56,7 @@ export class LoadAllTopicComponent implements OnInit {
   bvauto: Observable<Baiviet[] | Observable<Baiviet[]>>;
   bvAutoContent: Observable<Baiviet[] | Observable<Baiviet[]>>;
   clickSearch: boolean;
+
   constructor(
     private apiService: ApiService,
     private title: Title,
@@ -124,10 +125,12 @@ export class LoadAllTopicComponent implements OnInit {
     let ele = document.getElementById('search-list');
     ele.style.display = 'none';
   }
+
   setStyle() {
     let ele = document.getElementById('search-list');
     ele.style.display = 'block';
   }
+
   getQuery() {
     this.apiService.sub.subscribe(
       item => {
@@ -162,17 +165,20 @@ export class LoadAllTopicComponent implements OnInit {
 
   clickLike(bv: BaiVietTotal, index: number) {
     this.checkLogin();
-    this.checkAlreadyLike(bv.idBV);
+    this.checkAlreadyLike(bv.idBV, index);
     this.clickCount = index;
-    if (this.isLike === true) {
-      const bvp = {
-        luotthich: bv.luotthich - 1
-      };
-      this.apiService.post('/api/baiviet/like/' + bv.idBV, bvp).subscribe(res => {
-        this.getAllTopic();
-        this.disableDislike = true;
-      });
-    } else if (this.isLike === false) {
+    if (this.isLike === true && this.isDislike === true) {
+      $('#disableLike' + index).attr('disable', 'disable');
+
+      this.toastr.error('Bạn đã vote bài viết này rồi!');
+      // const bvp = {
+      //   luotthich: bv.luotthich - 1
+      // };
+      // this.apiService.post('/api/baiviet/like/' + bv.idBV, bvp).subscribe(res => {
+      //   this.getAllTopic();
+      //   this.disableDislike = true;
+      // });
+    } else if (this.isLike === false && this.isDislike === false) {
       const bvp = {
         luotthich: bv.luotthich + 1
       };
@@ -186,18 +192,21 @@ export class LoadAllTopicComponent implements OnInit {
 
   clickDislike(bv: BaiVietTotal, index: number) {
     this.checkLogin();
-    this.checkAlreadyDisLike(bv.idBV);
+    this.checkAlreadyDisLike(bv.idBV, index);
     this.clickCount = index;
-    if (this.isDislike === true) {
-      const bvp = {
-        luotkhongthich: bv.luotkhongthich - 1
-      };
-      this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
-        this.getAllTopic();
-        this.disableLike = true;
-        this.clickCount = 0;
-      });
-    } else if (this.isDislike === false) {
+    if (this.isDislike === true && this.isLike === true) {
+
+      $('#disableDisLike' + index).attr('disable', 'disable');
+      this.toastr.error('Bạn đã vote bài viết này rồi!');
+      // const bvp = {
+      //   luotkhongthich: bv.luotkhongthich - 1
+      // };
+      // this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
+      //   this.getAllTopic();
+      //   this.disableLike = true;
+      //   this.clickCount = 0;
+      // });
+    } else if (this.isDislike === false && this.isLike === false) {
       const bvp = {
         luotkhongthich: bv.luotkhongthich + 1
       };
@@ -220,15 +229,27 @@ export class LoadAllTopicComponent implements OnInit {
     }
   }
 
-  checkAlreadyLike(idBV: number) {
+  checkAlreadyLike(idBV: number, i: number) {
     this.apiService.get('/api/notification/already-like/' + idBV).subscribe(res => {
       this.isLike = res;
+      let elem = document.getElementById('disableLike' + i);
+      if (this.isLike === true){
+        elem.style.color = 'blue';
+      } else {
+        elem.style.color = 'black';
+      }
     });
   }
 
-  checkAlreadyDisLike(idBV: number) {
+  checkAlreadyDisLike(idBV: number, i: number) {
     this.apiService.get('/api/notification/already-dislike/' + idBV).subscribe(res => {
       this.isDislike = res;
+      let elem = document.getElementById('disableDisLike' + i);
+      if (this.isDislike === true){
+        elem.style.color = 'blue';
+      } else {
+        elem.style.color = 'black';
+      }
     });
   }
 

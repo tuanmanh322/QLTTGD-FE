@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {RxStompService} from '@stomp/ng2-stompjs';
 import {ApiService} from './api.service';
+import {ToastrService} from 'ngx-toastr';
 
 
 @Injectable({
@@ -10,7 +11,8 @@ export class NotificationService {
 
 
   constructor(
-    private rxStompService: RxStompService, private apiService: ApiService
+    private rxStompService: RxStompService, private apiService: ApiService,
+    private toarstr: ToastrService
   ) {
 
   }
@@ -23,6 +25,7 @@ export class NotificationService {
       this.rxStompService.activate();
     }
     this.notification = this.rxStompService.watch('/user/queue/feed').subscribe((message) => {
+      this.toarstr.success('Bạn có 1 thông báo mới');
       var img = <HTMLImageElement> document.getElementById('notification-icon');
       img.src = '../../../assets/img/no-notification.png';
 
@@ -54,7 +57,7 @@ export class NotificationService {
   }
 
   getNofitication() {
-    return this.apiService.get('/api/notification/all');
+    return this.apiService.get('/api/notification/all-detail');
   }
 
   isUnread(){

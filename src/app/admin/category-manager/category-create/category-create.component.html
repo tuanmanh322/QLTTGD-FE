@@ -15,6 +15,13 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="maChude">Tên chủ đề *:</label>
+        <input type="text" class="form-control" formControlName="tenChude" id="maChude">
+        <div *ngIf="f.tenChude.errors && (f.tenChude.touched || f.tenChude.dirty)">
+          <div class="text text-danger" *ngIf="f.tenChude.errors.required">Bạn cần nhập vào tên chủ đề</div>
+        </div>
+      </div>
+      <div class="form-group">
         <label for="noiDung">Nội dung *:</label>
         <textarea type="text" class="form-control" formControlName="noiDung" id="noiDung" cols="5" rows="12"></textarea>
         <div *ngIf="f.noiDung.errors && (f.noiDung.touched || f.noiDung.dirty)">

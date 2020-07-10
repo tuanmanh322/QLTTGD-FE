@@ -9,8 +9,9 @@ import {Token} from '../../shared/model/token';
 import {StorageService} from '../../shared/service/storage.service';
 import {UserService} from '../../shared/service/user.service';
 import {Router} from '@angular/router';
-import {LOGIN_SUCCESS} from '../../shared/model/qlttgd.constant';
+import {LOGIN_SUCCESS, SESSIONID} from '../../shared/model/qlttgd.constant';
 import {EventManagement} from '../../shared/service/event.management';
+import {CookieeService} from '../../shared/service/Cookiee.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private ngbModal: NgbModal,
     private router: Router,
-    private eventmanager: EventManagement
+    private eventmanager: EventManagement,
+    private cookiee: CookieeService
   ) {
   }
 
@@ -58,6 +60,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(login).subscribe(res => {
         const token = res.headers.get('Authorization');
         // this.tokenM = res.body;
+        this.cookiee.saveCookie(SESSIONID, token);
         this.storageSerivce.saveToken(token);
         this.storageSerivce.saveUser(login.maThe);
         this.userService.identity(true).then(() => {

@@ -2,7 +2,7 @@ import {InjectableRxStompConfig} from '@stomp/ng2-stompjs';
 import {TOKEN} from './shared/model/qlttgd.constant';
 
 
-export const myStompConfig: InjectableRxStompConfig ={
+export const myStompConfig: InjectableRxStompConfig = {
   // Which server?
   brokerURL: 'ws://localhost:1234/greeting/websocket',
 
@@ -11,7 +11,6 @@ export const myStompConfig: InjectableRxStompConfig ={
   connectHeaders: {
     Authorization : localStorage.getItem(TOKEN)
   },
-
   // How often to heartbeat?
   // Interval in milliseconds, set to 0 to disable
   heartbeatIncoming: 0, // Typical value 0 - disabled
@@ -28,4 +27,4 @@ export const myStompConfig: InjectableRxStompConfig ={
   debug: (msg: string): void => {
     console.log(new Date(), msg);
   }
-}
+};

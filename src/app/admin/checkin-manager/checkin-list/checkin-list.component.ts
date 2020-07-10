@@ -83,6 +83,7 @@ export class CheckinListComponent implements OnInit {
           this.checkCount = this.userCheckIn.nhatcheckins.length;
           this.mtForm.setValue('');
           this.idLopForm.setValue('');
+          this.toastr.success('Checkin thành công!');
           this.loadAllCheckin();
         }
       }, error => {

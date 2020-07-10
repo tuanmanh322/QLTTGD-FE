@@ -25,7 +25,7 @@ export class CategoryCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api.get('/api/mon-hoc/all').subscribe(res => {
+    this.api.get('/api/hang-muc/all').subscribe(res => {
       this.hangmuc = res;
     });
     this.cdForm = this.fb.group({
@@ -46,7 +46,7 @@ export class CategoryCreateComponent implements OnInit {
         maChude: this.cdForm.get('maChude').value,
         tenChude: this.cdForm.get('tenChude').value,
         noiDung: this.cdForm.get('noiDung').value,
-        maHangmucbaiviet: this.cdForm.get('maHangmucbaiviet').value
+        idHangMuc: this.cdForm.get('maHangmucbaiviet').value
       };
       this.api.post('/api/chu-de/add', hmE).subscribe(res => {
         this.api.onFilter('Add topic');

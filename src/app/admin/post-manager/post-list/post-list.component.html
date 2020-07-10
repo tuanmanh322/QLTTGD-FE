@@ -40,8 +40,8 @@
                   <select class="form-control form-control-sm" id="active" [formControl]="acF">
                     <option disabled selected="">--Trạng thái --</option>
                     <option value="">All</option>
-                    <option [value]="0">Khóa</option>
-                    <option [value]="1">Mở</option>
+                    <option [value]="0">Chờ duyệt</option>
+                    <option [value]="1">Đã duyệt</option>
                   </select>
                 </div>
               </div>
@@ -103,7 +103,8 @@
               <td>{{bv.luotkhongthich}}</td>
               <td>{{bv.createDate|date: 'dd-MM-yyyy'}}</td>
               <td>{{bv.username}}</td>
-              <td>{{bv.active}}</td>
+              <td *ngIf="bv.active === 0">Chờ duyệt</td>
+              <td *ngIf="bv.active === 1">Đã duyệt</td>
               <td>
                 <div class="form-group">
                   <button *ngIf="bv.active === 0" class="btn btn-danger" title="Mở" (click)="activeBV(bv.id)">Mở</button>
