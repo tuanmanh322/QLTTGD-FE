@@ -60,16 +60,17 @@ export class TeacherCreateComponent implements OnInit {
 
   onCreate() {
     if (this.gvForm.valid) {
+      let ngaysinh = (new Date(this.gvForm.get('birthday').value)).toUTCString();
       const data = new FormData();
-      data.append('sex',this.gvForm.get('sex').value);
-      data.append('name',this.gvForm.get('name').value);
-      data.append('birthday',this.gvForm.get('birthday').value);
-      data.append('cmt',this.gvForm.get('cmt').value);
-      data.append('sodt',this.gvForm.get('sodt').value);
-      data.append('luongcoban',this.gvForm.get('luongcoban').value);
-      data.append('idLop',this.gvForm.get('idLop').value);
-      if (this.isSelect === true){
-        data.append('imageGV',this.gvForm.get('imageGV').value);
+      data.append('sex', this.gvForm.get('sex').value);
+      data.append('name', this.gvForm.get('name').value);
+      data.append('birthday', ngaysinh);
+      data.append('cmt', this.gvForm.get('cmt').value);
+      data.append('sodt', this.gvForm.get('sodt').value);
+      data.append('luongcoban', this.gvForm.get('luongcoban').value);
+      data.append('idLop', this.gvForm.get('idLop').value);
+      if (this.isSelect === true) {
+        data.append('imageGV', this.gvForm.get('imageGV').value);
       }
       this.api.post('/api/giao-vien/add', data).subscribe(res => {
         this.card = res.data;

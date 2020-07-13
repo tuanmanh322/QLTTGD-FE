@@ -92,3 +92,8 @@ figure.image > img {
   cursor: pointer;
   font-weight: bold;
 }
+.tag-link:hover{
+  color: yellow!important;
+  font-weight: bold!important;
+  cursor: pointer!important;
+}

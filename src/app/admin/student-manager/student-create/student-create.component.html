@@ -49,17 +49,17 @@
           <label for="ngaysinh">Ngày sinh</label>
           <input type="date" class="form-control" formControlName="ngaysinh" id="ngaysinh">
           <div *ngIf="f.ngaysinh.errors && (f.ngaysinh.dirty || f.ngaysinh.touched)" class="text-danger">
-            <div *ngIf="f.ngaysinh.errors.required">Thời gian bắt đầu không được để trống</div>
+            <div *ngIf="f.ngaysinh.errors.required">Ngày sinh không được để trống</div>
           </div>
         </div>
 
-<!--        <div class="form-group">-->
-<!--          <label for="sodt">Số điện thoại </label>-->
-<!--          <input type="text" class="form-control" formControlName="sodt" id="sodt">-->
-<!--          <div *ngIf="f.sodt.errors && (f.sodt.dirty || f.sodt.touched)" class="text-danger">-->
-<!--            <div *ngIf="f.sodt.errors.required">Số điện thoại không được để trống</div>-->
-<!--          </div>-->
-<!--        </div>-->
+        <div class="form-group">
+          <label for="sodt">Số điện thoại </label>
+          <input type="text" class="form-control" formControlName="sodt" id="sodt">
+          <div *ngIf="f.sodt.errors && (f.sodt.dirty || f.sodt.touched)" class="text-danger">
+            <div *ngIf="f.sodt.errors.required">Số điện thoại không được để trống</div>
+          </div>
+        </div>
 <!--        <div class="form-group">-->
 <!--            <label for="email">Email</label>-->
 <!--            <input type="text" class="form-control" formControlName="email" id="sodt">-->

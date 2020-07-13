@@ -46,8 +46,9 @@ export class StudentCreateComponent implements OnInit {
     if (this.hocSinhForm.invalid) {
       return;
     }
+    let ngaysinh = (new Date(this.hocSinhForm.get('ngaysinh').value)).toUTCString();
     const fd = new FormData();
-    fd.append('birthday', this.hocSinhForm.get('ngaysinh').value);
+    fd.append('birthday', ngaysinh);
     fd.append('tenhocsinh', this.hocSinhForm.get('tenhocsinh').value);
     fd.append('sodt', this.hocSinhForm.get('sodt').value);
     fd.append('diachi', this.hocSinhForm.get('diachi').value);
