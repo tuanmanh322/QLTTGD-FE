@@ -14,9 +14,9 @@
         <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
       </div>
       <div class="icons" style="display: contents!important;">
-        <button class="button-icons" (click)="clickLike( baiViet, 0)"><i
+        <button class="button-icons" (click)="clickLike( baiViet, 0)" id="disableLikeDE"><i
           class="fa fa-thumbs-up blue"><span>{{baiViet.luotthich}}</span></i></button>
-        <button class="button-icons" (click)="clickDislike(baiViet,0)"><i
+        <button class="button-icons" (click)="clickDislike(baiViet,0)" id="disableDisLikeDE"><i
           class="fa fa-thumbs-down"><span>{{baiViet.luotkhongthich}}</span></i></button>
       </div>
     </div>
@@ -44,7 +44,9 @@
     <button class="comment-reply reply-popup" (click)="checkLogin()"><i class="fa fa-reply-all" aria-hidden="true"></i>
       Reply
     </button>
-    <button class="fa-share"> <app-facebook-share [buttonColor]="'#3b5998'"></app-facebook-share></button>
+    <button class="fa-share">
+      <app-facebook-share [buttonColor]="'#3b5998'"></app-facebook-share>
+    </button>
   </div>
 
   <hr class="border-bottom p-2"/>
@@ -61,9 +63,9 @@
     <div [innerHTML]="cm.noiDung"></div>
     <div class="icons" style="display: contents!important;">
       <div class="form-group">
-        <button class="button-icons" (click)="checkLogin()"><i
+        <button class="button-icons" (click)="ClickLikeCM(cm,i)" id="disableLikeCM{{i}}"><i
           class="fa fa-thumbs-up blue"><span>{{cm.luotThich}}</span></i></button>
-        <button class="button-icons" (click)="checkLogin()"><i
+        <button class="button-icons" (click)="ClickDisLikeCM(cm, i)" id="disableDisLikeCM{{i}}"><i
           class="fa fa-thumbs-down"><span>{{cm.loutKhongthich}}</span></i></button>
         <button class="comment-reply reply-popup{{i}}" (click)="clickToggle(i)"><i class="fa fa-reply-all"
                                                                                    aria-hidden="true"></i> Reply
@@ -85,9 +87,9 @@
         <div [innerHTML]="rep.noidung"></div>
         <div class="icons" style="display: contents!important;">
           <div class="form-group">
-            <button class="button-icons" (click)="checkLogin()"><i
+            <button class="button-icons" (click)="checkLogin()" id="likeRECm{{j}}"><i
               class="fa fa-thumbs-up blue"><span>{{rep.luotthich}}</span></i></button>
-            <button class="button-icons" (click)="checkLogin()"><i
+            <button class="button-icons" (click)="checkLogin()" id="dislikeRECm{{j}}"><i
               class="fa fa-thumbs-down"><span>{{rep.luotkhongthich}}</span></i></button>
             <button class="comment-reply reply-popup{{i}}" (click)="clickToggle(j)"><i class="fa fa-reply-all"
                                                                                        aria-hidden="true"></i> Reply

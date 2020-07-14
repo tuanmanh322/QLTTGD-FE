@@ -241,7 +241,7 @@
                     <td>{{nk.maThe}}</td>
                     <td>{{nk.userName}}</td>
                     <td>{{nk.tenLop}}</td>
-                    <td>{{nk.ngayCheckIn}}</td>
+                    <td>{{nk.ngayCheckIn | formatLocalDateTime}}</td>
                     <td *ngIf="nk.idRole === 1">Admin</td>
                     <td *ngIf="nk.idRole === 2">Giáo viên</td>
                     <td *ngIf="nk.idRole === 3">Học sinh</td>
