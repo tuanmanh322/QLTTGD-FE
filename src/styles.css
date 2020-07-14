@@ -97,3 +97,6 @@ figure.image > img {
   font-weight: bold!important;
   cursor: pointer!important;
 }
+li a.ripple-effect:hover, .link-no-href:hover{
+     cursor: pointer;
+}

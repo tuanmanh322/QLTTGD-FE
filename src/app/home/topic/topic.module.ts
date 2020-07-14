@@ -11,6 +11,7 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PaginatorModule} from '../../shared/paginator/paginator.module';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {SocialSharingModule} from '../../shared/social-sharing/social-sharing.module';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     PaginatorModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SocialSharingModule
   ],
   providers: [DataService]
 })
