@@ -35,6 +35,11 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
   private disableLike: boolean;
   isLikeCM: boolean;
   isDisLikeCM: boolean;
+  dataIDBV = [0];
+  number1 = 0;
+  number2 = 0;
+  isActionDisLike: boolean;
+  isActionLike: boolean;
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
@@ -156,55 +161,104 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
 
   clickLike(bv: Baiviet, index: number) {
     this.checkLogin();
-    this.checkAlreadyLike(bv.id, index);
-    if (this.isLike === true && this.isDislike === true) {
-      $('#disableLikeDE' + index).attr('disable', 'disable');
-
-      this.toastr.error('Bạn đã vote bài viết này rồi!');
-      // const bvp = {
-      //   luotthich: bv.luotthich - 1
-      // };
-      // this.apiService.post('/api/baiviet/like/' + bv.idBV, bvp).subscribe(res => {
-      //   this.getAllTopic();
-      //   this.disableDislike = true;
-      // });
-    } else if (this.isLike === false && this.isDislike === false) {
-      const bvp = {
-        luotthich: bv.luotthich + 1
-      };
-      this.apiService.post('/api/baiviet/like/' + bv.id, bvp).subscribe(res => {
-        this.baiVietDetail();
-        this.disableDislike = true;
-      });
+    // this.checkAlreadyLike(bv.idBV, index);
+    if (this.dataIDBV.length === 2) {
+      this.dataIDBV.splice(1, 1);
+      this.dataIDBV.unshift(bv.id);
+    } else {
+      this.dataIDBV.unshift(bv.id);
     }
-    this.isAction = true;
+    this.number1 = this.dataIDBV[0];
+    this.number2 = this.dataIDBV[1];
+    this.apiService.get('/api/notification/already-like/' + bv.id).subscribe(res => {
+      this.isLike = res;
+      let elem = document.getElementById('disableLikeDE');
+      if (this.isLike === true) {
+        elem.style.color = 'blue';
+      } else {
+        elem.style.color = 'black';
+      }
+      this.isActionLike = this.isLike;
+      if (this.isActionLike === true || this.isActionDisLike === true) {
+        $('#disableLikeDE').attr('disable', 'disable');
+
+        this.toastr.error('Bạn đã vote bài viết này rồi!');
+        // const bvp = {
+        //   luotthich: bv.luotthich - 1
+        // };
+        // this.apiService.post('/api/baiviet/like/' + bv.idBV, bvp).subscribe(res => {
+        //   this.getAllTopic();
+        //   this.disableDislike = true;
+        // });
+        this.isLike = null;
+        this.isDislike = null;
+      } else if (this.isActionLike === false || this.isActionDisLike === false) {
+        const bvp = {
+          luotthich: bv.luotthich + 1
+        };
+        this.apiService.post('/api/baiviet/like/' + bv.id, bvp).subscribe(res => {
+          this.baiVietDetail();
+          this.disableDislike = true;
+        });
+        this.isLike = null;
+        this.isDislike = null;
+      }else {
+        this.toastr.error('Bạn đã vote bài viết này rồi!');
+      }
+    });
   }
 
   clickDislike(bv: Baiviet, index: number) {
     this.checkLogin();
-    this.checkAlreadyDisLike(bv.id, index);
-    if (this.isDislike === true && this.isLike === true) {
-
-      $('#disableDisLikeDE').attr('disable', 'disable');
-      this.toastr.error('Bạn đã vote bài viết này rồi!');
-      // const bvp = {
-      //   luotkhongthich: bv.luotkhongthich - 1
-      // };
-      // this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
-      //   this.getAllTopic();
-      //   this.disableLike = true;
-      //   this.clickCount = 0;
-      // });
-    } else if (this.isDislike === false && this.isLike === false) {
-      const bvp = {
-        luotkhongthich: bv.luotkhongthich + 1
-      };
-      this.apiService.post('/api/baiviet/dislike/' + bv.id, bvp).subscribe(res => {
-        this.baiVietDetail();
-        this.disableLike = true;
-        this.clickCount = 0;
-      });
+    if (this.dataIDBV.length === 2) {
+      this.dataIDBV.splice(1);
+      this.dataIDBV.unshift(bv.id);
+    } else {
+      this.dataIDBV.unshift(bv.id);
     }
+    this.number1 = this.dataIDBV[0];
+    this.number2 = this.dataIDBV[1];
+    // this.checkAlreadyDisLike(bv.idBV, index);
+    this.apiService.get('/api/notification/already-dislike/' + bv.id).subscribe(res => {
+      this.isDislike = res;
+      let elem = document.getElementById('disableDisLikeDE');
+      if (this.isDislike === true) {
+        elem.style.color = 'blue';
+      } else {
+        elem.style.color = 'black';
+      }
+      this.isActionDisLike = this.isDislike;
+      this.clickCount = index;
+      if (this.isActionDisLike === true || this.isLike === true) {
+
+        $('#disableDisLikeDE').attr('disable', 'disable');
+        this.toastr.error('Bạn đã vote bài viết này rồi!');
+        // const bvp = {
+        //   luotkhongthich: bv.luotkhongthich - 1
+        // };
+        // this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
+        //   this.getAllTopic();
+        //   this.disableLike = true;
+        //   this.clickCount = 0;
+        // });
+        this.isDislike = null;
+        this.isLike = null;
+      } else if (this.isActionDisLike === false || this.isLike === false) {
+        const bvp = {
+          luotkhongthich: bv.luotkhongthich + 1
+        };
+        this.apiService.post('/api/baiviet/dislike/' + bv.id, bvp).subscribe(res => {
+          this.baiVietDetail();
+          this.disableLike = true;
+          this.clickCount = 0;
+        });
+        this.isDislike = null;
+        this.isLike = null;
+
+      }else{
+        this.toastr.error('Bạn đã vote bài viết này rồi!');
+      }
+    });
   }
 
   checkLogin() {
@@ -240,59 +294,75 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
 
   ClickLikeCM(cm: CommentModel, index: number) {
     this.checkLogin();
-    this.checkAlreadyLikeCM(cm.id, this.baiViet.id,  index);
-    if (this.isDisLikeCM === true && this.isLikeCM === true) {
+    this.apiService.get('/api/comment/check-like-cm/' + cm.id + '/' + this.baiViet.id).subscribe(res => {
+      this.isLikeCM = res;
+      let elem = document.getElementById('disableLikeCM' + index);
+      if (this.isLikeCM === true) {
+        elem.style.color = 'blue';
+      } else {
+        elem.style.color = 'black';
+      }
+      if (this.isDisLikeCM === true && this.isLikeCM === true) {
 
-      $('#disableLike' + index).attr('disable', 'disable');
-      this.toastr.error('Bạn đã vote bài viết này rồi!');
-      // const bvp = {
-      //   luotkhongthich: bv.luotkhongthich - 1
-      // };
-      // this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
-      //   this.getAllTopic();
-      //   this.disableLike = true;
-      //   this.clickCount = 0;
-      // });
-    } else if (this.isDisLikeCM === false && this.isLikeCM === false) {
-      const cmp = {
-        id: cm.id,
-        luotThich: cm.luotThich + 1,
-        idBaiViet: this.baiViet.id,
-      };
-      this.apiService.post('/api/comment/is-like-cm', cmp).subscribe(res => {
-        this.baiVietDetail();
-        this.disableLike = true;
-        this.clickCount = 0;
-      });
-    }
+        $('#disableLike' + index).attr('disable', 'disable');
+        this.toastr.error('Bạn đã vote bình luận này rồi!');
+        // const bvp = {
+        //   luotkhongthich: bv.luotkhongthich - 1
+        // };
+        // this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
+        //   this.getAllTopic();
+        //   this.disableLike = true;
+        //   this.clickCount = 0;
+        // });
+      } else if (this.isDisLikeCM === false && this.isLikeCM === false) {
+        const cmp = {
+          id: cm.id,
+          luotThich: cm.luotThich + 1,
+          idBaiViet: this.baiViet.id,
+        };
+        this.apiService.post('/api/comment/is-like-cm', cmp).subscribe(res => {
+          this.baiVietDetail();
+          this.disableLike = true;
+          this.clickCount = 0;
+        });
+      }
+    });
   }
   ClickDisLikeCM(cm: CommentModel, index: number) {
     this.checkLogin();
-    this.checkAlreadyDisLikeCM(cm.id, this.baiViet.id,  index);
-    if (this.isDisLikeCM === true && this.isLikeCM === true) {
+    this.apiService.get('/api/comment/check-dislike-cm/' + cm.id + '/' + this.baiViet.id).subscribe(res => {
+      this.isDisLikeCM = res;
+      let elem = document.getElementById('disableDisLikeCM' + index);
+      if (this.isDisLikeCM === true) {
+        elem.style.color = 'blue';
+      } else {
+        elem.style.color = 'black';
+      }
+      if (this.isDisLikeCM === true && this.isLikeCM === true) {
 
-      $('#disableDisLike' + index).attr('disable', 'disable');
-      this.toastr.error('Bạn đã vote bài viết này rồi!');
-      // const bvp = {
-      //   luotkhongthich: bv.luotkhongthich - 1
-      // };
-      // this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
-      //   this.getAllTopic();
-      //   this.disableLike = true;
-      //   this.clickCount = 0;
-      // });
-    } else if (this.isDisLikeCM === false && this.isLikeCM === false) {
-      const cmp = {
-        id: cm.id,
-        luotKhongthich: cm.loutKhongthich + 1,
-        idBaiViet: this.baiViet.id,
-      };
-      this.apiService.post('/api/comment/is-dislike-cm', cmp).subscribe(res => {
-        this.baiVietDetail();
-        this.disableLike = true;
-        this.clickCount = 0;
-      });
-    }
+        $('#disableDisLike' + index).attr('disable', 'disable');
+        this.toastr.error('Bạn đã vote bình luận này rồi!');
+        // const bvp = {
+        //   luotkhongthich: bv.luotkhongthich - 1
+        // };
+        // this.apiService.post('/api/baiviet/dislike/' + bv.idBV, bvp).subscribe(res => {
+        //   this.getAllTopic();
+        //   this.disableLike = true;
+        //   this.clickCount = 0;
+        // });
+      } else if (this.isDisLikeCM === false && this.isLikeCM === false) {
+        const cmp = {
+          id: cm.id,
+          luotKhongthich: cm.loutKhongthich + 1,
+          idBaiViet: this.baiViet.id,
+        };
+        this.apiService.post('/api/comment/is-dislike-cm', cmp).subscribe(res => {
+          this.baiVietDetail();
+          this.disableLike = true;
+          this.clickCount = 0;
+        });
+      }
+    });
   }
 
   checkAlreadyLikeCM(idCM: number, idBV: number, i: number) {
