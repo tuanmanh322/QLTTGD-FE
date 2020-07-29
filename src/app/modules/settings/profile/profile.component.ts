@@ -9,6 +9,7 @@ import {ADMIN, ANONYMOUS, CURRENT_USER, ROLE, STUDENT, TEACHER} from '../../../s
 import {MonHocModel} from '../../../shared/model/mon-hoc.model';
 import {HangMucModel} from '../../../shared/model/hang-muc-model';
 import {LopHocModel} from '../../../shared/model/lop-hoc.model';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -40,11 +41,13 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private title: Title
   ) {
   }
 
   ngOnInit(): void {
+    this.title.setTitle('Trang cá nhân');
     this.userProfile = JSON.parse(localStorage.getItem(CURRENT_USER));
     this.apiService.get('/api/mon-hoc/all').subscribe(data => {
       this.monHocList = data;
