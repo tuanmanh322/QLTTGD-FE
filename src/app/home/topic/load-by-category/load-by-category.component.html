@@ -17,7 +17,7 @@
 </div>
 <h1>Chủ đề : {{cdName}} </h1>
 <div *ngIf="isRenderDATA === true">
-  <div class="post" *ngFor="let bv of baiVietTotal" >
+  <div class="post" *ngFor="let bv of baiVietTotal; let i = index" >
     <div class="wrap-ut pull-left">
       <div class="userinfo pull-left">
         <div class="avatar">
@@ -32,8 +32,8 @@
           <img src="../../../../assets/img/icon1.jpg" alt=""><img src="../../../../assets/img/icon4.jpg" alt="">
         </div>
         <div class="icons" style="display: contents!important;">
-          <button class="button-icons"><i class="fa fa-thumbs-up blue"><span>{{bv.luotthich}}</span></i></button>
-          <button class="button-icons"><i class="fa fa-thumbs-down"><span>{{bv.luotkhongthich}}</span></i></button>
+          <button class="button-icons" (click)="clickLike(bv, i)" id="disableCateLike{{i}}"><i class="fa fa-thumbs-up blue"><span>{{bv.luotthich}}</span></i></button>
+          <button class="button-icons" (click)="clickDislike(bv, i)" id="disableCateDisLike{{i}}"><i class="fa fa-thumbs-down"><span>{{bv.luotkhongthich}}</span></i></button>
         </div>
       </div>
       <div class="posttext pull-left">
