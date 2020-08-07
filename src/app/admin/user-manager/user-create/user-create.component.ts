@@ -14,8 +14,8 @@ export class UserCreateComponent implements OnInit {
 
   userForm: FormGroup;
   lopHocList: LopHocModel[];
-  Nam = 'Nam';
-  Nu = 'Nữ';
+  Nam = 'NAM';
+  Nu = 'NỮ';
   switchTab = 0;
 
   constructor(

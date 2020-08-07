@@ -230,7 +230,6 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
       this.isActionDisLike = this.isDislike;
       this.clickCount = index;
       if (this.isActionDisLike === true || this.isLike === true) {
-
         $('#disableDisLikeDE').attr('disable', 'disable');
         this.toastr.error('Bạn đã vote bài viết này rồi!');
         // const bvp = {
@@ -254,7 +253,6 @@ export class TopicDetailComponent implements OnInit, OnDestroy {
         });
         this.isDislike = null;
         this.isLike = null;
-
       }else{
         this.toastr.error('Bạn đã vote bài viết này rồi!');
       }

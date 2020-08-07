@@ -17,8 +17,8 @@ export class TeacherCreateComponent implements OnInit {
   gvForm: FormGroup;
   lopHocList: LopHocModel[];
   card: CardModel;
-  Nam = 'Nam';
-  Nu = 'Nữ';
+  Nam = 'NAM';
+  Nu = 'NỮ';
 
   kip1 = 'Kíp 1(7h - 9h)';
   kip2 = 'Kíp 2(9h30- 12h)';

@@ -18,8 +18,8 @@ export class UserEditComponent implements OnInit {
   userList: UserListModel;
   userForm: FormGroup;
   lopHocList: LopHocModel[];
-  Nam = 'Nam';
-  Nu = 'Nữ';
+  Nam = 'NAM';
+  Nu = 'NỮ';
   switchTab = 0;
 
   constructor(
@@ -38,14 +38,17 @@ export class UserEditComponent implements OnInit {
     this.userForm = this.fb.group({
       name: new FormControl(this.userList.userName, [Validators.required]),
       idRole: new FormControl(this.userList.idRole, [Validators.required]),
-      sex: new FormControl(this.userList.sex, [Validators.required]),
-      quequan: new FormControl(this.userList.quequan, [Validators.required]),
-      sodt: new FormControl(this.userList.sdt, [Validators.required])
+      gioitinh: new FormControl(this.userList.sex.toString().toUpperCase(), [Validators.required]),
+      address: new FormControl(this.userList.quequan, [Validators.required]),
+      phone: new FormControl(this.userList.sodt, [Validators.required])
     });
-    if (this.userList.idRole == 2) {
+    if (this.userList.idRole === 2 || this.switchTab === 2) {
       this.switchTab = 2;
       this.userForm.addControl('luongcoban', new FormControl(this.userList.luongcoban, [Validators.required]));
-      this.userForm.addControl('idLop', new FormControl(this.userList.idLop));
+      // this.userForm.addControl('idLop', new FormControl(this.userList.idLop));
+    }else{
+      this.userForm.removeControl('luongcoban');
+      // this.userForm.removeControl('idLop');
     }
   }
 
@@ -56,22 +59,37 @@ export class UserEditComponent implements OnInit {
   openTeacher() {
     this.switchTab = 2;
     this.userForm.addControl('luongcoban', new FormControl(this.userList.luongcoban, [Validators.required]));
-    this.userForm.addControl('idLop', new FormControl(this.userList.idLop));
+    // this.userForm.addControl('idLop', new FormControl(this.userList.idLop));
   }
 
   onEdit() {
     if (this.userForm.valid) {
-      const usEdit = {
-        idLopOld: this.userList.idLop,
-        name: this.userForm.get('name').value,
-        idRole: this.userForm.get('idRole').value,
-        sex: this.userForm.get('sex').value,
-        quequan: this.userForm.get('quequan').value,
-        sodt: this.userForm.get('sodt').value,
-        idLop: this.userForm.get('idLop').value,
-        luongcoban: this.userForm.get('luongcoban').value,
-
+      let usEdit = {};
+      if (this.switchTab === 2) {
+        usEdit = {
+          idThe: this.userList.idThe,
+          idLopOld: this.userList.idLop,
+          name: this.userForm.get('name').value,
+          idRole: this.userForm.get('idRole').value,
+          sex: this.userForm.get('gioitinh').value,
+          quequan: this.userForm.get('address').value,
+          sodt: this.userForm.get('phone').value,
+          // tslint:disable-next-line:radix
+          // idLop: parseInt(this.userForm.get('idLop').value),
+          luongcoban: this.userForm.get('luongcoban').value,
+        };
+      } else {
+        usEdit = {
+          idThe: this.userList.idThe,
+          idLopOld: this.userList.idLop,
+          name: this.userForm.get('name').value,
+          idRole: this.userForm.get('idRole').value,
+          sex: this.userForm.get('gioitinh').value,
+          quequan: this.userForm.get('address').value,
+          sodt: this.userForm.get('phone').value,
+        };
       }
+
       this.api.put('/api/user/edit-admin', usEdit).subscribe(res => {
         this.toastr.success('Sửa thành công!');
         this.activeModal.dismiss();

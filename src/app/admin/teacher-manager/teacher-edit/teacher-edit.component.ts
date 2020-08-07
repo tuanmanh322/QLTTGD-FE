@@ -18,8 +18,8 @@ export class TeacherEditComponent implements OnInit {
 
   gvForm: FormGroup;
   lopHocList: LopEnti[];
-  Nam = 'Nam';
-  Nu = 'Nữ';
+  Nam = 'NAM';
+  Nu = 'NỮ';
 
   constructor(
     private api: ApiService,

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Tạo mới User</h4>
+  <h4 class="modal-title">Cập nhật User</h4>
   <button type="button" class="close" aria-label="Close"
           (click)="activeModal.dismiss('Cross click')">
   </button>
@@ -24,13 +24,13 @@
         </div>
       </div>
       <div class="form-group">
-        Giới tính: <select formControlName="sex" id="sex">
+        Giới tính: <select formControlName="gioitinh" id="gioitinh">
         <option value="" selected disabled>--Chọn giới tính--</option>
         <option [value]="Nam">Nam</option>
         <option [value]="Nu">Nữ</option>
       </select>
-        <div *ngIf="f.sex.errors && (f.sex.dirty || f.sex.touched)" class="text-danger">
-          <div *ngIf="f.sex.errors.required">Giới tính không được để trống</div>
+        <div *ngIf="f.gioitinh.errors && (f.gioitinh.dirty || f.gioitinh.touched)" class="text-danger">
+          <div *ngIf="f.gioitinh.errors.required">Giới tính không được để trống</div>
         </div>
       </div>
       <!--      <div class="form-group">-->
@@ -41,17 +41,17 @@
       <!--        </div>-->
       <!--      </div>-->
       <div class="form-group">
-        <label for="quequan">Quê quán: </label>
-        <input type="text" class="form-control" formControlName="quequan" id="quequan">
-        <div *ngIf="f.quequan.errors && (f.quequan.dirty || f.quequan.touched)" class="text-danger">
-          <div *ngIf="f.quequan.errors.required">Quê quán không được để trống</div>
+        <label for="address">Quê quán: </label>
+        <input type="text" class="form-control" formControlName="address" id="address">
+        <div *ngIf="f.address.errors && (f.address.dirty || f.address.touched)" class="text-danger">
+          <div *ngIf="f.address.errors.required">Quê quán không được để trống</div>
         </div>
       </div>
       <div class="form-group">
-        <label for="sodt">Số điện thoại: </label>
-        <input type="text" class="form-control" formControlName="sodt" id="sodt">
-        <div *ngIf="f.sodt.errors && (f.sodt.dirty || f.sodt.touched)" class="text-danger">
-          <div *ngIf="f.sodt.errors.required">Số điện thoại không được để trống</div>
+        <label for="phone">Số điện thoại: </label>
+        <input type="text" class="form-control" formControlName="phone" id="phone">
+        <div *ngIf="f.phone.errors && (f.phone.dirty || f.phone.touched)" class="text-danger">
+          <div *ngIf="f.phone.errors.required">Số điện thoại không được để trống</div>
         </div>
       </div>
       <!--      <div class="form-group">-->
@@ -89,15 +89,15 @@
           <div *ngIf="f.luongcoban.errors.required">Lương cơ bản không được để trống</div>
         </div>
       </div>
-      <div class="form-group" *ngIf="switchTab === 2">
-        Tên lớp :<select formControlName="idLop" name="idLop">
-        <option value="" disabled selected>--Chọn lớp--</option>
-        <option *ngFor="let tl of lopHocList" [value]="tl.id">{{tl.tenlop}}</option>
-      </select>
-        <div *ngIf="f.idLop.errors && (f.idLop.dirty || f.idLop.touched)" class="text-danger">
-          <div *ngIf="f.idLop.errors.required">Lớp học không được để trống</div>
-        </div>
-      </div>
+<!--      <div class="form-group" *ngIf="switchTab === 2">-->
+<!--        Tên lớp :<select formControlName="idLop" name="idLop">-->
+<!--        <option value="" disabled selected>&#45;&#45;Chọn lớp&#45;&#45;</option>-->
+<!--        <option *ngFor="let tl of lopHocList" [value]="tl.id">{{tl.tenlop}}</option>-->
+<!--      </select>-->
+<!--        <div *ngIf="f.idLop.errors && (f.idLop.dirty || f.idLop.touched)" class="text-danger">-->
+<!--          <div *ngIf="f.idLop.errors.required">Lớp học không được để trống</div>-->
+<!--        </div>-->
+<!--      </div>-->
 
     </div>
   </div>
@@ -107,7 +107,7 @@
   <div class="modal-footer">
     <button class="btn btn-success"
             [disabled]="userForm.invalid">
-      Thêm mới
+      Sửa User
     </button>
     <button class="btn btn-danger" #submitele
             (click)="cancel()">

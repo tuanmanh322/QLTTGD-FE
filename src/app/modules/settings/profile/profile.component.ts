@@ -28,8 +28,8 @@ export class ProfileComponent implements OnInit {
   monHocList: MonHocModel[];
   hangMucModel: HangMucModel[];
   lopHocModel: LopHocModel[];
-  Nam = 'Nam';
-  Nu = 'Nu';
+  Nam = 'NAM';
+  Nu = 'NỮ';
   kip1 = 'Kíp 1(7h - 9h)';
   kip2 = 'Kíp 2(9h30- 12h)';
   kip3 = 'Kíp 3(13h-15h)';

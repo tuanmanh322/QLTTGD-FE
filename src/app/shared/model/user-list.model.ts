@@ -17,7 +17,7 @@ export interface UserListModel {
 
    quequan?: string;
 
-   sdt?: string;
+   sodt?: string;
 
    idLop?: number;
 
