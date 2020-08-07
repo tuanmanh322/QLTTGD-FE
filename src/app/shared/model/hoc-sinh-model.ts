@@ -4,7 +4,7 @@ export interface HocSinhModel {
   id?: number;
   maHocSinh?: string;
   Name?: string;
-  GioiTinh?: string;
+  gioitinh?: string;
   NgaySinh?: Date;
   socmt?: number;
   sodt?: number;

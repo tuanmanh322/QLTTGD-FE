@@ -4,6 +4,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {ApiService} from 'src/app/shared/service/api.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {LopEnti} from '../../../shared/model/lop-enti';
 
 @Component({
   selector: 'app-student-create',
@@ -17,6 +18,9 @@ export class StudentCreateComponent implements OnInit {
   fileSelect: boolean;
 
   preview = '';
+  Nam = 'NAM';
+  Nu = 'NỮ';
+  lopList: LopEnti[];
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -28,13 +32,19 @@ export class StudentCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.apiService.get('/api/lop-hoc/all').subscribe(res => {
+      this.lopList = res;
+    });
+
     this.hocSinhForm = this.fb.group({
       tenhocsinh: ['', [Validators.required]],
       ngaysinh: ['', [Validators.required]],
-      sodt: ['', [Validators.required]],
+      sodt: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]],
       diachi: ['', [Validators.required]],
       sex: ['', [Validators.required]],
-      imageHS: ['']
+      imageHS: [''],
+      lopHoc: ['']
     });
   }
 
@@ -46,13 +56,14 @@ export class StudentCreateComponent implements OnInit {
     if (this.hocSinhForm.invalid) {
       return;
     }
-    let ngaysinh = (new Date(this.hocSinhForm.get('ngaysinh').value)).toUTCString();
+    const ngaysinh = (new Date(this.hocSinhForm.get('ngaysinh').value)).toUTCString();
     const fd = new FormData();
     fd.append('birthday', ngaysinh);
     fd.append('tenhocsinh', this.hocSinhForm.get('tenhocsinh').value);
     fd.append('sodt', this.hocSinhForm.get('sodt').value);
     fd.append('diachi', this.hocSinhForm.get('diachi').value);
     fd.append('sex', this.hocSinhForm.get('sex').value);
+    fd.append('maLop', this.hocSinhForm.get('lopHoc').value);
     if (this.fileSelect === true) {
       fd.append('imageHS', this.hocSinhForm.get('imageHS').value);
     }

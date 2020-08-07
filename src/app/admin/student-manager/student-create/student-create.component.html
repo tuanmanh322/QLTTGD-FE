@@ -58,6 +58,7 @@
           <input type="text" class="form-control" formControlName="sodt" id="sodt">
           <div *ngIf="f.sodt.errors && (f.sodt.dirty || f.sodt.touched)" class="text-danger">
             <div *ngIf="f.sodt.errors.required">Số điện thoại không được để trống</div>
+            <div *ngIf="f.sodt.errors.pattern">Số điện thoại phải là số và có tối đa 10 ký tự</div>
           </div>
         </div>
 <!--        <div class="form-group">-->
@@ -71,7 +72,7 @@
           <label for="diachi">Địa chỉ </label>
           <input type="text" class="form-control" formControlName="diachi" id="diachi">
           <div *ngIf="f.diachi.errors && (f.diachi.dirty || f.diachi.touched)" class="text-danger">
-            <div *ngIf="f.diachi.errors.required">Địa chỉ</div>
+            <div *ngIf="f.diachi.errors.required">Địa chỉ không được để trống</div>
           </div>
         </div>
 <!--        <div class="form-group">-->
@@ -90,6 +91,15 @@
 <!--              <div *ngIf="f.lopHoc.errors.required">Lớp học không được để trống</div>-->
 <!--            </div>-->
 <!--          </div>-->
+        <div class="form-group">
+          <label for="lopHoc">Lớp học </label>
+          <select type="text" class="form-control" formControlName="lopHoc" id="lopHoc"  >
+            <option *ngFor="let lo of lopList" [value]="lo.id">{{lo.tenlop}}</option>
+          </select>
+<!--          <div *ngIf="f.lopHoc.errors && (f.lopHoc.dirty || f.lopHoc.touched)" class="text-danger">-->
+<!--            <div *ngIf="f.lopHoc.errors.required">Lớp học không được để trống</div>-->
+<!--          </div>-->
+        </div>
       </div>
     </div>
     <div class="modal-footer">

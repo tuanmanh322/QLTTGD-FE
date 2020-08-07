@@ -11,7 +11,7 @@
           <label for="maHocSinh">Mã học sinh</label>
           <input type="text"
                  class="form-control"
-                 formControlName="maHocSinh" id="maHocSinh" [disabled]="true"/>
+                 [value]="hocSinhModel.soThe" [disabled]="true" id="maHocSinh"/>
         </div>
         <div class="form-group">
           <label for="tenhocsinh">Tên học sinh</label>
@@ -25,11 +25,11 @@
                 <label for="Nam" class="col-form-label">Giới tính </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="GioiTinh" id="Nam" value="Nam" formControlName="GioiTinh">
+                <input class="form-check-input" type="radio" name="GioiTinh" id="Nam" [value]="Nam" formControlName="GioiTinh">
                 <label class="form-check-label" for="Nam">Nam</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="GioiTinh" id="Nu" value="Nu" formControlName="GioiTinh"  >
+                <input class="form-check-input" type="radio" name="GioiTinh" id="Nu" [value]="Nu" formControlName="GioiTinh"  >
                 <label class="form-check-label" for="Nam">Nữ</label>
             </div>
         </div>
@@ -47,13 +47,13 @@
             <div *ngIf="f.sodt.errors.required">Số điện thoại không được để trống</div>
           </div>
         </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" formControlName="email" id="sodt">
-            <div *ngIf="f.email.errors && (f.email.dirty || f.email.touched)" class="text-danger">
-              <div *ngIf="f.email.errors.required">Email không được để trống</div>
-            </div>
-          </div>
+<!--        <div class="form-group">-->
+<!--            <label for="email">Email</label>-->
+<!--            <input type="text" class="form-control" formControlName="email" id="sodt">-->
+<!--            <div *ngIf="f.email.errors && (f.email.dirty || f.email.touched)" class="text-danger">-->
+<!--              <div *ngIf="f.email.errors.required">Email không được để trống</div>-->
+<!--            </div>-->
+<!--          </div>-->
         <div class="form-group">
           <label for="diachi">Địa chỉ </label>
           <input type="text" class="form-control" formControlName="diachi" id="diachi">
@@ -61,17 +61,17 @@
             <div *ngIf="f.diachi.errors.required">Địa chỉ</div>
           </div>
         </div>
-        <div class="form-group">
-          <label for="maMonhoc">Môn học </label>
-          <input type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">
-          <div *ngIf="f.maMonhoc.errors && (f.maMonhoc.dirty || f.maMonhoc.touched)" class="text-danger">
-            <div *ngIf="f.maMonhoc.errors.required">Mã môn học không được để trống</div>
-          </div>
-        </div>
+<!--        <div class="form-group">-->
+<!--          <label for="maMonhoc">Môn học </label>-->
+<!--          <input type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">-->
+<!--          <div *ngIf="f.maMonhoc.errors && (f.maMonhoc.dirty || f.maMonhoc.touched)" class="text-danger">-->
+<!--            <div *ngIf="f.maMonhoc.errors.required">Mã môn học không được để trống</div>-->
+<!--          </div>-->
+<!--        </div>-->
         <div class="form-group">
             <label for="lopHoc">Lớp học </label>
             <select type="text" class="form-control" formControlName="lopHoc" id="lopHoc"  >
-                <option *ngFor="let lo of lopList" [value]="lo.tenlop">{{lo.tenlop}}</option>
+                <option *ngFor="let lo of lopList" [value]="lo.id">{{lo.tenlop}}</option>
             </select>
             <div *ngIf="f.lopHoc.errors && (f.lopHoc.dirty || f.lopHoc.touched)" class="text-danger">
               <div *ngIf="f.lopHoc.errors.required">Lớp học không được để trống</div>
@@ -81,7 +81,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-success"
-              [disabled]="hocSinhForm.invalid">
+              [disabled]="hocSinhForm.invalid || !hocSinhForm.dirty">
         Sửa
       </button>
       <button class="btn btn-danger" #submitele
