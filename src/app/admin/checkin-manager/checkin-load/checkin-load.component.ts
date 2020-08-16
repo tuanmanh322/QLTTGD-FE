@@ -32,7 +32,11 @@ const colors: any = {
 export class CheckinLoadComponent implements OnInit {
   @ViewChild('clickElem') ele: ElementRef<HTMLElement>;
   @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
+  usernameLoad = '';
 
+  maTheLoad = '';
+
+  roleLoad = 0;
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -208,6 +212,9 @@ export class CheckinLoadComponent implements OnInit {
       const idThe = params.id;
       this.api.get('/api/checkin/load-checkin/' + idThe).subscribe(data => {
         this.loadCheckIn = data;
+        this.usernameLoad = this.loadCheckIn.userName;
+        this.maTheLoad = this.loadCheckIn.maThe;
+        this.roleLoad = this.loadCheckIn.idRole;
         this.nhatKyEnti = this.loadCheckIn.nhatcheckins;
         this.pCount = this.nhatKyEnti.length;
         this.nhatKyEnti.forEach((key, nk) => {
@@ -215,7 +222,7 @@ export class CheckinLoadComponent implements OnInit {
           this.timeParse = key.thoigianvao[0] + '-' + key.thoigianvao[1] + '-' + key.thoigianvao[2];
           this.pTime.push(this.timeParse);
         });
-        for (let i = 0; i < this.pTime.length ; i++){
+        for (let i = 0; i < this.pTime.length; i++) {
           this.pEvent.start = startOfDay(new Date(this.pTime[i]));
           this.pEvent.title = 'Checkin ' + i;
           this.eve.push(this.pEvent);

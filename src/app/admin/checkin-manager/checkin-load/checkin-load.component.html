@@ -98,16 +98,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-         Họ và tên : <input type="text" [value]="loadCheckIn.userName" [disabled]="true">
+         Họ và tên : <input type="text" [value]="usernameLoad" [disabled]="true">
     </div>
     <div class="col-md-6">
-     Mã thẻ : <input type="text" [value]="loadCheckIn.maThe" [disabled]="true">
+     Mã thẻ : <input type="text" [value]="maTheLoad" [disabled]="true">
     </div>
     <div class="col-md-6">
-      Loại người dùng : <input *ngIf="loadCheckIn.idRole === 1"  type="text" [value]="ADMIN" [disabled]="true">
-      <input *ngIf="loadCheckIn.idRole === 2"  type="text" [value]="TEACHER" [disabled]="true">
-      <input *ngIf="loadCheckIn.idRole === 3"  type="text" [value]="STUDENT" [disabled]="true">
-      <input *ngIf="loadCheckIn.idRole === 4"  type="text" [value]="CUSTOMER" [disabled]="true">
+      Loại người dùng : <input *ngIf="roleLoad === 1"  type="text" [value]="ADMIN" [disabled]="true">
+      <input *ngIf="roleLoad === 2"  type="text" [value]="TEACHER" [disabled]="true">
+      <input *ngIf="roleLoad === 3"  type="text" [value]="STUDENT" [disabled]="true">
+      <input *ngIf="roleLoad === 4"  type="text" [value]="CUSTOMER" [disabled]="true">
     </div>
     <div class="col-md-6">
       Tổng số ngày checkin: <input type="text" [value]="pCount" [disabled]="true">
