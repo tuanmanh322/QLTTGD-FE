@@ -60,7 +60,7 @@ export class TeacherEditComponent implements OnInit {
 
         NgaySinh: this.gvForm.get('NgaySinh').value,
 
-        cmt: this.gvForm.get('cmt').value,
+        socmt: this.gvForm.get('cmt').value,
 
         sodt: this.gvForm.get('sodt').value,
 
