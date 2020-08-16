@@ -1,7 +1,7 @@
 import {BaseSearch} from './base-search';
 
 export interface GiaovienSearch extends BaseSearch {
-  Name?: string;
+  username?: string;
   tenLop?: string;
   maGiaoVien?: string;
 }

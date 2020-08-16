@@ -25,7 +25,7 @@ export class TeacherListComponent implements OnInit {
     totalPages: 0,
     totalRecords: 0,
     orders: [],
-    Name: '',
+    username: '',
     tenLop: '',
     maGiaoVien: ''
   };
