@@ -65,7 +65,7 @@ export class TeacherCreateComponent implements OnInit {
       data.append('sex', this.gvForm.get('sex').value);
       data.append('name', this.gvForm.get('name').value);
       data.append('birthday', ngaysinh);
-      data.append('cmt', this.gvForm.get('cmt').value);
+      data.append('socmt', this.gvForm.get('cmt').value);
       data.append('sodt', this.gvForm.get('sodt').value);
       data.append('luongcoban', this.gvForm.get('luongcoban').value);
       data.append('idLop', this.gvForm.get('idLop').value);
