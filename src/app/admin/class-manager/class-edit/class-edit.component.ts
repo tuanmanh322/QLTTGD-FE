@@ -73,7 +73,7 @@ export class ClassEditComponent implements OnInit {
     //   kipDay:  this.lopHocForm.get('').value,
     // }
     this.apiService.put('/api/lop-hoc/edit', this.lopHocForm.value).subscribe(res => {
-      this.toarst.success('Thêm mới lớp học thành công');
+      this.toarst.success('Cập nhật lớp học thành công');
       this.apiService.onFilter('edit');
       this.activeModal.dismiss();
     }, error => {
