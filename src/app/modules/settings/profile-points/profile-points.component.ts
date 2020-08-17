@@ -83,7 +83,7 @@ export class ProfilePointsComponent implements OnInit {
     if (this.isSelectFile === true) {
       const formData = new FormData();
       formData.append('excelFile', this.uploadForm.get('fileUp').value);
-      this.apiService.post('/api/media/file-excel/'+ this.userProfile.id, formData).subscribe(res => {
+      this.apiService.post('/api/media/file-excel/'+ this.userProfile.idUser, formData).subscribe(res => {
         this.toastr.success('Tải lên thành công!');
         setTimeout(() => {
           this.getAll();

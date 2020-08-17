@@ -224,7 +224,7 @@ export class CheckinLoadComponent implements OnInit {
         });
         for (let i = 0; i < this.pTime.length; i++) {
           this.pEvent.start = startOfDay(new Date(this.pTime[i]));
-          this.pEvent.title = 'Checkin ' + i;
+          this.pEvent.title = '';
           this.eve.push(this.pEvent);
           this.pEvent = {
             start: null,

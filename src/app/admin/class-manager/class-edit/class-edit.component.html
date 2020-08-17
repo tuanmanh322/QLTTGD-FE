@@ -56,12 +56,35 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="maMonhoc">Mã môn học </label>
-        <input type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">
-        <div *ngIf="f.maMonhoc.errors && (f.maMonhoc.touched || f.maMonhoc.dirty)">
-          <div class="text text-danger" *ngIf="f.maMonhoc.errors.required">Bạn cần nhập vào mã môn học</div>
+        <label for="maMonhoc">Kíp dạy </label>
+        <select formControlName="kipDay" id="kipDay">
+          <option value="" selected disabled>--Chọn kíp dạy--</option>
+          <option [value]="1">{{kip1}}</option>
+          <option [value]="2">{{kip2}}</option>
+          <option [value]="3">{{kip3}}</option>
+          <option [value]="4">{{kip4}}</option>
+          <option [value]="5">{{kip5}}</option>
+        </select>
+        <div *ngIf="f.kipDay.errors && (f.kipDay.dirty || f.kipDay.touched)" class="text-danger">
+          <div *ngIf="f.kipDay.errors.required">Mã môn học không được để trống</div>
         </div>
       </div>
+      <div class="form-group">
+        <label for="maMonhoc">Môn học </label>
+        <select type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">
+          <option *ngFor="let lo of mhEnti" [value]="lo.id">{{lo.tenmonhoc}}</option>
+        </select>
+        <div *ngIf="f.maMonhoc.errors && (f.maMonhoc.dirty || f.maMonhoc.touched)" class="text-danger">
+          <div *ngIf="f.maMonhoc.errors.required">Mã môn học không được để trống</div>
+        </div>
+      </div>
+<!--      <div class="form-group">-->
+<!--        <label for="maMonhoc">Mã môn học </label>-->
+<!--        <input type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">-->
+<!--        <div *ngIf="f.maMonhoc.errors && (f.maMonhoc.touched || f.maMonhoc.dirty)">-->
+<!--          <div class="text text-danger" *ngIf="f.maMonhoc.errors.required">Bạn cần nhập vào mã môn học</div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
   <div class="modal-footer">

@@ -4,7 +4,7 @@ export interface LopHocModel {
   id?: number;
   maLop?: string;
   tenLop?: string;
-  tenlop?:string;
+  tenlop?: string;
   tenMonHoc?: string;
   ngayKhaiGiang?: Date;
   ngayKetThuc?: Date;
@@ -20,4 +20,6 @@ export interface LopHocModel {
   diem90p?: number;
   diemTB?: number;
   countSiSo?: number;
+  idDiem?: number;
+  maMonHoc?: number;
 }

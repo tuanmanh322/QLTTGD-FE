@@ -11,7 +11,7 @@
         <label for="maLop">Mã lớp</label>
         <input type="text"
                class="form-control"
-               formControlName="maLop" id="maLop" />
+               formControlName="maLop" id="maLop"/>
         <div *ngIf="f.maLop.errors && (f.maLop.dirty || f.maLop.touched)" class="text-danger">
           <div *ngIf="f.maLop.errors.required">Mã lớp không được để trống</div>
         </div>
@@ -33,14 +33,16 @@
       <div class="form-group">
         <label for="thoigianbatdau">Thời gian bắt đầu</label>
         <input type="date" class="form-control" formControlName="thoigianbatdau" id="thoigianbatdau">
-        <div *ngIf="f.thoigianbatdau.errors && (f.thoigianbatdau.dirty || f.thoigianbatdau.touched)" class="text-danger">
+        <div *ngIf="f.thoigianbatdau.errors && (f.thoigianbatdau.dirty || f.thoigianbatdau.touched)"
+             class="text-danger">
           <div *ngIf="f.thoigianbatdau.errors.required">Thời gian bắt đầu không được để trống</div>
         </div>
       </div>
       <div class="form-group">
         <label for="thoigianketthuc">Thòi gian kết thúc</label>
         <input type="date" class="form-control" formControlName="thoigianketthuc" id="thoigianketthuc">
-        <div *ngIf="f.thoigianketthuc.errors && (f.thoigianketthuc.dirty || f.thoigianketthuc.touched)" class="text-danger">
+        <div *ngIf="f.thoigianketthuc.errors && (f.thoigianketthuc.dirty || f.thoigianketthuc.touched)"
+             class="text-danger">
           <div *ngIf="f.thoigianketthuc.errors.required">hòi gian kết thúc không được để trống</div>
         </div>
       </div>
@@ -58,9 +60,32 @@
           <div *ngIf="f.hocphi.errors.required">Học phí không được để trống</div>
         </div>
       </div>
+      <!--      <div class="form-group">-->
+      <!--        <label for="maMonhoc">Mã môn học </label>-->
+      <!--        <input type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">-->
+      <!--        <div *ngIf="f.maMonhoc.errors && (f.maMonhoc.dirty || f.maMonhoc.touched)" class="text-danger">-->
+      <!--          <div *ngIf="f.maMonhoc.errors.required">Mã môn học không được để trống</div>-->
+      <!--        </div>-->
+      <!--      </div>-->
       <div class="form-group">
-        <label for="maMonhoc">Mã môn học </label>
-        <input type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">
+        <label for="maMonhoc">Kíp dạy </label>
+        <select formControlName="kipDay" id="kipDay">
+          <option value="" selected disabled>--Chọn kíp dạy--</option>
+          <option [value]="1">{{kip1}}</option>
+          <option [value]="2">{{kip2}}</option>
+          <option [value]="3">{{kip3}}</option>
+          <option [value]="4">{{kip4}}</option>
+          <option [value]="5">{{kip5}}</option>
+        </select>
+        <div *ngIf="f.kipDay.errors && (f.kipDay.dirty || f.kipDay.touched)" class="text-danger">
+          <div *ngIf="f.kipDay.errors.required">Mã môn học không được để trống</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="maMonhoc">Môn học </label>
+        <select type="text" class="form-control" formControlName="maMonhoc" id="maMonhoc">
+          <option *ngFor="let lo of mhEnti" [value]="lo.id">{{lo.tenmonhoc}}</option>
+        </select>
         <div *ngIf="f.maMonhoc.errors && (f.maMonhoc.dirty || f.maMonhoc.touched)" class="text-danger">
           <div *ngIf="f.maMonhoc.errors.required">Mã môn học không được để trống</div>
         </div>
