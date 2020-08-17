@@ -108,9 +108,10 @@ export class NavbarClientComponent implements OnInit {
       this.apiService.get('/api/notification/read-all').subscribe(res => {
         console.log(res);
         this.notiCount = 0;
+        let elem = document.getElementById('itemnoti');
+        elem.classList.add('item-noti');
       });
-      let elem = document.getElementById('itemnoti');
-      elem.classList.add('item-noti');
+
     }
   }
 
@@ -233,10 +234,10 @@ export class NavbarClientComponent implements OnInit {
     if (this.userService.isLogin()){
       let eleNoti = document.getElementById('shownoti');
       switch (eleNoti.classList.length) {
-        case 1:
+        case 2:
           eleNoti.classList.add('toggler');
           break;
-        case 2:
+        case 3:
           eleNoti.classList.remove('toggler');
           break;
       }
