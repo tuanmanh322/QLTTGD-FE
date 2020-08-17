@@ -42,6 +42,7 @@ export class UserCreateComponent implements OnInit {
   get f() {
     return this.userForm.controls;
   }
+
   openTeacher() {
     this.switchTab = 2;
     this.userForm.addControl('luongcoban', new FormControl('', [Validators.required]));
@@ -54,6 +55,8 @@ export class UserCreateComponent implements OnInit {
         this.toastr.success('Thêm thành công!');
         this.activeModal.dismiss();
         this.api.onFilter('user-create');
+      }, error => {
+        this.toastr.error('Thêm mới thất bại!');
       });
     }
   }

@@ -94,6 +94,8 @@ export class UserEditComponent implements OnInit {
         this.toastr.success('Sửa thành công!');
         this.activeModal.dismiss();
         this.api.onFilter('user-edit');
+      },error =>  {
+        this.toastr.error('Sửa thất bại!');
       });
     }
   }

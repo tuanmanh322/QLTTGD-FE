@@ -66,11 +66,11 @@ export class StudentEditComponent implements OnInit {
         oldMaLop: this.hocSinhModel.maLop
       };
       this.apiService.put('/api/hoc-sinh/edit', hsinh).subscribe(res => {
-        this.toarst.success('Thêm mới học sinh thành công');
+        this.toarst.success('Cập nhật học sinh thành công');
         this.apiService.onFilter('edit');
         this.activeModal.dismiss();
       }, error => {
-        this.toarst.error('Thêm mới thất bại');
+        this.toarst.error('Cập nhật thất bại');
       });
     }
   }

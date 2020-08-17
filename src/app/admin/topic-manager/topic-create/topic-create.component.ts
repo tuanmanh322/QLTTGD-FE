@@ -51,10 +51,10 @@ export class TopicCreateComponent implements OnInit {
       };
       this.api.post('/api/hang-muc/add', hmE).subscribe(res => {
         this.api.onFilter('Add topic');
-        this.toastr.success('Cập nhật thành công!');
+        this.toastr.success('Thêm mới thành công!');
         this.activeModal.dismiss();
       }, error => {
-        this.toastr.error('Cập nhật thất bại!');
+        this.toastr.error('Thêm mới thất bại!');
       });
     }
   }
