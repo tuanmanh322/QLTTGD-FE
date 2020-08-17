@@ -1,0 +1,55 @@
+<h3>Danh sách tài liệu</h3>
+<div class="row">
+  <div class="col-md-12 item form-group">
+    <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Tên tiêu đề <span
+      class="required">*</span>
+    </label>
+    <div class="col-md-12 col-sm-12 ">
+      <input type="text" id="last-name" name="Tên tiêu đề" required="required" class="form-control"
+             [(ngModel)]="taiLieuSearch.title">
+    </div>
+  </div>
+<!--  <div class="col-md-6 item form-group">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-3 col-sm-3 ">-->
+<!--        Ngày cập nhật từ : <input  class="date-picker form-control" required="required" type="date" name="startDate"-->
+<!--                                   placeholder="Từ ngày" [(ngModel)]="taiLieuSearch.startDate">-->
+<!--      </div>-->
+<!--      <div class="col-md-3 col-sm-3 ">-->
+<!--        Ngày cập nhật đến :      <input  class="date-picker form-control" required="required" type="date" name="endDate"-->
+<!--                                         placeholder="Đến ngày" [(ngModel)]="taiLieuSearch.endDate">-->
+<!--      </div>-->
+<!--    </div>-->
+    <!--    <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày Khai giảng <span-->
+    <!--      class="required">*</span>-->
+    <!--    </label>-->
+
+<!--  </div>-->
+</div>
+<div class="item form-group">
+  <div class="col-md-8 col-sm-6 offset-md-5">
+    <button type="submit" class="btn btn-success" (click)="doSearch()">Search</button>
+  </div>
+</div>
+<h5 class="float-right">Tổng số bản ghi : {{taiLieuSearch.totalRecords}}</h5>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">STT</th>
+    <th scope="col">TIÊU ĐỀ</th>
+    <th scope="col">NỘI DUNG</th>
+    <th scope="col">NGÀY THÊM</th>
+    <th scope="col">LINK DOWNLOAD</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tl of taiLieuModel; let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{tl.title}}</td>
+    <td>{{tl.noidung}}</td>
+    <td>{{tl.createdDate | formatLocalDateTime}}</td>
+    <td><a [href]="tl.linkDownload"><span>Download Now!</span></a></td>
+  </tr>
+  </tbody>
+</table>
+<app-paginator [searchObject]="taiLieuSearch" (searchFunction)="doSearch()"></app-paginator>
