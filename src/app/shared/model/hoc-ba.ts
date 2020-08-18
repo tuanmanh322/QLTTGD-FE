@@ -22,11 +22,8 @@ export interface HocBa {
   idUser?: number;
   userName?: string;
   ngaySinh?: Date;
-
   lopHoc?: string;
-
   maThe?: string;
   idLop?: number;
-
-
+  ma_lop?: string;
 }

@@ -33,4 +33,12 @@ export interface PointsModel {
   ngayKhaiGiang?: Date;
 
   ngayKetThuc?: Date;
+
+  ma_lop?: string;
+
+  diaDiem?: string;
+
+  hocPhi?: string;
+
+  siSo?: number;
 }
