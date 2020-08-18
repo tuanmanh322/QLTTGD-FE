@@ -18,4 +18,15 @@ export interface HocBa {
   diem15p?: number;
   diem90p?: number;
   diemTB?: number;
+  maDiem?: string;
+  idUser?: number;
+  userName?: string;
+  ngaySinh?: Date;
+
+  lopHoc?: string;
+
+  maThe?: string;
+  idLop?: number;
+
+
 }

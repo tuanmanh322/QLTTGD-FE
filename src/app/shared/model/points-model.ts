@@ -1,8 +1,8 @@
-export  interface PointsModel {
-   id?: number;
-   maDiem?: string;
+export interface PointsModel {
+  id?: number;
+  maDiem?: string;
 
-   maLop?: number;
+  maLop?: number;
 
   diemMieng?: number;
 
@@ -12,21 +12,25 @@ export  interface PointsModel {
 
   diemTB?: number;
 
-   idUser?: number;
+  idUser?: number;
 
-   userName?: string;
+  userName?: string;
 
-   ngaySinh?: Date;
+  ngaySinh?: Date;
 
-   kipDay?: string;
+  kipDay?: string;
 
-   lopHoc?: string;
+  lopHoc?: string;
 
-   maThe?: string;
+  maThe?: string;
 
-   tenLop?: string;
+  tenLop?: string;
 
-   idLop?: number;
+  idLop?: number;
 
   tenMonHoc?: string;
+
+  ngayKhaiGiang?: Date;
+
+  ngayKetThuc?: Date;
 }

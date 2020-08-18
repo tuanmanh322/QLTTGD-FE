@@ -35,7 +35,8 @@
       </div>
       <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
         <div class="dropdown">
-          <a data-toggle="dropdown" routerLink="/document/all" class="font-weight-bold text-decoration-none">Tài liệu học tập</a> <b class="caret"></b>
+          <a data-toggle="dropdown" routerLink="/document/all" class="font-weight-bold text-decoration-none">Tài liệu
+            học tập</a> <b class="caret"></b>
           <!--          <ul class="dropdown-menu" role="menu">-->
           <!--            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Borderlands 1</a></li>-->
           <!--            <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Borderlands 2</a></li>-->
@@ -56,19 +57,21 @@
                                                                 alt="Notification" id="notification-icon"
                                                                 (click)="isReadAll()"/><span
           class="noti-count" *ngIf="isAuthenticate">{{notiCount}}</span></a></div>
-        <div class="notifications-show toggler" *ngIf="isAuthenticate" id="shownoti">
-          <ul class="notification-item">
-            <li *ngFor="let noti of notification"><a (click)="checkMoveDetail()"
-                                                     [routerLink]="['/all-topic/topic/',noti.idBaiViet]">
-              <div id="itemnoti" [ngStyle]="{
+        <ng-container *ngIf="1 == 1">
+          <div class="notifications-show toggler" *ngIf="isAuthenticate" id="shownotyfication">
+            <ul class="notification-item">
+              <li *ngFor="let noti of notification"><a (click)="checkMoveDetail()"
+                                                       [routerLink]="['/all-topic/topic/',noti.idBaiViet]">
+                <div id="itemnoti" [ngStyle]="{
               'background-color': noti.isRead == 0 ? 'darkturquoise': 'white'
               }">
-                {{noti.userName}} đã {{noti.message}} về bài viết {{noti.titleBV}} của bạn!
-              </div>
-            </a></li>
-            <br>
-          </ul>
-        </div>
+                  {{noti.userName}} đã {{noti.message}} về bài viết {{noti.titleBV}} của bạn!
+                </div>
+              </a></li>
+              <br>
+            </ul>
+          </div>
+        </ng-container>
         <!--        <div class="dropdown env pull-left">-->
         <!--          <img class="btn dropdown-toggle notifications-inbox"  src="../../../../assets/img/no-notification.png"   alt="Notification" id = "notification-icon" data-toggle="dropdown"   (click)="notificationClick()" >-->
         <!--          <ul class="dropdown-menu">-->

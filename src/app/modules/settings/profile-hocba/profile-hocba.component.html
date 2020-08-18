@@ -1,4 +1,4 @@
-<h5 class="float-right">Tổng số bản ghi : {{lopHocSearch.totalRecords}}</h5>
+<h5 class="float-right">Tổng số bản ghi : {{pointSearch.totalRecords}}</h5>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -7,22 +7,22 @@
     <th scope="col">MÔN HỌC</th>
     <th scope="col">NGÀY KHAI GIẢNG</th>
     <th scope="col">NGÀY KẾT THÚC</th>
-    <th scope="col">THỨ</th>
-    <th scope="col">GIỜ BẮT ĐẦU</th>
-    <th scope="col">GIỜ KẾT THÚC</th>
+    <th scope="col">ĐIỂM 15'</th>
+    <th scope="col">ĐIỂM 45'</th>
+    <th scope="col">ĐIỂM 90'</th>
     <th scope="col">ACTION</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let cl of lopHocModel; let i = index">
+  <tr *ngFor="let cl of pointModel; let i = index">
     <th scope="row">{{i + 1}}</th>
     <td>{{cl.tenLop}}</td>
     <td>{{cl.tenMonHoc}}</td>
     <td>{{cl.ngayKhaiGiang| date: 'dd-MM-yyyy'}}</td>
     <td>{{cl.ngayKetThuc| date: 'dd-MM-yyyy'}}</td>
-    <td>{{cl.thu}}</td>
-    <td>{{cl.gioBatDau}}</td>
-    <td>{{cl.gioKetThuc}}</td>
+    <td>{{cl.diemMieng}}</td>
+    <td>{{cl.diem15p}}</td>
+    <td>{{cl.diem90p}}</td>
     <td>
       <div class="form-group">
           <i class="glyphicon glyphicon-zoom-in"></i> <a (click)="goToDetail(cl)">Chi tiết</a>
@@ -31,4 +31,4 @@
   </tr>
   </tbody>
 </table>
-<app-paginator [searchObject]="lopHocSearch" (searchFunction)="getAllHocBa()"></app-paginator>
+<app-paginator [searchObject]="pointSearch" (searchFunction)="getAllHocBa()"></app-paginator>

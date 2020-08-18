@@ -232,7 +232,7 @@ export class NavbarClientComponent implements OnInit {
 
   showNoti() {
     if (this.userService.isLogin()){
-      let eleNoti = document.getElementById('shownoti');
+      let eleNoti = document.getElementById('shownotyfication');
       switch (eleNoti.classList.length) {
         case 2:
           eleNoti.classList.add('toggler');
