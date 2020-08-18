@@ -47,24 +47,24 @@
           <div *ngIf="f.diem90p.errors.pattern">Điểm nhập vào phải thuộc trong thang điểm 10!</div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="diem90p">Kíp dạy :</label>
-        <select formControlName="kipDay" id="kipDay">
-          <option value="" selected disabled>--Chọn kíp dạy--</option>
-          <option [value]="1">{{kip1}}</option>
-          <option [value]="2">{{kip2}}</option>
-          <option [value]="3">{{kip3}}</option>
-          <option [value]="4">{{kip4}}</option>
-          <option [value]="5">{{kip5}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="idLop">Tên lớp :</label>
-         <select  formControlName="idLop" name="idLop" id="idLop">
-           <option value="" selected disabled>--Chọn lớp--</option>
-           <option *ngFor="let lo of lopHoc" [value]="lo.id">{{lo.tenlop}}</option>
-         </select>
-      </div>
+<!--      <div class="form-group">-->
+<!--        <label for="diem90p">Kíp dạy :</label>-->
+<!--        <select formControlName="kipDay" id="kipDay">-->
+<!--          <option value="" selected disabled>&#45;&#45;Chọn kíp dạy&#45;&#45;</option>-->
+<!--          <option [value]="1">{{kip1}}</option>-->
+<!--          <option [value]="2">{{kip2}}</option>-->
+<!--          <option [value]="3">{{kip3}}</option>-->
+<!--          <option [value]="4">{{kip4}}</option>-->
+<!--          <option [value]="5">{{kip5}}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="idLop">Tên lớp :</label>-->
+<!--         <select  formControlName="idLop" name="idLop" id="idLop">-->
+<!--           <option value="" selected disabled>&#45;&#45;Chọn lớp&#45;&#45;</option>-->
+<!--           <option *ngFor="let lo of lopHoc" [value]="lo.id">{{lo.tenlop}}</option>-->
+<!--         </select>-->
+<!--      </div>-->
       <div class="form-group">
         <label for="diemTB">Điểm trung bình : </label>
         <span id="diemTB">{{parseDiemTB()}}</span>

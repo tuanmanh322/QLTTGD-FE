@@ -54,12 +54,12 @@
                                name="maThe" [disabled]="true">
               </div>
             </div>
-            <div class="col-xl-12">
-              <div class="form-group">
-                Lớp: <input class="form-control form-control-sm" type="text" id="tenLop" [value]="userProfile.tenLop"
-                            name="tenLop" [disabled]="true">
-              </div>
-            </div>
+<!--            <div class="col-xl-12">-->
+<!--              <div class="form-group">-->
+<!--                Lớp: <input class="form-control form-control-sm" type="text" id="tenLop" [value]="userProfile.tenLop"-->
+<!--                            name="tenLop" [disabled]="true">-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
           <div class="col-xl-6">
             <div class="form-group">
@@ -171,28 +171,28 @@
             </div>
           </div>
           <div *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
-            <div class="form-group">
-              Môn học <select formControlName="tenMH" id="tenMH">
-              <option value="" selected disabled>--Chọn môn học--</option>
-              <option *ngFor="let mh of monHocList" [value]="mh.tenmonhoc">{{mh.tenmonhoc}}</option>
-            </select>
-              <!--              Môn học: <input class="form-control form-control-sm" type="text" placeholder="nhập tên môn học" id="tenMH"-->
-              <!--                              formControlName="tenMH">-->
-              <div *ngIf="f.tenMH.errors && (f.tenMH.dirty || f.tenMH.touched)" class="text-danger">
-                <div *ngIf="f.tenMH.errors.required">Tên môn học không được để trống</div>
-              </div>
-            </div>
-            <div class="form-group">
-              Hạng mục <select formControlName="tenHangMuc" id="tenHangMuc">
-              <option value="" selected disabled>--Chọn hạng mục--</option>
-              <option *ngFor="let hm of hangMucModel" [value]="hm.tenhangmuc">{{hm.tenhangmuc}}</option>
-            </select>
-              <!--              Hạng mục: <input class="form-control form-control-sm" type="text" placeholder="nhập tên hạng mục" id="tenHangMuc"-->
-              <!--                               formControlName="tenHangMuc">-->
-              <div *ngIf="f.tenHangMuc.errors && (f.tenHangMuc.dirty || f.tenHangMuc.touched)" class="text-danger">
-                <div *ngIf="f.tenHangMuc.errors.required">Tên hạng mục không được để trống</div>
-              </div>
-            </div>
+<!--            <div class="form-group">-->
+<!--              Môn học <select formControlName="tenMH" id="tenMH">-->
+<!--              <option value="" selected disabled>&#45;&#45;Chọn môn học&#45;&#45;</option>-->
+<!--              <option *ngFor="let mh of monHocList" [value]="mh.tenmonhoc">{{mh.tenmonhoc}}</option>-->
+<!--            </select>-->
+<!--              &lt;!&ndash;              Môn học: <input class="form-control form-control-sm" type="text" placeholder="nhập tên môn học" id="tenMH"&ndash;&gt;-->
+<!--              &lt;!&ndash;                              formControlName="tenMH">&ndash;&gt;-->
+<!--              <div *ngIf="f.tenMH.errors && (f.tenMH.dirty || f.tenMH.touched)" class="text-danger">-->
+<!--                <div *ngIf="f.tenMH.errors.required">Tên môn học không được để trống</div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              Hạng mục <select formControlName="tenHangMuc" id="tenHangMuc">-->
+<!--              <option value="" selected disabled>&#45;&#45;Chọn hạng mục&#45;&#45;</option>-->
+<!--              <option *ngFor="let hm of hangMucModel" [value]="hm.tenhangmuc">{{hm.tenhangmuc}}</option>-->
+<!--            </select>-->
+<!--              &lt;!&ndash;              Hạng mục: <input class="form-control form-control-sm" type="text" placeholder="nhập tên hạng mục" id="tenHangMuc"&ndash;&gt;-->
+<!--              &lt;!&ndash;                               formControlName="tenHangMuc">&ndash;&gt;-->
+<!--              <div *ngIf="f.tenHangMuc.errors && (f.tenHangMuc.dirty || f.tenHangMuc.touched)" class="text-danger">-->
+<!--                <div *ngIf="f.tenHangMuc.errors.required">Tên hạng mục không được để trống</div>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
         </div>
         <div class="col-md-6">
@@ -221,40 +221,40 @@
             Mã thẻ: <input class="form-control form-control-sm" type="text" placeholder="Mã thẻ" id="maThe"
                            [disabled]="true" [value]="userProfile.maThe">
           </div>
+<!--          <div *ngIf="this.userProfile.role === 'ROLE_TEACHER'">-->
+<!--            <div class="form-group">-->
+<!--              Mã giáo viên: <input class="form-control form-control-sm" type="text" placeholder="Mã giáo viên"-->
+<!--                                   id="HoTen"-->
+<!--                                   [disabled]="true" [value]="userProfile.maGV">-->
+<!--            </div>-->
+<!--          </div>-->
           <div *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
-            <div class="form-group">
-              Mã giáo viên: <input class="form-control form-control-sm" type="text" placeholder="Mã giáo viên"
-                                   id="HoTen"
-                                   [disabled]="true" [value]="userProfile.maGV">
-            </div>
-          </div>
-          <div *ngIf="this.userProfile.role === 'ROLE_TEACHER'">
-            <div class="form-group">
-              Lớp học: <select formControlName="tenLop" id="tenLop">
-              <option value="" selected disabled>--Chọn lớp học--</option>
-              <option *ngFor="let lo of lopHocModel" [value]="lo.tenlop">{{lo.tenlop}}</option>
-            </select>
-              <!--              Lớp học: <input class="form-control form-control-sm" type="text" placeholder="nhập tên lớp" id="tenLop"-->
-              <!--                              formControlName="tenLop">-->
-              <div *ngIf="f.tenLop.errors && (f.tenLop.dirty || f.tenLop.touched)" class="text-danger">
-                <div *ngIf="f.tenLop.errors.required">Tên lớp không được để trống</div>
-              </div>
-            </div>
-            <div class="form-group">
-              Kíp dạy: <select formControlName="kipDay" id="kipDay">
-              <option value="" selected disabled>--Chọn kíp dạy--</option>
-              <option [value]="kip1">{{kip1}}</option>
-              <option [value]="kip2">{{kip2}}</option>
-              <option [value]="kip3">{{kip3}}</option>
-              <option [value]="kip4">{{kip4}}</option>
-              <option [value]="kip5">{{kip5}}</option>
-            </select>
+<!--            <div class="form-group">-->
+<!--              Lớp học: <select formControlName="tenLop" id="tenLop">-->
+<!--              <option value="" selected disabled>&#45;&#45;Chọn lớp học&#45;&#45;</option>-->
+<!--              <option *ngFor="let lo of lopHocModel" [value]="lo.id">{{lo.tenlop}}</option>-->
+<!--            </select>-->
+<!--              &lt;!&ndash;              Lớp học: <input class="form-control form-control-sm" type="text" placeholder="nhập tên lớp" id="tenLop"&ndash;&gt;-->
+<!--              &lt;!&ndash;                              formControlName="tenLop">&ndash;&gt;-->
+<!--              <div *ngIf="f.tenLop.errors && (f.tenLop.dirty || f.tenLop.touched)" class="text-danger">-->
+<!--                <div *ngIf="f.tenLop.errors.required">Tên lớp không được để trống</div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              Kíp dạy: <select formControlName="kipDay" id="kipDay">-->
+<!--              <option value="" selected disabled>&#45;&#45;Chọn kíp dạy&#45;&#45;</option>-->
+<!--              <option [value]="kip1">{{kip1}}</option>-->
+<!--              <option [value]="kip2">{{kip2}}</option>-->
+<!--              <option [value]="kip3">{{kip3}}</option>-->
+<!--              <option [value]="kip4">{{kip4}}</option>-->
+<!--              <option [value]="kip5">{{kip5}}</option>-->
+<!--            </select>-->
               <!--              Kíp dạy: <input class="form-control form-control-sm" type="text" placeholder="nhập kíp dạy" id="kipDay"-->
               <!--                              formControlName="kipDay">-->
-              <div *ngIf="f.kipDay.errors && (f.kipDay.dirty || f.kipDay.touched)" class="text-danger">
-                <div *ngIf="f.kipDay.errors.required">Kíp dạy không được để trống</div>
-              </div>
-            </div>
+<!--              <div *ngIf="f.kipDay.errors && (f.kipDay.dirty || f.kipDay.touched)" class="text-danger">-->
+<!--                <div *ngIf="f.kipDay.errors.required">Kíp dạy không được để trống</div>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
         </div>
       </div>

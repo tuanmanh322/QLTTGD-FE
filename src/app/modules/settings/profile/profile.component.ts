@@ -77,10 +77,10 @@ export class ProfileComponent implements OnInit {
     }
     if (this.userProfile.role === TEACHER) {
       this.roleUser = 'Giáo viên';
-      this.userForm.addControl('tenLop', new FormControl(this.userProfile.tenLop, [Validators.required]));
-      this.userForm.addControl('tenMH', new FormControl(this.userProfile.tenMH, [Validators.required]));
-      this.userForm.addControl('tenHangMuc', new FormControl(this.userProfile.tenHangMuc, [Validators.required]));
-      this.userForm.addControl('kipDay', new FormControl(this.userProfile.kipDay, [Validators.required]));
+      // this.userForm.addControl('tenLop', new FormControl(this.userProfile.tenLop, [Validators.required]));
+      // this.userForm.addControl('tenMH', new FormControl(this.userProfile.tenMH, [Validators.required]));
+      // this.userForm.addControl('tenHangMuc', new FormControl(this.userProfile.tenHangMuc, [Validators.required]));
+      // this.userForm.addControl('kipDay', new FormControl(this.userProfile.kipDay, [Validators.required]));
     }
     if (this.userProfile.role === STUDENT) {
       this.roleUser = 'Học sinh';
@@ -110,10 +110,10 @@ export class ProfileComponent implements OnInit {
       formData.append('imageAvatar', this.userForm.get('imageAvatar').value);
     }
     if (this.userProfile.role === TEACHER) {
-      formData.append('tenLop', this.userForm.get('tenLop').value);
-      formData.append('tenMH', this.userForm.get('tenMH').value);
-      formData.append('tenHangMuc', this.userForm.get('tenHangMuc').value);
-      formData.append('kipDay', this.userForm.get('kipDay').value);
+      // formData.append('idLop', this.userForm.get('tenLop').value);
+      // formData.append('tenMH', this.userForm.get('tenMH').value);
+      // formData.append('tenHangMuc', this.userForm.get('tenHangMuc').value);
+      // formData.append('kipDay', this.userForm.get('kipDay').value);
     }
     this.apiService.post('/api/user/edit-profile', formData).subscribe(res => {
       this.userProfile = res.data;

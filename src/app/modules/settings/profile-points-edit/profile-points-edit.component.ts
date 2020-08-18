@@ -38,8 +38,8 @@ export class ProfilePointsEditComponent implements OnInit {
     });
 
     this.pointForm = this.fb.group({
-      kipDay: new FormControl(this.pointModel.kipDay, [Validators.required]),
-      idLop: new FormControl(this.pointModel.idLop, [Validators.required]),
+      // kipDay: new FormControl(this.pointModel.kipDay, [Validators.required]),
+      // idLop: new FormControl(this.pointModel.idLop, [Validators.required]),
       diemMieng: new FormControl(this.pointModel.diemMieng, [Validators.required, Validators.pattern('^(10|\\d)(\\.\\d{1,2})?$')]),
       diem15p: new FormControl(this.pointModel.diem15p, [Validators.required, Validators.pattern('^(10|\\d)(\\.\\d{1,2})?$')]),
       diem90p: new FormControl(this.pointModel.diem90p, [Validators.required, Validators.pattern('^(10|\\d)(\\.\\d{1,2})?$')]),
@@ -52,15 +52,15 @@ export class ProfilePointsEditComponent implements OnInit {
       const points = {
         id: this.pointModel.id,
         maDiem: this.pointModel.maDiem,
-        maLop: this.pointForm.get('idLop').value,
-        idUser: this.pointModel.idUser,
+        // maLop: this.pointForm.get('idLop').value,
+        // idUser: this.pointModel.idUser,
         diemmieng: this.pointForm.get('diemMieng').value,
         diem15p: this.pointForm.get('diem15p').value,
         diem90p: this.pointForm.get('diem90p').value,
         diemtb: this.parseDiemTB(),
-        username: this.pointModel.userName,
-        kipDay: this.pointForm.get('kipDay').value,
-        idLopOld: this.pointModel.idLop
+        // username: this.pointModel.userName,
+        // kipDay: this.pointForm.get('kipDay').value,
+        // idLopOld: this.pointModel.idLop
       };
       this.apiService.put('/api/diem/edit', points).subscribe(res => {
         this.toastr.success('Cập nhật thành công!');

@@ -38,7 +38,7 @@
     <th scope="row">{{i + 1}}</th>
     <td>{{cl.createDate | date: 'dd-MM-yyyy'}}</td>
     <td>{{cl.titleBV}}</td>
-    <td>{{cl.noidungBV}}</td>
+    <td [innerHTML]="cl.noidungBV"></td>
     <td>{{cl.luotthich}}</td>
     <td>{{cl.luotkhongthich}}</td>
   </tr>
